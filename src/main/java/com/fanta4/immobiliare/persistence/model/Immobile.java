@@ -1,0 +1,80 @@
+package com.fanta4.immobiliare.persistence.model;
+
+public class Immobile {
+    private Long id;
+    private String nome;
+    private String tipo;
+    private Double prezzo;
+    private String descrizione;
+    private Double metri_quadri;
+    private String indirizzo;
+
+    public Immobile(Long id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.prezzo = prezzo;
+        this.descrizione = descrizione;
+        this.metri_quadri = metri_quadri;
+        this.indirizzo = indirizzo;
+    }
+
+    public Immobile() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public Double getMetri_quadri() {
+        return metri_quadri;
+    }
+
+    public void setMetri_quadri(Double metri_quadri) {
+        this.metri_quadri = metri_quadri;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+}
