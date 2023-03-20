@@ -10,11 +10,11 @@ public class ImmobileService {
 
     public void createImmobile(Immobile immobile) {
         // TODO: 19/03/23 da inserire i controlli sugli input 
-        DBManager.getInstance().getImoobileDAO().saveOrUpdate(immobile);
+        DBManager.getInstance().getImmobileDAO().saveOrUpdate(immobile);
     }
 
     public ResponseEntity<Immobile> getByID(Long id) {
-        Immobile immobile = DBManager.getInstance().getImoobileDAO().findByPrimaryKey(id);
+        Immobile immobile = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)
             return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
         return ResponseEntity.ok(immobile); //genera un entità di risposta positiva
@@ -22,15 +22,15 @@ public class ImmobileService {
     }
 
     public ResponseEntity<Object> deleteByID(Long id) {
-        Immobile immobile = DBManager.getInstance().getImoobileDAO().findByPrimaryKey(id);
+        Immobile immobile = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)
             return ResponseEntity.notFound().build();
-        DBManager.getInstance().getImoobileDAO().delete(immobile);
+        DBManager.getInstance().getImmobileDAO().delete(immobile);
         return ResponseEntity.noContent().build();
     }
 
     public ResponseEntity<Immobile> updateImmobile(Long id, Immobile immobile) {
-        Immobile immobile1 = DBManager.getInstance().getImoobileDAO().findByPrimaryKey(id);
+        Immobile immobile1 = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)
             return ResponseEntity.notFound().build();
         else{
@@ -41,7 +41,7 @@ public class ImmobileService {
             immobile1.setDescrizione(immobile.getDescrizione());
             immobile1.setMetri_quadri(immobile.getMetri_quadri());
             immobile1.setIndirizzo(immobile.getIndirizzo());
-            if(DBManager.getInstance().getImoobileDAO().saveOrUpdate(immobile1))
+            if(DBManager.getInstance().getImmobileDAO().saveOrUpdate(immobile1))
                 return ResponseEntity.ok(immobile1);
             else return ResponseEntity.internalServerError().build();
         }

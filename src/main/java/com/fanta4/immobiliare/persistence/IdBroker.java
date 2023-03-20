@@ -29,4 +29,21 @@ public class IdBroker {
         return id;
     }
 
+    public static Long getRecensioneId(Connection connection){
+        Long id = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement("select nextval('recensioni_id') as id");
+
+            ResultSet result = statement.executeQuery();
+            result.next();
+            id = result.getLong("id");
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
 }

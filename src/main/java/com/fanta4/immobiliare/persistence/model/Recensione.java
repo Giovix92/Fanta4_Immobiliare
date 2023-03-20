@@ -1,6 +1,6 @@
 package com.fanta4.immobiliare.persistence.model;
 
-public class Recensioni {
+public class Recensione {
 
     private Long id;
 
@@ -12,7 +12,7 @@ public class Recensioni {
 
     private Long immobile;
 
-    public Recensioni(Long id, String titolo, Short rating, String autore, Long immobile) {
+    public Recensione(Long id, String titolo, Short rating, String autore, Long immobile) {
         this.id = id;
         this.titolo = titolo;
         this.rating = rating;
@@ -20,7 +20,7 @@ public class Recensioni {
         this.immobile = immobile;
     }
 
-    public Recensioni() {
+    public Recensione() {
     }
 
     public Long getId() {

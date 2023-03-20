@@ -1,7 +1,9 @@
 package com.fanta4.immobiliare.persistence;
 
 import com.fanta4.immobiliare.persistence.dao.ImmobileDao;
+import com.fanta4.immobiliare.persistence.dao.RecensioneDao;
 import com.fanta4.immobiliare.persistence.dao.postgres.ImmobileDaoPostgres;
+import com.fanta4.immobiliare.persistence.dao.postgres.RecensioneDaoPostgres;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,8 +41,12 @@ public class DBManager {
         return conn;
     }
 
-    public ImmobileDao getImoobileDAO(){
+    public ImmobileDao getImmobileDAO(){
         return new ImmobileDaoPostgres(getConnection());
+    }
+
+    public RecensioneDao getRecensioneDAO(){
+        return new RecensioneDaoPostgres(getConnection());
     }
 }
 
