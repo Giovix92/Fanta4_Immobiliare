@@ -66,7 +66,8 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;}
+            return null;
+        }
     }
 
     @Override

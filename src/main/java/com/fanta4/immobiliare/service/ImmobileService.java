@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class ImmobileService {
 
     public void createImmobile(Immobile immobile) {
-        // TODO: 19/03/23 da inserire i controlli sugli input 
+        // TODO: 19/03/23 da inserire i controlli sugli input (immobile)
         DBManager.getInstance().getImmobileDAO().saveOrUpdate(immobile);
     }
 
@@ -34,7 +34,7 @@ public class ImmobileService {
         if(immobile == null)
             return ResponseEntity.notFound().build();
         else{
-            // TODO: 19/03/23 controllare gli input 
+            // TODO: 19/03/23 controllare gli input (immobile)
             immobile1.setNome(immobile.getNome());
             immobile1.setTipo(immobile.getTipo());
             immobile1.setPrezzo(immobile.getPrezzo());
