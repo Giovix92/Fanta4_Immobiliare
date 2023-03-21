@@ -1,5 +1,6 @@
 package com.fanta4.immobiliare.persistence.dao.postgres;
 
+import com.fanta4.immobiliare.persistence.dao.RecensioneDao;
 import com.fanta4.immobiliare.persistence.model.Recensione;
 
 import java.sql.Connection;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecensioneDaoPostgres {
+public class RecensioneDaoPostgres implements RecensioneDao {
 
     Connection connection;
 
@@ -41,5 +42,20 @@ public class RecensioneDaoPostgres {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Recensione findByPrimaryKey(Long id) {
+        return null;
+    }
+
+    @Override
+    public boolean saveOrUpdate(Recensione recensione) {
+        return false;
+    }
+
+    @Override
+    public void delete(Recensione recensione) {
+
     }
 }
