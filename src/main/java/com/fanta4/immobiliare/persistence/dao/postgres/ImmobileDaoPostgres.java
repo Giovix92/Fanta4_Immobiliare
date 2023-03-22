@@ -17,6 +17,19 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         this.connection = connection;
     }
 
+    public Immobile createNewEntity(ResultSet rs) throws SQLException {
+        Immobile i = new Immobile();
+        i.setId(rs.getLong("id"));
+        i.setNome(rs.getString("nome"));
+        i.setTipo(rs.getString("tipo"));
+        i.setPrezzo(rs.getDouble("prezzo"));
+        i.setDescrizione(rs.getString("descrizione"));
+        i.setMetri_quadri(rs.getDouble("metri_quadri"));
+        i.setIndirizzo(rs.getString("indirizzo"));
+        i.setProprietario(rs.getString("proprietario"));
+        return i;
+    }
+
     @Override
     public List<Immobile> findAll() {
         ArrayList<Immobile> immobili = new ArrayList<>();
@@ -24,23 +37,14 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         try {
             PreparedStatement st = connection.prepareStatement(query);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                Immobile i = new Immobile();
-                i.setId(rs.getLong("id"));
-                i.setNome(rs.getString("nome"));
-                i.setTipo(rs.getString("tipo"));
-                i.setPrezzo(rs.getDouble("prezzo"));
-                i.setDescrizione(rs.getString("descrizione"));
-                i.setMetri_quadri(rs.getDouble("metri_quadri"));
-                i.setIndirizzo(rs.getString("indirizzo"));
-
-                immobili.add(i);
-            }
+            while(rs.next()) { immobili.add(createNewEntity(rs)); }
             return immobili;
         }
         catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
-            return null;}
+        }
+        return null;
     }
 
     @Override
@@ -50,71 +54,59 @@ public class ImmobileDaoPostgres implements ImmobileDao {
             PreparedStatement st = connection.prepareStatement(query);
             st.setLong(1,id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                Immobile i = new Immobile();
-                i.setId(rs.getLong("id"));
-                i.setNome(rs.getString("nome"));
-                i.setTipo(rs.getString("tipo"));
-                i.setPrezzo(rs.getDouble("prezzo"));
-                i.setDescrizione(rs.getString("descrizione"));
-                i.setMetri_quadri(rs.getDouble("metri_quadri"));
-                i.setIndirizzo(rs.getString("indirizzo"));
-
-                return i;
-            }
-            return null;
+            if (rs.next()) { return createNewEntity(rs); }
         }
         catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     @Override
     public boolean saveOrUpdate(Immobile immobile) {
-        String insertQuery = "insert into immobili values(?,?,?,?,?,?,?)";
-        String updateQuery = "update immobili set nome = ?, tipo = ?, prezzo = ?, descrizione = ?, metri_quadri = ?, indirizzo = ? where id = ?";
         PreparedStatement st = null;
+        Long id = null;
         try {
             if(immobile.getId() == null) {
+                String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, id) values(?,?,?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
-                Long newid = IdBroker.getImmobileId(connection);
-                st.setLong(1,newid);
-                st.setString(2, immobile.getNome());
-                st.setString(3, immobile.getTipo());
-                st.setDouble(4,immobile.getPrezzo());
-                st.setString(5,immobile.getDescrizione());
-                st.setDouble(6,immobile.getMetri_quadri());
-                st.setString(7,immobile.getIndirizzo());
-            }
-            else{
+                id = IdBroker.getImmobileId(connection);
+            } else {
+                String updateQuery = "update immobili set nome = ?, tipo = ?, prezzo = ?, descrizione = ?, metri_quadri = ?, indirizzo = ?, proprietario = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
-                st.setString(1, immobile.getNome());
-                st.setString(2, immobile.getTipo());
-                st.setDouble(3,immobile.getPrezzo());
-                st.setString(4,immobile.getDescrizione());
-                st.setDouble(5,immobile.getMetri_quadri());
-                st.setString(6,immobile.getIndirizzo());
-                st.setLong(7,immobile.getId());
+                id = immobile.getId();
             }
+            st.setString(1, immobile.getNome());
+            st.setString(2, immobile.getTipo());
+            st.setDouble(3,immobile.getPrezzo());
+            st.setString(4,immobile.getDescrizione());
+            st.setDouble(5,immobile.getMetri_quadri());
+            st.setString(6,immobile.getIndirizzo());
+            st.setString(7, immobile.getProprietario());
+            st.setLong(8, id);
+
             st.executeUpdate();
             return true;
         }
-        catch (SQLException e){
+        catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
     public void delete(Immobile immobile) {
+        if (findByPrimaryKey(immobile.getId()) == null) return;
         String query = "delete from immobili where id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setLong(1, immobile.getId());
             st.executeUpdate();
         }
-        catch (SQLException e){
+        catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
     }

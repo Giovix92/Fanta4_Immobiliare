@@ -19,6 +19,16 @@ public class RecensioneDaoPostgres implements RecensioneDao {
         this.connection = connection;
     }
 
+    public Recensione createNewEntity(ResultSet rs) throws SQLException {
+        Recensione r = new Recensione();
+        r.setId(rs.getLong("id"));
+        r.setTitolo(rs.getString("titolo"));
+        r.setRating(rs.getShort("rating"));
+        r.setAutore(rs.getString("autore"));
+        r.setImmobile(rs.getLong("immobile"));
+        return r;
+    }
+
     @Override
     public List<Recensione> findAll() {
         ArrayList<Recensione> recensioni = new ArrayList<>();
@@ -26,20 +36,11 @@ public class RecensioneDaoPostgres implements RecensioneDao {
         try {
             PreparedStatement st = connection.prepareStatement(query);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                Recensione r = new Recensione();
-                r.setId(rs.getLong("id"));
-                r.setTitolo(rs.getString("titolo"));
-                r.setRating(rs.getShort("rating"));
-                r.setAutore(rs.getString("autore"));
-                r.setImmobile(rs.getLong("immobile"));
-
-                recensioni.add(r);
-            }
+            while(rs.next()) { recensioni.add(createNewEntity(rs)); }
             return recensioni;
-
         }
-        catch (SQLException e){
+        catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;
@@ -48,22 +49,14 @@ public class RecensioneDaoPostgres implements RecensioneDao {
     @Override
     public Recensione findByPrimaryKey(Long id) {
         String query = "select * from recensioni where id = ?";
-        try{
+        try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setLong(1,id);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
-                Recensione r = new Recensione();
-                r.setId(rs.getLong("id"));
-                r.setTitolo(rs.getString("titolo"));
-                r.setRating(rs.getShort("rating"));
-                r.setAutore(rs.getString("autore"));
-                r.setImmobile(rs.getLong("immobile"));
-
-                return r;
-            }
+            if(rs.next()) { return createNewEntity(rs); }
         }
-        catch (SQLException e){
+        catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;
@@ -93,6 +86,7 @@ public class RecensioneDaoPostgres implements RecensioneDao {
             return true;
         }
         catch (SQLException e){
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return false;
@@ -100,14 +94,15 @@ public class RecensioneDaoPostgres implements RecensioneDao {
 
     @Override
     public void delete(Recensione recensione) {
+        if (findByPrimaryKey(recensione.getId()) == null) return;
         String query = "delete from recensioni where id = ?";
-        try{
+        try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setLong(1, recensione.getId());
             st.executeUpdate();
-
         }
-        catch(SQLException e){
+        catch(SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
     }
