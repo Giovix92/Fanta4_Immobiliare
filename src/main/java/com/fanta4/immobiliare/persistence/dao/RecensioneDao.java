@@ -7,7 +7,7 @@ import java.util.List;
 public interface RecensioneDao {
     List<Recensione> findAll(); //restituisce una lista di tutti gli annunci
 
-    Recensione findByPrimaryKey(Long id); //restituisce un annuncio data la chiave primaria
+    Recensione findByPrimaryKey(Integer id); //restituisce un annuncio data la chiave primaria
 
     boolean saveOrUpdate(Recensione recensione); //salva se non esiste o aggiorna se esiste
 

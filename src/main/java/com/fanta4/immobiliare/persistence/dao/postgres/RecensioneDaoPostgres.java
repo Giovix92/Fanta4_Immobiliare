@@ -21,11 +21,11 @@ public class RecensioneDaoPostgres implements RecensioneDao {
 
     public Recensione createNewEntity(ResultSet rs) throws SQLException {
         Recensione r = new Recensione();
-        r.setId(rs.getLong("id"));
+        r.setId(rs.getInt("id"));
         r.setTitolo(rs.getString("titolo"));
         r.setRating(rs.getShort("rating"));
         r.setAutore(rs.getString("autore"));
-        r.setImmobile(rs.getLong("immobile"));
+        r.setImmobile(rs.getInt("immobile"));
         return r;
     }
 
@@ -47,11 +47,11 @@ public class RecensioneDaoPostgres implements RecensioneDao {
     }
 
     @Override
-    public Recensione findByPrimaryKey(Long id) {
+    public Recensione findByPrimaryKey(Integer id) {
         String query = "select * from recensioni where id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            st.setLong(1,id);
+            st.setInt(1,id);
             ResultSet rs = st.executeQuery();
             if(rs.next()) { return createNewEntity(rs); }
         }
@@ -65,7 +65,7 @@ public class RecensioneDaoPostgres implements RecensioneDao {
     @Override
     public boolean saveOrUpdate(Recensione recensione) {
         PreparedStatement st = null;
-        Long id = null;
+        Integer id = null;
         try{
             if(recensione.getId() == null){
                 String insertQuery = "insert into recensioni(titolo, rating, autore, immobile, id) values(?,?,?,?,?)";
@@ -79,8 +79,8 @@ public class RecensioneDaoPostgres implements RecensioneDao {
             st.setString(1, recensione.getTitolo());
             st.setShort(2, recensione.getRating());
             st.setString(3, recensione.getAutore());
-            st.setLong(4, recensione.getImmobile());
-            st.setLong(5, id);
+            st.setInt(4, recensione.getImmobile());
+            st.setInt(5, id);
 
             st.executeUpdate();
             return true;
@@ -98,7 +98,7 @@ public class RecensioneDaoPostgres implements RecensioneDao {
         String query = "delete from recensioni where id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            st.setLong(1, recensione.getId());
+            st.setInt(1, recensione.getId());
             st.executeUpdate();
         }
         catch(SQLException e) {

@@ -22,20 +22,20 @@ public class ImmobileController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Immobile> findByID(@PathVariable Long id){
+    public ResponseEntity<Immobile> findByID(@PathVariable Integer id){
         return i.getByID(id);
     }
 
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Object> deleteImmobile(@PathVariable Long id){
+    public ResponseEntity<Object> deleteImmobile(@PathVariable Integer id){
         return i.deleteByID(id);
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Immobile> updateImmobile(@PathVariable Long id, @RequestBody Immobile immobile){
+    public ResponseEntity<Immobile> updateImmobile(@PathVariable Integer id, @RequestBody Immobile immobile){
         return i.updateImmobile(id, immobile);
     }
 }

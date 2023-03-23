@@ -13,7 +13,7 @@ public class ImmobileService {
         DBManager.getInstance().getImmobileDAO().saveOrUpdate(immobile);
     }
 
-    public ResponseEntity<Immobile> getByID(Long id) {
+    public ResponseEntity<Immobile> getByID(Integer id) {
         Immobile immobile = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)
             return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
@@ -21,7 +21,7 @@ public class ImmobileService {
         // TODO: 19/03/23 controllo da fare: controllo sulla validità dell'ID 
     }
 
-    public ResponseEntity<Object> deleteByID(Long id) {
+    public ResponseEntity<Object> deleteByID(Integer id) {
         Immobile immobile = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)
             return ResponseEntity.notFound().build();
@@ -29,7 +29,7 @@ public class ImmobileService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Immobile> updateImmobile(Long id, Immobile immobile) {
+    public ResponseEntity<Immobile> updateImmobile(Integer id, Immobile immobile) {
         Immobile immobile1 = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)
             return ResponseEntity.notFound().build();

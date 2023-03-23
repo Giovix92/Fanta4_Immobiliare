@@ -7,7 +7,7 @@ import java.util.List;
 public interface ImmobileDao {
     List<Immobile> findAll(); //restituisce una lista di tutti gli annunci
 
-    Immobile findByPrimaryKey(Long id); //restituisce un annuncio data la chiave primaria
+    Immobile findByPrimaryKey(Integer id); //restituisce un annuncio data la chiave primaria
 
     boolean saveOrUpdate(Immobile immobile); //salva se non esiste o aggiorna se esiste
 

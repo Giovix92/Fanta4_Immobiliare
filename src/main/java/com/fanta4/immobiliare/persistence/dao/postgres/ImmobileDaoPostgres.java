@@ -19,7 +19,7 @@ public class ImmobileDaoPostgres implements ImmobileDao {
 
     public Immobile createNewEntity(ResultSet rs) throws SQLException {
         Immobile i = new Immobile();
-        i.setId(rs.getLong("id"));
+        i.setId(rs.getInt("id"));
         i.setNome(rs.getString("nome"));
         i.setTipo(rs.getString("tipo"));
         i.setPrezzo(rs.getDouble("prezzo"));
@@ -48,11 +48,11 @@ public class ImmobileDaoPostgres implements ImmobileDao {
     }
 
     @Override
-    public Immobile findByPrimaryKey(Long id) {
+    public Immobile findByPrimaryKey(Integer id) {
         String query = "select * from immobili where id=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            st.setLong(1,id);
+            st.setInt(1,id);
             ResultSet rs = st.executeQuery();
             if (rs.next()) { return createNewEntity(rs); }
         }
@@ -66,7 +66,7 @@ public class ImmobileDaoPostgres implements ImmobileDao {
     @Override
     public boolean saveOrUpdate(Immobile immobile) {
         PreparedStatement st = null;
-        Long id = null;
+        Integer id = null;
         try {
             if(immobile.getId() == null) {
                 String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, id) values(?,?,?,?,?,?,?,?)";
@@ -84,7 +84,7 @@ public class ImmobileDaoPostgres implements ImmobileDao {
             st.setDouble(5,immobile.getMetri_quadri());
             st.setString(6,immobile.getIndirizzo());
             st.setString(7, immobile.getProprietario());
-            st.setLong(8, id);
+            st.setInt(8, id);
 
             st.executeUpdate();
             return true;
@@ -102,7 +102,7 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         String query = "delete from immobili where id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            st.setLong(1, immobile.getId());
+            st.setInt(1, immobile.getId());
             st.executeUpdate();
         }
         catch (SQLException e) {

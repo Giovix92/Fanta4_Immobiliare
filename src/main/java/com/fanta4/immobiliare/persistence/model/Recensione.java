@@ -2,7 +2,7 @@ package com.fanta4.immobiliare.persistence.model;
 
 public class Recensione {
 
-    private Long id;
+    private Integer id;
 
     private String titolo;
 
@@ -10,9 +10,9 @@ public class Recensione {
 
     private String autore;
 
-    private Long immobile;
+    private Integer immobile;
 
-    public Recensione(Long id, String titolo, Short rating, String autore, Long immobile) {
+    public Recensione(Integer id, String titolo, Short rating, String autore, Integer immobile) {
         this.id = id;
         this.titolo = titolo;
         this.rating = rating;
@@ -23,11 +23,11 @@ public class Recensione {
     public Recensione() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -55,11 +55,11 @@ public class Recensione {
         this.autore = autore;
     }
 
-    public Long getImmobile() {
+    public Integer getImmobile() {
         return immobile;
     }
 
-    public void setImmobile(Long immobile) {
+    public void setImmobile(Integer immobile) {
         this.immobile = immobile;
     }
 }

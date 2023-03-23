@@ -13,7 +13,7 @@ public class RecensioneService {
         DBManager.getInstance().getRecensioneDAO().saveOrUpdate(recensione);
     }
 
-    public ResponseEntity<Recensione> getByID(Long id){
+    public ResponseEntity<Recensione> getByID(Integer id){
         Recensione recensione = DBManager.getInstance().getRecensioneDAO().findByPrimaryKey(id);
         if(recensione == null)
             return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
@@ -21,7 +21,7 @@ public class RecensioneService {
         // TODO: 19/03/23 controllo da fare: controllo sulla validità dell'ID
     }
 
-    public ResponseEntity<Object> deleteByID(Long id){
+    public ResponseEntity<Object> deleteByID(Integer id){
         Recensione recensione = DBManager.getInstance().getRecensioneDAO().findByPrimaryKey(id);
         if (recensione == null)
             return ResponseEntity.notFound().build();
@@ -29,7 +29,7 @@ public class RecensioneService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Recensione> updateRecensione(Long id, Recensione recensione){
+    public ResponseEntity<Recensione> updateRecensione(Integer id, Recensione recensione){
         Recensione recensione1 = DBManager.getInstance().getRecensioneDAO().findByPrimaryKey(id);
         if(recensione == null)
             return ResponseEntity.notFound().build();

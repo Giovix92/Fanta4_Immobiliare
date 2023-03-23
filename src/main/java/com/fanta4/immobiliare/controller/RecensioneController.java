@@ -20,14 +20,14 @@ public class RecensioneController {
     public void createRecensione(@RequestBody Recensione recesione) { r.createRecensione(recesione); }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Recensione> findByID(@PathVariable Long id) { return r.getByID(id); }
+    public ResponseEntity<Recensione> findByID(@PathVariable Integer id) { return r.getByID(id); }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Object> deleteRecensione(@PathVariable Long id) { return r.deleteByID(id); }
+    public ResponseEntity<Object> deleteRecensione(@PathVariable Integer id) { return r.deleteByID(id); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Recensione> updateRecensione(@PathVariable Long id, Recensione recensione){
+    public ResponseEntity<Recensione> updateRecensione(@PathVariable Integer id, Recensione recensione){
         return r.updateRecensione(id, recensione);
     }
 }

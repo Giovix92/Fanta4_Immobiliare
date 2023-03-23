@@ -12,14 +12,14 @@ public class IdBroker {
     //private static final String query = "SELECT nextval('db_sequence') AS id";//postgresql
 
 
-    public static Long getImmobileId(Connection connection){
-        Long id = null;
+    public static Integer getImmobileId(Connection connection){
+        Integer id = null;
         try {
             PreparedStatement statement = connection.prepareStatement("select nextval('immobili_id') as id");
 
             ResultSet result = statement.executeQuery();
             result.next();
-            id = result.getLong("id");
+            id = result.getInt("id");
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -29,14 +29,14 @@ public class IdBroker {
         return id;
     }
 
-    public static Long getRecensioneId(Connection connection){
-        Long id = null;
+    public static Integer getRecensioneId(Connection connection){
+        Integer id = null;
         try {
             PreparedStatement statement = connection.prepareStatement("select nextval('recensioni_id') as id");
 
             ResultSet result = statement.executeQuery();
             result.next();
-            id = result.getLong("id");
+            id = result.getInt("id");
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block

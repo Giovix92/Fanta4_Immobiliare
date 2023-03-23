@@ -1,7 +1,7 @@
 package com.fanta4.immobiliare.persistence.model;
 
 public class Immobile {
-    private Long id;
+    private Integer id;
     private String nome;
     private String tipo;
     private Double prezzo;
@@ -11,7 +11,7 @@ public class Immobile {
 
     private String proprietario;
 
-    public Immobile(Long id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo, String proprietario) {
+    public Immobile(Integer id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo, String proprietario) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -25,11 +25,11 @@ public class Immobile {
     public Immobile() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
