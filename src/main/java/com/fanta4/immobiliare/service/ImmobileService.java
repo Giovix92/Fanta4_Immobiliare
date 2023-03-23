@@ -41,6 +41,7 @@ public class ImmobileService {
             immobile1.setDescrizione(immobile.getDescrizione());
             immobile1.setMetri_quadri(immobile.getMetri_quadri());
             immobile1.setIndirizzo(immobile.getIndirizzo());
+            immobile1.setTipo_annuncio(immobile.getTipo_annuncio());
             if(DBManager.getInstance().getImmobileDAO().saveOrUpdate(immobile1))
                 return ResponseEntity.ok(immobile1);
             else return ResponseEntity.internalServerError().build();

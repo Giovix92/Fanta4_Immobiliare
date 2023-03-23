@@ -27,6 +27,7 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         i.setMetri_quadri(rs.getDouble("metri_quadri"));
         i.setIndirizzo(rs.getString("indirizzo"));
         i.setProprietario(rs.getString("proprietario"));
+        i.setTipo_annuncio(rs.getString("tipo_annuncio"));
         return i;
     }
 
@@ -69,11 +70,11 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         Integer id = null;
         try {
             if(immobile.getId() == null) {
-                String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, id) values(?,?,?,?,?,?,?,?)";
+                String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, id, tipo_annuncio) values(?,?,?,?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
                 id = IdBroker.getImmobileId(connection);
             } else {
-                String updateQuery = "update immobili set nome = ?, tipo = ?, prezzo = ?, descrizione = ?, metri_quadri = ?, indirizzo = ?, proprietario = ? where id = ?";
+                String updateQuery = "update immobili set nome = ?, tipo = ?, prezzo = ?, descrizione = ?, metri_quadri = ?, indirizzo = ?, proprietario = ?, tipo_annuncio = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
                 id = immobile.getId();
             }
@@ -84,7 +85,8 @@ public class ImmobileDaoPostgres implements ImmobileDao {
             st.setDouble(5,immobile.getMetri_quadri());
             st.setString(6,immobile.getIndirizzo());
             st.setString(7, immobile.getProprietario());
-            st.setInt(8, id);
+            st.setString(8, immobile.getTipo_annuncio());
+            st.setInt(9, id);
 
             st.executeUpdate();
             return true;

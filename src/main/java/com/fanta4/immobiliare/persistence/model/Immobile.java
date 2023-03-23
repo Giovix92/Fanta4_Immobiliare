@@ -8,10 +8,10 @@ public class Immobile {
     private String descrizione;
     private Double metri_quadri;
     private String indirizzo;
-
     private String proprietario;
+    private String tipo_annuncio;
 
-    public Immobile(Integer id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo, String proprietario) {
+    public Immobile(Integer id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo, String proprietario, String tipo_annuncio) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -20,6 +20,7 @@ public class Immobile {
         this.metri_quadri = metri_quadri;
         this.indirizzo = indirizzo;
         this.proprietario = proprietario;
+        this.tipo_annuncio = tipo_annuncio;
     }
 
     public Immobile() {
@@ -87,5 +88,13 @@ public class Immobile {
 
     public void setProprietario(String proprietario) {
         this.proprietario = proprietario;
+    }
+
+    public String getTipo_annuncio() {
+        return tipo_annuncio;
+    }
+
+    public void setTipo_annuncio(String tipo_annuncio) {
+        this.tipo_annuncio = tipo_annuncio;
     }
 }
