@@ -11,39 +11,28 @@ public class IdBroker {
 
     //private static final String query = "SELECT nextval('db_sequence') AS id";//postgresql
 
+    public static Integer getId(Connection connection, String query) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            result.next();
+            return result.getInt("id");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static Integer getImmobileId(Connection connection){
-        Integer id = null;
-        try {
-            PreparedStatement statement = connection.prepareStatement("select nextval('immobili_id') as id");
-
-            ResultSet result = statement.executeQuery();
-            result.next();
-            id = result.getInt("id");
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return id;
+        return getId(connection, "select nextval('immobili_id') as id");
     }
 
-    public static Integer getRecensioneId(Connection connection){
-        Integer id = null;
-        try {
-            PreparedStatement statement = connection.prepareStatement("select nextval('recensioni_id') as id");
-
-            ResultSet result = statement.executeQuery();
-            result.next();
-            id = result.getInt("id");
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return id;
+    public static Integer getRecensioneId(Connection connection) {
+        return getId(connection, "select nextval('recensioni_id') as id");
     }
 
+    public static Integer getAsteId(Connection connection){
+        return getId(connection, "select nextval('aste_id') as id");
+    }
 }
