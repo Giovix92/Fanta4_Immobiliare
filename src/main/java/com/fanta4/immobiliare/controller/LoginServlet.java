@@ -21,25 +21,22 @@ public class LoginServlet extends HttpServlet {
 
         UtenteDao udao = DBManager.getInstance().getUtenteDAO();
         Utente utente = udao.findByEmail(email);
-        boolean logged;
-        if(utente == null) {
-            logged = false;
-        } else {
-            if (password.equals(utente.getPassword())){
+        boolean logged = false;
+
+        if(utente != null) {
+            if (password.equals(utente.getPassword())) {
                 logged = true;
                 HttpSession session = req.getSession();
                 session.setAttribute("utente", utente);
-            } else{
-                logged = false;
             }
         }
+
         if(logged) {
             resp.sendRedirect("/");
         } else {
             String errorMessage = "Le credenziali fornite non sono valide";
+            String script = "<script>alert('" + errorMessage + "');window.location.href='Login.html';</script>";
             resp.setContentType("text/html");
-            String script = "<script>document.getElementById('error-message').innerHTML = '" + errorMessage + "';" +
-                    "document.getElementById('error-message').style.display = 'block';</script>";
             resp.getWriter().println(script);
         }
     }

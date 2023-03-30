@@ -14,20 +14,5 @@
   <label for="remember"><input type="checkbox" id="remember" name="remember"> <i class="ion-ios-checkmark-outline"></i> Remember me</label><br><br>
   <button type="submit"><i class="ion-ios-arrow-right"></i> Login</button>
 </form>
-
-<!-- Popup message HTML -->
-<div id="error-message" style="display:none">Credentials are not valid</div>
-
-<!-- Popup message JavaScript -->
-<script>
-  document.getElementById('error-message').addEventListener('click', function() {
-    this.style.display = 'none';
-  });
-
-  if (window.location.search.indexOf('error=true') !== -1) {
-    document.getElementById('error-message').style.display = 'block';
-  }
-</script>
-
 </body>
 </html>
