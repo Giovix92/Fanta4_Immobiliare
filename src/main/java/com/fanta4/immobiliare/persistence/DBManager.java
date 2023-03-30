@@ -23,6 +23,13 @@ public class DBManager {
     @Getter
     private static DBManager instance = null;
 
+    public static DBManager getInstance() {
+        if (instance == null) {
+            instance = new DBManager();
+        }
+        return instance;
+    }
+
     private DBManager() {
     }
 
