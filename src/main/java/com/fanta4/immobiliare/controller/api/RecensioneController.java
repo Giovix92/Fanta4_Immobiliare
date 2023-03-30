@@ -1,4 +1,4 @@
-package com.fanta4.immobiliare.controller;
+package com.fanta4.immobiliare.controller.api;
 
 import com.fanta4.immobiliare.persistence.model.Recensione;
 import com.fanta4.immobiliare.service.RecensioneService;

@@ -19,6 +19,13 @@ public class UtenteService {
         return ResponseEntity.ok(utente); // Genera un entità di risposta positiva
     }
 
+    public ResponseEntity<Utente> getByEmail(String email) {
+        Utente utente = DBManager.getInstance().getUtenteDAO().findByEmail(email);
+        if (utente == null) return ResponseEntity.notFound().build(); // 404 page
+        // TODO: Controllo sulla validità dell'ID (codice fiscale)
+        return ResponseEntity.ok(utente); // Genera un entità di risposta positiva
+    }
+
     public ResponseEntity<Object> deleteByID(String cf) {
         Utente utente = DBManager.getInstance().getUtenteDAO().findByPrimaryKey(cf);
         if (utente == null) return ResponseEntity.notFound().build();

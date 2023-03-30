@@ -1,4 +1,4 @@
-package com.fanta4.immobiliare.controller;
+package com.fanta4.immobiliare.controller.api;
 
 import com.fanta4.immobiliare.persistence.model.Utente;
 import com.fanta4.immobiliare.service.UtenteService;
@@ -24,6 +24,9 @@ public class UtenteController {
     public ResponseEntity<Utente> findByID(@PathVariable String cf) {
         return i.getByID(cf);
     }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<Utente> findByEmail(@PathVariable String email) { return i.getByEmail(email); }
 
     @DeleteMapping("/{cf}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

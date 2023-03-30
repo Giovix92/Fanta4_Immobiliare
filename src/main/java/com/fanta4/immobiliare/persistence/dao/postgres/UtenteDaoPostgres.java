@@ -62,6 +62,20 @@ public class UtenteDaoPostgres implements UtenteDao {
         return null;
     }
 
+    public Utente findByEmail(String email) {
+        String query = "select * from utenti where email=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) { return createNewEntity(rs); }
+        } catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public boolean saveOrUpdate(Utente utente) {
         PreparedStatement st = null;
