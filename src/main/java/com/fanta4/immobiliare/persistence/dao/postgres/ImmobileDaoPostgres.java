@@ -70,7 +70,7 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         Integer id = null;
         try {
             if(immobile.getId() == null) {
-                String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, id, tipo_annuncio) values(?,?,?,?,?,?,?,?,?)";
+                String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, tipo_annuncio, id) values(?,?,?,?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
                 id = IdBroker.getImmobileId(connection);
             } else {
