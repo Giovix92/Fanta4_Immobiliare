@@ -5,6 +5,9 @@ import com.fanta4.immobiliare.persistence.model.Immobile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ImmobileService {
 
@@ -19,6 +22,13 @@ public class ImmobileService {
             return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
         return ResponseEntity.ok(immobile); //genera un entità di risposta positiva
         // TODO: 19/03/23 controllo da fare: controllo sulla validità dell'ID 
+    }
+
+    public ResponseEntity<List<Immobile>> getAllEntries() {
+        List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findAll();
+        if(immobili == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(immobili);
     }
 
     public ResponseEntity<Object> deleteByID(Integer id) {
