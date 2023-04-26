@@ -1,0 +1,54 @@
+.home{
+  align-items: center;
+  margin: 1%;
+  display: relative;
+}
+
+.logo-container{
+  width: 100%;
+  text-align: center;
+  /*background-image: url('src\assets\logo.jpg');
+  background-repeat: no-repeat;
+  background-size: center;*/
+
+}
+
+#logo{
+  width: 80%;
+  height: 50%;
+}
+
+form {
+  display: flex;
+  margin-top: 2%;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.bottone{
+  padding-bottom: 20px;
+}
+
+.barra{
+  width: 77%;
+}
+
+
+/*.cards-container{
+  background-color: aqua;
+}*/
+
+.mat-grid-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards {
+  width: 100%;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+

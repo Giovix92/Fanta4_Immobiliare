@@ -1,0 +1,65 @@
+<!--
+<div mat-card-image class="cover">
+
+  <form action="accediPost" method="post">
+      <h1>Accedi</h1>
+      <div class="box">
+          <mat-icon>email</mat-icon>
+          <label>Email:</label>
+          <input id="idEmail" placeholder="inserisci la tua Email" name="email" type="email"/><br><br>
+
+          <mat-icon>key</mat-icon>
+          <label>Password:</label>
+          <input id="iPassword" placeholder="inserisci la tua Password" name="password" type="password"/><br><br>
+      </div>
+
+      <p id="idErrore" style="color: red; visibility: hidden">L'email o la password non sono valide</p>
+
+      <input type="checkbox" style="min-width: 10px">Ricordati di me<br><br>
+      <button type="submit" class="button">Login</button><br><br>
+      <a href ="passwordDimenticata.html" style="color: #2596be;">Password Dimenticata</a><br>
+      <label>Non ho un account</label>
+      <a href="registrati" style="color: #2596be;">Registrati</a>
+  </form>
+
+
+</div> -->
+<body>
+
+  <div class="container">
+
+  <form class="example-form">
+
+    <div class="titolo">
+      <h1>Accedi</h1>
+    </div>
+
+    <br>
+    <br>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Es. simoneBarbato@gmail.com">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Inserisci la Password">
+      </mat-form-field>
+    </tr></table>
+
+    <br>
+      <div class="titolo">
+        <button class="bottone" mat-fab extended color="primary">
+          <mat-icon>login</mat-icon>
+          Accedi
+        </button>
+      </div>
+
+      <!--<br>
+      <div>
+        <p> Non hai un account? <a class="link" mat-button routerLink="registrazione" [routerLinkActive]="'active'" style="color: blue;">Registrati</a></p>
+      </div> -->
+
+  </form>
+</div>
+</body>

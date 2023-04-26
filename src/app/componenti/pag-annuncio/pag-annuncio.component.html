@@ -1,0 +1,43 @@
+<body>
+  <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
+      <ng-template #bloccoIf style="max-width: 680px;">
+        <mat-card class="cards" (click)="cliccato()">
+          <mat-card-header>
+            <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
+            <mat-card-title>{{casa.nome}}</mat-card-title>
+            <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
+          <mat-card-content>
+            <p>
+              {{casa.descrizione}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button><mat-icon>thumb_up</mat-icon></button>
+            <button mat-icon-button><mat-icon>share</mat-icon></button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+      <ng-template #bloccoElse style="max-width: 360px;">
+        <mat-card class="cards" (click)="cliccato()">
+          <mat-card-header>
+            <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
+            <mat-card-title>{{casa.nome}}</mat-card-title>
+            <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
+          <mat-card-content>
+            <p>
+              {{casa.descrizione}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-fab extended style="background-color:#259be2; color: white;">
+              <mat-icon>shop_two</mat-icon>
+              Acquista
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+</body>

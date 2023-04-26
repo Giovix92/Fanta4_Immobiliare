@@ -1,0 +1,92 @@
+<body class="home">
+
+  <div class="logo-container">
+    <img id="logo" src='.\assets\logo.jpg' alt="Foto logo">
+    <h1><strong>Comincia anche tu a Comprare e Vendere Immobili</strong></h1>
+  </div>
+
+  <form>
+    <div style="padding-bottom: 15px ;">
+      <button class="bottone" mat-button [matMenuTriggerFor]="menu">Categoria</button>
+  </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Acquista</button>
+      <button mat-menu-item>Vendi</button>
+      <button mat-menu-item>Affitta</button>
+    </mat-menu>
+    <mat-form-field class="barra">
+      <mat-label>Cerca qui...</mat-label>
+      <input matInput #message maxlength="256" placeholder="Es. Casa in Calabria">
+    </mat-form-field>
+    <div style="padding-bottom: 15px ;">
+      <button extended style="background-color:#259be2; color: white; height: 55px;">
+        <mat-icon>search</mat-icon>
+        Cerca
+      </button>
+    </div>
+  </form>
+
+  <br>
+
+  <div style="text-align: center;">
+    <h1><strong>{{tipo_annuncio}}</strong></h1>
+  </div>
+
+  <br>
+
+
+
+
+  <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
+    <ng-template #bloccoIf>
+      <mat-grid-list cols="3" rowHeight="680px" gutterSize="20px">
+        <mat-grid-tile *ngFor="let casa of case" >
+          <mat-card class="cards" (click)="cliccato()">
+            <mat-card-header>
+              <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
+              <mat-card-title>{{casa.nome}}</mat-card-title>
+              <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
+            <mat-card-content>
+              <p>
+                {{casa.descrizione}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-fab extended style="background-color:#259be2; color: white;">
+                <mat-icon>shop_two</mat-icon>
+                Acquista
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>    </ng-template>
+    <ng-template #bloccoElse>
+      <mat-grid-list cols="3" rowHeight="360px" gutterSize="20px">
+        <mat-grid-tile *ngFor="let casa of case" >
+          <mat-card class="cards" (click)="cliccato()">
+            <mat-card-header>
+              <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
+              <mat-card-title>{{casa.nome}}</mat-card-title>
+              <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
+            <mat-card-content>
+              <p>
+                {{casa.descrizione}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-fab extended style="background-color:#259be2; color: white;">
+                <mat-icon>shop_two</mat-icon>
+                Acquista
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </ng-template>
+
+
+</body>

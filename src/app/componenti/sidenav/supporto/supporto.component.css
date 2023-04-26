@@ -1,0 +1,19 @@
+.statica{
+  padding: 1%;
+  font-size: large;
+  /*background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("https://www.dire.it/wp-content/uploads/2020/06/palazzi-colorati_casa_case_Sigma-Coatings-5-scaled.jpg");
+  color: white;*/
+}
+
+.titolo{
+  text-align: center;
+  font-style: oblique;
+}
+
+h2{
+  font-weight: bold;
+}
+
+ul li{
+  margin-top: 1%;
+}

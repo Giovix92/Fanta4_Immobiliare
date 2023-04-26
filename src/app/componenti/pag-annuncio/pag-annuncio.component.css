@@ -1,0 +1,17 @@
+.home{
+  align-items: center;
+  margin: 1%;
+  display: relative;
+}
+.mat-grid-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards {
+  width: 100%;
+}
+
+.example-header-image {
+  background-size: cover;
+}

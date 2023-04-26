@@ -1,0 +1,27 @@
+/* profilo.component.css */
+
+.profilo {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profilo h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profilo-item {
+  margin-bottom: 10px;
+}
+
+.profilo-item strong {
+  display: block;
+  font-weight: bold;
+}
+
+.profilo-item span {
+  display: block;
+  margin-top: 5px;
+}
