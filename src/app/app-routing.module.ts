@@ -22,6 +22,8 @@ const routes: Routes = [
     {path: 'profilo', component: ProfiloComponent},
     {path: 'pag-annuncio', component: PagAnnuncioComponent},
   ]},
+  {path: 'registrazione', component: RegistrazioneComponent},
+    
 
 ];
 

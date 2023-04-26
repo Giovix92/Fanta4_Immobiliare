@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componenti/GestioneProfilo/login/login.component';
@@ -14,6 +15,7 @@ import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.c
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -25,7 +27,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {PlatformModule} from '@angular/cdk/platform';
+
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 
 
@@ -47,8 +49,11 @@ import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.com
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+
     FormsModule,
     ReactiveFormsModule,
+
     MatFormFieldModule,
     MatButtonModule,
     MatSidenavModule,
@@ -60,7 +65,9 @@ import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.com
     MatInputModule,
     MatMenuModule,
     MatGridListModule,
-    PlatformModule,
+
+
+
 
   ],
   providers: [],

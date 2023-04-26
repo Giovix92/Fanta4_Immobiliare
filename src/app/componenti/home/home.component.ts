@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { ServiceService } from 'src/app/Service/service.service';
+import { Immobile } from 'src/app/Model/Immobile';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,12 @@ export class HomeComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private service: ServiceService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  
+
   }
 
   ngOnDestroy(): void {
@@ -33,6 +37,7 @@ export class HomeComponent {
 
   tipo_annuncio = 'ANNUNCI RECENTI'
 
+  /*
   persone = [
     {nome: "Luca", cognome:"rossi", isOnline: true, color: 'blue'},
     {nome: "Marco", cognome:"verdi", isOnline: false, color: 'red'},
@@ -48,5 +53,14 @@ export class HomeComponent {
     {nome: "Leonardo", tipo: "terrazza", regione:"Basilicata", descrizione: "Affittasi terrazza in Basilicata", immagine: "https://www.ferramentavanoli.com/content/images/magazinePosts/899/dt_567.jpeg"},
     {nome: "Goffredo", tipo: "palazzo", regione:"Sicilia", descrizione: "Vendesi Palazzo nel centro storico di Palermo", immagine: "https://upload.wikimedia.org/wikipedia/commons/5/58/Palazzo_Bonaparte_%28Rome%29.jpg"},
   ]
+  */
+
+
+  public immobili: Immobile[] = [];
+
+  ngOnInit(): void {
+    this.service.getImmobili().subscribe(imm => this.immobili = imm);
+  }
+
 
 }

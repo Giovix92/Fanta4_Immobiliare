@@ -28,11 +28,21 @@
 
   <br>
 
+  <!--
   <div style="text-align: center;">
     <h1><strong>{{tipo_annuncio}}</strong></h1>
   </div>
+-->
 
-  <br>
+<div class="ordina">
+  <select>
+    <option value="automatico">Automatico</option>
+    <option value="più_costosi">Più costosi</option>
+    <option value="meno_costosi">Meno costosi</option>
+    <option value="più_grandi">Più grandi</option>
+    <option value="meno_grandi">Meno grandi</option>
+  </select>
+</div>
 
 
 
@@ -40,23 +50,27 @@
   <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
     <ng-template #bloccoIf>
       <mat-grid-list cols="3" rowHeight="680px" gutterSize="20px">
-        <mat-grid-tile *ngFor="let casa of case" >
+        <mat-grid-tile *ngFor="let imm of immobili" >
           <mat-card class="cards" (click)="cliccato()">
             <mat-card-header>
-              <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
-              <mat-card-title>{{casa.nome}}</mat-card-title>
-              <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
+              <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
+              <mat-card-title>{{imm.nome}}</mat-card-title>
+              <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
+            <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
             <mat-card-content>
-              <p>
-                {{casa.descrizione}}
-              </p>
+    
+              <h2>{{imm.tipo}}</h2>
+              <p>Prezzo: {{imm.prezzo}} €</p>
+              <p>Superficie: {{imm.metri_quadri}} mq</p>
+              <p>{{imm.tipo_annuncio}}</p>
+              <p>{{imm.descrizione}}</p> <br><br>
+  
             </mat-card-content>
             <mat-card-actions>
               <button mat-fab extended style="background-color:#259be2; color: white;">
                 <mat-icon>shop_two</mat-icon>
-                Acquista
+                Acquista 
               </button>
             </mat-card-actions>
           </mat-card>
@@ -64,23 +78,26 @@
       </mat-grid-list>    </ng-template>
     <ng-template #bloccoElse>
       <mat-grid-list cols="3" rowHeight="360px" gutterSize="20px">
-        <mat-grid-tile *ngFor="let casa of case" >
+        <mat-grid-tile *ngFor="let imm of immobili" >
           <mat-card class="cards" (click)="cliccato()">
             <mat-card-header>
-              <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
-              <mat-card-title>{{casa.nome}}</mat-card-title>
-              <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
+              <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
+              <mat-card-title>{{imm.nome}}</mat-card-title>
+              <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
+            <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
             <mat-card-content>
-              <p>
-                {{casa.descrizione}}
-              </p>
+    
+              <h2>{{imm.tipo}}</h2>
+              <p>Prezzo: {{imm.prezzo}} €</p>
+              <p>Superficie: {{imm.metri_quadri}} mq</p>
+              <p>{{imm.tipo_annuncio}}</p>
+              <p>{{imm.descrizione}}</p> <br><br>
             </mat-card-content>
             <mat-card-actions>
               <button mat-fab extended style="background-color:#259be2; color: white;">
                 <mat-icon>shop_two</mat-icon>
-                Acquista
+                Acquista 
               </button>
             </mat-card-actions>
           </mat-card>
