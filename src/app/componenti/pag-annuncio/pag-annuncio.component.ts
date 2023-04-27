@@ -1,6 +1,9 @@
 import { MediaMatcher } from '@angular/cdk/layout';
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Immobile } from 'src/app/Model/Immobile';
+import { ServiceService } from 'src/app/Service/service.service';
 
 @Component({
   selector: 'app-pag-annuncio',
@@ -13,7 +16,7 @@ export class PagAnnuncioComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private route: ActivatedRoute) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -29,6 +32,19 @@ export class PagAnnuncioComponent {
 
   cliccato() {
     this.router.navigate(['/pag-annuncio']);
+  }
+
+  
+
+
+  prova!: number;
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.prova = params['argomento'];
+    });
+
+    
   }
 
   tipo_annuncio = 'ANNUNCI RECENTI'

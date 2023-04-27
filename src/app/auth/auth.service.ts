@@ -23,6 +23,7 @@ export class AuthService {
 
 
   signIn(email: string, password: string){
-    //return this.http.post()
+    const user = { email: email, password: password };
+    window.location.href="http://localhost:8080/Login.html"
   }   
 }

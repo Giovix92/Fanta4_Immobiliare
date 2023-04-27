@@ -1,0 +1,52 @@
+<form class="cover" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
+
+    <h1>Aggiungi Annuncio</h1>
+    <div class="box">
+
+        <label>Titolo: </label>
+        <input type="text" formControlName="titolo"><br><br>
+
+        <label>Tipo: </label>
+        <select formControlName="tipo">
+            <option value="Villa">Villa</option>
+            <option value="Appartamento">Appartamento</option>
+            <option value="Attico">Attico</option>
+            <option value="Mansarda">Mansarda</option>
+            <option value="Garage">Garage</option>
+            <option value="Ufficio">Uffico</option>
+            <option value="Terreno">Terreno</option>
+        </select><br><br>
+
+        <label>Prezzo: </label>
+        <input type="number" formControlName="prezzo"><br><br>
+
+        <label>Descrizione: </label>
+        <input type="text" formControlName="descrizione"><br><br>
+
+
+        <label>Metri quadri: </label>
+        <input type="number" formControlName="superficie"><br><br>
+
+        <label>Città: </label>
+        <input type="text" formControlName="citta"><br><br>
+
+        <label>Tipo annuncio: </label>
+        <select formControlName="tipo_annuncio">
+            <option value="Affitto">Affitto</option>
+            <option value="Vendita">Vendita</option>
+        </select><br><br>
+<!--
+        <input type="file" formControlName="foto"><br><br>
+-->
+    </div>
+
+    <div class="titolo">
+        <button type="submit" class="bottone" mat-fab extended color="primary">
+          <mat-icon>login</mat-icon>
+          Aggiungi Immobile
+        </button>
+      </div>
+      <br>
+
+   
+</form>

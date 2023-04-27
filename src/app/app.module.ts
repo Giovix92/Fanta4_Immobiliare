@@ -29,6 +29,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
 
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
+import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.com
     RegistrazioneComponent,
     ProfiloComponent,
     PagAnnuncioComponent,
+    AggiungiAnnuncioComponent,
 
   ],
   imports: [

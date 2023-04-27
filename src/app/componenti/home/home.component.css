@@ -31,7 +31,7 @@ form {
 }
 
 .barra{
-  width: 77%;
+  width: 50%;
 }
 
 
@@ -53,5 +53,5 @@ form {
 }
 
 
-.ordina { width: max-content; width: 100%; position: relative;}
+.ordina { position: relative;}
 .ordina select { align-items: end; font-size: 20px;  background: white; color:#2596be; /*position: absolute;*/ top: 10px; right: 20px;   }
