@@ -24,14 +24,14 @@ export class ServiceService {
     return this.http.post('http://localhost:8080/api/immobili/inserisciImmobile', body);
   }
 
-  
-  
-  
+
+
+
   setUtente(body: {}) {
     return this.http.post('http://localhost:8080/api/utenti/inserisciUtente', body);
   }
-  
-  
+
+
 
 
 

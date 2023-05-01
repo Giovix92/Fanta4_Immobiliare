@@ -1,15 +1,23 @@
 /* profilo.component.css */
 
-.profilo {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+body{
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("src/assets/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profilo h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 50px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+span{
+  color: white;
 }
 
 .profilo-item {
@@ -19,9 +27,11 @@
 .profilo-item strong {
   display: block;
   font-weight: bold;
+  font-size: 25px;
 }
 
 .profilo-item span {
   display: block;
-  margin-top: 5px;
+  margin-top: 15px;
+  font-size: 20px;
 }

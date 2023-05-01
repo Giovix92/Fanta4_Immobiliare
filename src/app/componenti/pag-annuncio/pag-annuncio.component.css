@@ -15,3 +15,19 @@
 .example-header-image {
   background-size: cover;
 }
+
+mat-card-content{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+span{
+  font-size: large;
+  font-weight: bold;
+  color: black;
+}
+
+p{
+  font-size: medium;
+  color: grey;
+}

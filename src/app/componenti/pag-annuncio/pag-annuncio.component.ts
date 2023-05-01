@@ -34,7 +34,7 @@ export class PagAnnuncioComponent {
     this.router.navigate(['/pag-annuncio']);
   }
 
-  
+
 
 
   prova!: number;
@@ -44,12 +44,32 @@ export class PagAnnuncioComponent {
       this.prova = params['argomento'];
     });
 
-    
+
   }
 
   tipo_annuncio = 'ANNUNCI RECENTI'
 
-  persona = {nome: "Luca", cognome:"rossi", isOnline: true, color: 'blue'};
+  persona =
+  {
+    nome: "Luca",
+    cognome:"rossi",
+    isOnline: true,
+    color: 'blue',
+    tel:"0948712587",
+    email:"cannavacciuoloantonino@gmail.com",
+  };
 
-  casa = {nome: "Luca", tipo: "monolocale", regione:"Calabria", descrizione: "Monolocale situato a Reggio Calabria", immagine: "https://www.dire.it/wp-content/uploads/2020/06/palazzi-colorati_casa_case_Sigma-Coatings-5-scaled.jpg"};
+  casa =
+  { nome: "Luca",
+    tipo: "monolocale",
+    regione:"Calabria",
+    descrizione: "Monolocale situato a Reggio Calabria",
+    immagine: "https://www.dire.it/wp-content/uploads/2020/06/palazzi-colorati_casa_case_Sigma-Coatings-5-scaled.jpg",
+    prezzo: "50.000",
+    mq:"500mq",
+    indirizzo:"via Gelesio",
+    proprietario:"Antonino Cannavacciuolo",
+    ta:"Affitto",
+
+  };
 }

@@ -1,8 +1,8 @@
-<!--
+
 <body>
   <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
       <ng-template #bloccoIf style="max-width: 680px;">
-        <mat-card class="cards" (click)="cliccato()">
+        <mat-card class="cards">
           <mat-card-header>
             <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
             <mat-card-title>{{casa.nome}}</mat-card-title>
@@ -11,18 +11,56 @@
           <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
           <mat-card-content>
             <p>
+              <span>Nome:</span> <br>
+              {{casa.nome}}
+            </p>
+            <p>
+              <span>Tipo:</span> <br>
+              {{casa.tipo}}
+            </p>
+            <p>
+              <span>Prezzo:</span> <br>
+              {{casa.prezzo}} €
+            </p>
+            <p>
+              <span>Descrizione:</span> <br>
               {{casa.descrizione}}
-        
+            </p>
+            <p>
+              <span>Metri Quadri:</span> <br>
+              {{casa.mq}}
+            </p>
+            <p>
+              <span>Indirizzo:</span> <br>
+              {{casa.indirizzo}}
+            </p>
+            <p>
+              <span>Proprietario:</span> <br>
+              {{casa.proprietario}}
+            </p>
+            <p>
+              <span>Telefono:</span> <br>
+              {{persona.tel}}
+            </p>
+            <p>
+              <span>Email:</span> <br>
+              {{persona.email}}
+            </p>
+            <p>
+              <span>Tipo Annuncio:</span> <br>
+              {{casa.ta}}
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-icon-button><mat-icon>thumb_up</mat-icon></button>
-            <button mat-icon-button><mat-icon>share</mat-icon></button>
+            <button mat-fab extended style="background-color:#259be2; color: white; width: 100%;">
+              <mat-icon>shop_two</mat-icon>
+              Acquista <!--Effettuare Pagamento-->
+            </button>
           </mat-card-actions>
         </mat-card>
       </ng-template>
       <ng-template #bloccoElse style="max-width: 360px;">
-        <mat-card class="cards" (click)="cliccato()">
+        <mat-card class="cards">
           <mat-card-header>
             <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
             <mat-card-title>{{casa.nome}}</mat-card-title>
@@ -31,20 +69,57 @@
           <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
           <mat-card-content>
             <p>
+              <span>Nome:</span> <br>
+              {{casa.nome}}
+            </p>
+            <p>
+              <span>Tipo:</span> <br>
+              {{casa.tipo}}
+            </p>
+            <p>
+              <span>Prezzo:</span> <br>
+              {{casa.prezzo}} €
+            </p>
+            <p>
+              <span>Descrizione:</span> <br>
               {{casa.descrizione}}
-              
+            </p>
+            <p>
+              <span>Metri Quadri:</span> <br>
+              {{casa.mq}}
+            </p>
+            <p>
+              <span>Indirizzo:</span> <br>
+              {{casa.indirizzo}}
+            </p>
+            <p>
+              <span>Proprietario:</span> <br>
+              {{casa.proprietario}}
+            </p>
+            <p>
+              <span>Telefono:</span> <br>
+              {{persona.tel}}
+            </p>
+            <p>
+              <span>Email:</span> <br>
+              {{persona.email}}
+            </p>
+            <p>
+              <span>Tipo Annuncio:</span> <br>
+              {{casa.ta}}
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-fab extended style="background-color:#259be2; color: white;">
+            <button mat-fab extended style="background-color:#259be2; color: white; width: 100%;">
               <mat-icon>shop_two</mat-icon>
-              Acquista
+              Acquista <!--Effettuare Pagamento-->
             </button>
           </mat-card-actions>
         </mat-card>
       </ng-template>
 </body>
 
--->
+<!--
 <p>work</p>
 <p>{{prova}}</p>
+-->

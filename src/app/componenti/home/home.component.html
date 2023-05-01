@@ -6,7 +6,7 @@
   </div>
 
   <form>
-  
+
   <div class="ordina">
     <select>
       <option value="Acquista">Acquista</option>
@@ -24,7 +24,7 @@
         Cerca
       </button>
     </div>
-  
+
   </form>
 
   <br>
@@ -50,7 +50,7 @@
 
   <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
     <ng-template #bloccoIf>
-      <mat-grid-list cols="3" rowHeight="680px" gutterSize="20px">
+      <mat-grid-list cols="4" rowHeight="680px" gutterSize="20px">
         <mat-grid-tile *ngFor="let imm of immobili" >
           <mat-card class="cards" (click)="cliccato(imm.id)">
             <mat-card-header>
@@ -70,7 +70,7 @@
         </mat-grid-tile>
       </mat-grid-list>    </ng-template>
     <ng-template #bloccoElse>
-      <mat-grid-list cols="3" rowHeight="360px" gutterSize="20px">
+      <mat-grid-list cols="4" rowHeight="360px" gutterSize="20px">
         <mat-grid-tile *ngFor="let imm of immobili" >
           <mat-card class="cards" (click)="cliccato(imm.id)">
             <mat-card-header>

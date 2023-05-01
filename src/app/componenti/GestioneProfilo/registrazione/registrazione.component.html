@@ -58,48 +58,49 @@
   </form>
 </body>
 -->
+<body>
+  <form class="cover" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
 
-<form class="cover" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
+    <h2>Registrati</h2>
+    <div class="box">
 
-  <h2>Registrati</h2>
-  <div class="box">
-
-      <label>Nome:</label>
-      <input type="text" placeholder="inserisci il tuo nome" formControlName="nome"><br><br>
-      <label>Cognome:</label>
-      <input type="text" placeholder="inserisci il tuo cognome" formControlName="cognome"><br><br>
-      <label>Codice Fiscale:</label>
-      <input type="text" placeholder="inserisci il tuo codice fiscale" formControlName="id"><br><br>
-      <label>Telefono:</label>
-      <input type="text" placeholder="inserisci il tuo numero" formControlName="telefono"><br><br>
+        <label>Nome:</label>
+        <input type="text" placeholder="inserisci il tuo nome" formControlName="nome"><br><br>
+        <label>Cognome:</label>
+        <input type="text" placeholder="inserisci il tuo cognome" formControlName="cognome"><br><br>
+        <label>Codice Fiscale:</label>
+        <input type="text" placeholder="inserisci il tuo codice fiscale" formControlName="id"><br><br>
+        <label>Telefono:</label>
+        <input type="text" placeholder="inserisci il tuo numero" formControlName="telefono"><br><br>
 
 
-      <label>Email:</label>
-      <input type="text" placeholder="inserisci la tua Email" formControlName="email"/><br><br>
-      <label>Password:</label>
-      <input type="password" placeholder="inserisci la tua Password" formControlName="password"/><br><br>
-      <label>Ripeti Password:</label>
-      <input type="password" placeholder="ripeti la tua Password" /><br><br>
+        <label>Email:</label>
+        <input type="text" placeholder="inserisci la tua Email" formControlName="email"/><br><br>
+        <label>Password:</label>
+        <input type="password" placeholder="inserisci la tua Password" formControlName="password"/><br><br>
+        <label>Ripeti Password:</label>
+        <input type="password" placeholder="ripeti la tua Password" /><br><br>
 
-      <label>Ruolo:</label>
-      <select formControlName="ruolo">
-          <option value="acquirente">Acquirente</option>
-          <option value="venditore">Venditore</option>
-          <option value="amministratore">Amministratore</option>
-      </select><br>
+        <label>Ruolo:</label>
+        <select formControlName="ruolo">
+            <option value="acquirente">Acquirente</option>
+            <option value="venditore">Venditore</option>
+            <option value="amministratore">Amministratore</option>
+        </select><br>
 
-      <!--
-      <div style="visibility: hidden">
-          <label>Inserisci codice amministratore: </label>
-          <input type="text" id="idCodAmmi">
-      </div>
-      -->
-  </div><br>
-  <div class="titolo">
-    <button class="bottone" mat-fab extended color="primary">
-      <mat-icon>app_registration</mat-icon>
-      Registrati
-    </button>
-  </div>
-</form>
+        <!--
+        <div style="visibility: hidden">
+            <label>Inserisci codice amministratore: </label>
+            <input type="text" id="idCodAmmi">
+        </div>
+        -->
+    </div><br>
+    <div class="titolo">
+      <button class="bottone" mat-fab extended color="primary">
+        <mat-icon>app_registration</mat-icon>
+        Registrati
+      </button>
+    </div>
+  </form>
+</body>
 

@@ -46,6 +46,10 @@ strong{
 ul{
   display: flex;
   text-align: center;
-  text-decoration: overline;
+  text-decoration: underline;
   width: 800px;
+}
+
+mat-list-item:hover{
+  cursor: pointer;
 }
