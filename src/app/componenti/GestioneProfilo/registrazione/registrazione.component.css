@@ -19,16 +19,19 @@ body{
   text-align: center;
 }
 
-.example-full-width {
-  width: 100%;
-}
-
 .titolo{
   color: white;
 }
 
 .bottone{
-  width: 70%;
+  background-color: #259be2;
+  width: 75%;
+}
+
+.profilo{
+  box-shadow: inset 0 0 2000px 100px rgba(0, 0, 0, 0.5);
+  display: block;
+  text-align: center;
 }
 
 /*

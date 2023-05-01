@@ -1,6 +1,7 @@
 <body>
   <form class="cover" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
-
+    <div class="profilo">
+      <br>
       <h1>Aggiungi Annuncio</h1>
       <div class="box">
 
@@ -42,13 +43,14 @@
       </div>
 
       <div class="titolo">
-          <button type="submit" class="bottone" mat-fab extended color="primary">
+          <button type="submit" class="bottone" mat-fab extended style="background-color: #259be2;">
             <mat-icon>login</mat-icon>
             Aggiungi Immobile
           </button>
         </div>
-        <br>
 
+      <br>
+    </div>
 
   </form>
 </body>

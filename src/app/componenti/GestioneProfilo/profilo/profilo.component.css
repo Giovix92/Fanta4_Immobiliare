@@ -10,28 +10,35 @@ body{
   align-items: center;
 }
 
+.profilo{
+  box-shadow: inset 0 0 2000px 100px rgba(0, 0, 0, 0.5);
+  display: block;
+  text-align: center;
+}
+
 .profilo h1 {
   font-size: 50px;
   margin-bottom: 50px;
   color: white;
 }
 
+
+strong{
+  color: #259be2;
+}
+
 span{
   color: white;
 }
 
-.profilo-item {
-  margin-bottom: 10px;
-}
 
 .profilo-item strong {
   display: block;
   font-weight: bold;
-  font-size: 25px;
+  font-size: large;
 }
 
 .profilo-item span {
   display: block;
-  margin-top: 15px;
-  font-size: 20px;
+  font-size: medium;
 }
