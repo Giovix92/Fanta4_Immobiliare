@@ -1,113 +1,49 @@
+<!--IMMOBILE-->
+<div class="box-article">
+  <div class="bordo">
 
-<body>
-  <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
-      <ng-template #bloccoIf style="max-width: 680px;">
-        <mat-card class="cards">
-          <mat-card-header>
-            <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
-            <mat-card-title>{{casa.nome}}</mat-card-title>
-            <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
-          <mat-card-content>
-            <p>
-              <span>Nome:</span> <br>
-              {{casa.nome}}
-            </p>
-            <p>
-              <span>Tipo:</span> <br>
-              {{casa.tipo}}
-            </p>
-            <p>
-              <span>Prezzo:</span> <br>
-              {{casa.prezzo}} €
-            </p>
-            <p>
-              <span>Descrizione:</span> <br>
-              {{casa.descrizione}}
-            </p>
-            <p>
-              <span>Metri Quadri:</span> <br>
-              {{casa.mq}}
-            </p>
-            <p>
-              <span>Indirizzo:</span> <br>
-              {{casa.indirizzo}}
-            </p>
-            <p>
-              <span>Proprietario:</span> <br>
-              {{casa.proprietario}}
-            </p>
-            <p>
-              <span>Telefono:</span> <br>
-              {{persona.tel}}
-            </p>
-            <p>
-              <span>Email:</span> <br>
-              {{persona.email}}
-            </p>
-            <p>
-              <span>Tipo Annuncio:</span> <br>
-              {{casa.ta}}
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </ng-template>
-      <ng-template #bloccoElse style="max-width: 360px;">
-        <mat-card class="cards">
-          <mat-card-header>
-            <img mat-card-avatar src="{{casa.immagine}}" alt="Foto di una casa">
-            <mat-card-title>{{casa.nome}}</mat-card-title>
-            <mat-card-subtitle>{{casa.regione}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="{{casa.immagine}}" alt="Foto di una casa">
-          <mat-card-content>
-            <p>
-              <span>Nome:</span> <br>
-              {{casa.nome}}
-            </p>
-            <p>
-              <span>Tipo:</span> <br>
-              {{casa.tipo}}
-            </p>
-            <p>
-              <span>Prezzo:</span> <br>
-              {{casa.prezzo}} €
-            </p>
-            <p>
-              <span>Descrizione:</span> <br>
-              {{casa.descrizione}}
-            </p>
-            <p>
-              <span>Metri Quadri:</span> <br>
-              {{casa.mq}}
-            </p>
-            <p>
-              <span>Indirizzo:</span> <br>
-              {{casa.indirizzo}}
-            </p>
-            <p>
-              <span>Proprietario:</span> <br>
-              {{casa.proprietario}}
-            </p>
-            <p>
-              <span>Telefono:</span> <br>
-              {{persona.tel}}
-            </p>
-            <p>
-              <span>Email:</span> <br>
-              {{persona.email}}
-            </p>
-            <p>
-              <span>Tipo Annuncio:</span> <br>
-              {{casa.ta}}
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </ng-template>
-</body>
+    <div class="titolo">
+    <h1>{{immobile.nome}}</h1>
+    <h4>Tipologia: {{immobile.tipo}}</h4>
+    </div>
 
-<!--
-<p>work</p>
-<p>{{prova}}</p>
--->
+    <div class="article">
+      <img src="assets/background.jpg">
+      
+      <div class="testo">
+        <p>Posizione: {{immobile.indirizzo}}</p>
+        <p>Prezzo: {{immobile.prezzo}} €</p>
+        <p>Superficie: {{immobile.metri_quadri}} mq </p>
+        <p>Tipo: {{immobile.tipo_annuncio}}</p>
+        <h3>Proprietario: {{immobile.proprietario}}</h3>
+        <h1>Descrizione:</h1>
+        <p>{{immobile.descrizione}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--Recensioni-->
+<div class="box-article">
+  <div class="bordo">
+    <h1>Recensioni:</h1>
+    <!--DOVREI FARE TANTE GET QUANTE SONO LE RECENSIONI-->
+
+  </div>
+</div>
+
+<!--Proprietario-->
+<div class="box-article">
+  <div class="bordo">
+
+    <div class="titolo">
+    <h1>Venditore:</h1>
+    <p>{{utente.nome}} {{utente.cognome}}</p>
+    <p>Ruolo: {{utente.ruolo}}</p>
+    <h4>Contatti:</h4>
+    <p>Email: {{utente.email}}</p>
+    <p>Telefono: {{utente.telefono}}</p>
+
+  </div>
+</div>

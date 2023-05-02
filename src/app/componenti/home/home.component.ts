@@ -31,10 +31,10 @@ export class HomeComponent {
     return this.mobileQuery.matches;
   }
 
-  cliccato(prova: number) {
-    const navigationExtras: NavigationExtras = {
-      queryParams: {argomento: 'valore argomento',},};
-    this.router.navigate(['/pag-annuncio'] );
+  
+  
+  cliccato(id: number) {
+    this.router.navigate(['/pag-annuncio', id]);
   }
 
 

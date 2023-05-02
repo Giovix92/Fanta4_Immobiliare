@@ -21,7 +21,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'registrazione', component: RegistrazioneComponent},
     {path: 'profilo', component: ProfiloComponent},
-    {path: 'pag-annuncio', component: PagAnnuncioComponent},
+    {path: 'pag-annuncio/:id', component: PagAnnuncioComponent},
     {path: 'aggiungi-annuncio', component: AggiungiAnnuncioComponent}
   ]},
   {path: 'registrazione', component: RegistrazioneComponent},
