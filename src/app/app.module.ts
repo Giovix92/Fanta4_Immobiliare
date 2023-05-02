@@ -11,6 +11,8 @@ import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.comp
 import { HomeComponent } from './componenti/home/home.component';
 import { RegistrazioneComponent } from './componenti/GestioneProfilo/registrazione/registrazione.component';
 import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.component';
+import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
+import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,9 +29,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
 
-import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
-import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
 
 
 @NgModule({
@@ -67,8 +68,7 @@ import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annunci
     MatInputModule,
     MatMenuModule,
     MatGridListModule,
-
-
+    MatSelectModule,
 
 
   ],

@@ -47,7 +47,7 @@ ul{
   display: flex;
   text-align: center;
   text-decoration: underline;
-  width: 800px;
+  width: 1200px;
 }
 
 mat-list-item:hover{

@@ -18,7 +18,7 @@
       <mat-label>Cerca qui...</mat-label>
       <input matInput #message maxlength="256" placeholder="Es. Casa in Calabria">
     </mat-form-field>
-    <div style="padding-bottom: 15px ;">
+    <div>
       <button extended style="background-color:#259be2; color: white; height: 55px;">
         <mat-icon>search</mat-icon>
         Cerca
@@ -29,24 +29,15 @@
 
   <br>
 
-  <!--
-  <div style="text-align: center;">
-    <h1><strong>{{tipo_annuncio}}</strong></h1>
+  <div class="ordina">
+    <select>
+      <option value="automatico">Automatico</option>
+      <option value="più_costosi">Più costosi</option>
+      <option value="meno_costosi">Meno costosi</option>
+      <option value="più_grandi">Più grandi</option>
+      <option value="meno_grandi">Meno grandi</option>
+    </select>
   </div>
--->
-
-<div class="ordina">
-  <select>
-    <option value="automatico">Automatico</option>
-    <option value="più_costosi">Più costosi</option>
-    <option value="meno_costosi">Meno costosi</option>
-    <option value="più_grandi">Più grandi</option>
-    <option value="meno_grandi">Meno grandi</option>
-  </select>
-</div>
-
-
-
 
   <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
     <ng-template #bloccoIf>

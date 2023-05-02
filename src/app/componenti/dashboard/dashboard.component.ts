@@ -12,6 +12,8 @@ export class DashboardComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
+  Loggato = true; /*rendere dinamico*/
+
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

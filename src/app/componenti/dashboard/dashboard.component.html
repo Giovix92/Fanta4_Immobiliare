@@ -10,7 +10,7 @@
         <mat-list-item routerLink="privacy" [routerLinkActive]="'active'">Privacy</mat-list-item>
         <mat-list-item routerLink="supporto" [routerLinkActive]="'active'">Supporto</mat-list-item>
         <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi Siamo</mat-list-item>
-        <mat-list-item routerLink="aggiungi-annuncio" [routerLinkActive]="'active'">Aggiungi Annuncio</mat-list-item>
+        <mat-list-item routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" *ngIf="Loggato">Aggiungi Annuncio</mat-list-item>
       </ul>
     </ng-template>
 
