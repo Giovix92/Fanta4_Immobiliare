@@ -5,5 +5,5 @@ export class Utente{
     telefono!: number;
     email!: string;
     password!: string;
-    ruolo!: string;
+    tipologia!: string;
 }

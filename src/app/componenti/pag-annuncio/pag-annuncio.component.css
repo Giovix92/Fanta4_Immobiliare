@@ -1,12 +1,12 @@
 
 
-.box-article{ padding-left: 20px; padding-right: 20px; padding-top: 20px; }
-.bordo { display: block; border: 1px solid #ccc; padding: 1rem; border-radius: 0.5rem; }
+.box-article{ padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; }
+.bordo { display: block; border: 1px solid #ccc; padding: 1rem; border-radius: 0.5rem; position: relative; /*relative serve per il bottone*/}
 
 .titolo { margin-left: 20px; }
 
 .article {  display: flex; align-items: flex-start; }  
-.article img { margin-left: 20px; margin-right: 20px; max-width: 50%;}
+.article img { margin-left: 20px; margin-right: 20px; width: 600px; max-width: 50%;}
 .article .testo { margin-left: 20px; margin-right: 20px; }
   
 /* Quando la pagina viene ridotta */
@@ -15,4 +15,5 @@
     .article img { margin-left: 20px; margin-right: 20px; max-width: 95%; } 
     .article .testo { margin-left: 20px; margin-right: 20px; margin-top: 20px; }
 }
-  
+
+.bordo button { position: absolute; bottom: 0; right: 0; margin: 20px; background-color: white; color:#259be2; }

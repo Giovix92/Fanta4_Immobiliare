@@ -15,10 +15,9 @@
         <p>Prezzo: {{immobile.prezzo}} €</p>
         <p>Superficie: {{immobile.metri_quadri}} mq </p>
         <p>Tipo: {{immobile.tipo_annuncio}}</p>
-        <h3>Proprietario: {{immobile.proprietario}}</h3>
         <h1>Descrizione:</h1>
         <p>{{immobile.descrizione}}</p>
-      </div>
+      </div> 
 
     </div>
   </div>
@@ -28,22 +27,32 @@
 <div class="box-article">
   <div class="bordo">
     <h1>Recensioni:</h1>
-    <!--DOVREI FARE TANTE GET QUANTE SONO LE RECENSIONI-->
 
   </div>
 </div>
+<!--
+<div class="box-article">
+  <div class="bordo" *ngFor="let rec of recensioni">
+    <h1>Recensioni:</h1>
+    <p>{{rec.rating}}</p> ERRORE BACKEND recensione deve cercare sull'id dell'immobile non sulla chiave primaria
+
+  </div>
+</div>
+-->
 
 <!--Proprietario-->
 <div class="box-article">
   <div class="bordo">
 
-    <div class="titolo">
+    <div class="titolo" (click)="visualizzaUtente(utente.id)">
     <h1>Venditore:</h1>
     <p>{{utente.nome}} {{utente.cognome}}</p>
-    <p>Ruolo: {{utente.ruolo}}</p>
-    <h4>Contatti:</h4>
+    <p>Ruolo: {{utente.tipologia}}</p>
+    <h1>Contatti:</h1>
     <p>Email: {{utente.email}}</p>
     <p>Telefono: {{utente.telefono}}</p>
+
+    <button onclick="visualizzaUtente(utente.id)" mat-fab extended>Visualizza Venditore</button>
 
   </div>
 </div>

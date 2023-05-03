@@ -20,7 +20,7 @@ const routes: Routes = [
     {path: 'privacy', component: PrivacyComponent},
     {path: 'login', component: LoginComponent},
     {path: 'registrazione', component: RegistrazioneComponent},
-    {path: 'profilo', component: ProfiloComponent},
+    {path: 'profilo/:id', component: ProfiloComponent},
     {path: 'pag-annuncio/:id', component: PagAnnuncioComponent},
     {path: 'aggiungi-annuncio', component: AggiungiAnnuncioComponent}
   ]},

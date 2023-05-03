@@ -6,10 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+  cfAutenticate = "BRLLSN98L30C349Y";
   isLoggedIn = true;
   admin = false;
 
   constructor(private http: HttpClient) { }
+
+  cfAutenticated(){
+    return this.cfAutenticate;
+  }
 
   isAuthenticated(){
     return this.isLoggedIn;

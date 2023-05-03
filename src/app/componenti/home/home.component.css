@@ -56,4 +56,21 @@ form {
 }
 
 
-.ordina select { align-items: end; font-size: 20px;  background: white; color:#2596be; /*position: absolute;*/ top: 10px; right: 20px;   }
+.ordina select { align-items: end; font-size: 20px;  background: white; color:#2596be; top: 10px; right: 20px;   }
+
+
+
+
+
+
+
+
+/*
+.box-immobili{ display: inline-flex;  flex-wrap: wrap;}
+.box-article{ padding-right: 20px;padding-bottom: 20px; }
+.bordo {border: 1px solid #ccc; padding: 1rem; border-radius: 0.5rem; position: relative; width: 400px; height: 400px;}
+
+img { justify-content: center; width: 100%;}
+
+.bordo button { position: absolute; bottom: 0; right: 0; margin: 20px; background-color: white; color:#259be2; }
+*/

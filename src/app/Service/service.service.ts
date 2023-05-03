@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Immobile } from '../Model/Immobile';
 import { Utente } from '../Model/Utente';
+import { Recensione } from '../Model/Recensione';
 
 
 @Injectable({
@@ -26,9 +27,10 @@ export class ServiceService {
   }
   
 
+  
 
   getUtente(cf: string): Observable <Utente>{
-    return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf);
+    return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf );
   }
 
   setUtente(body: {}) {
@@ -36,6 +38,11 @@ export class ServiceService {
   }
 
 
+
+
+  getRecensioni(id: string): Observable <Recensione[]>{
+    return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/' + id);
+  }
 
 
 
