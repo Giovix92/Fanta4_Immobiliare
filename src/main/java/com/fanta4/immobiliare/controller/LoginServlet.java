@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         if(logged) {
-            resp.sendRedirect("/");
+            resp.sendRedirect("http://localhost:4200/home");
         } else {
             String errorMessage = "Le credenziali fornite non sono valide";
             String script = "<script>alert('" + errorMessage + "');window.location.href='Login.html';</script>";

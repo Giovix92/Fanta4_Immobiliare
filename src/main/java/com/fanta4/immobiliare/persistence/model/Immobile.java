@@ -11,6 +11,8 @@ public class Immobile {
     private String proprietario;
     private String tipo_annuncio;
 
+
+
     public Immobile(Integer id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo, String proprietario, String tipo_annuncio) {
         this.id = id;
         this.nome = nome;

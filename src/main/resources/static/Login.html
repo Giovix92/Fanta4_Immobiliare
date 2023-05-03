@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <title>Accedi!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/Login.css">
 </head>
 <body>
-<form action="doLogin" method="post">
-  <h2><i class="ion-ios-unlocked-outline"></i> Login</h2>
-  <label for="email"><i class="ion-ios-email-outline"></i> Email:</label>
-  <input type="email" id="email" name="email" required><br><br>
-  <label for="password"><i class="ion-ios-locked-outline"></i> Password:</label>
-  <input type="password" id="password" name="password" required><br><br>
-  <label for="remember"><input type="checkbox" id="remember" name="remember"> <i class="ion-ios-checkmark-outline"></i> Remember me</label><br><br>
-  <button type="submit"><i class="ion-ios-arrow-right"></i> Login</button>
-</form>
+<div class="container">
+  <div style="text-align:center;">
+    <h2>Accedi</h2>
+  </div>
+  <form class="form" action="doLogin" method="post">
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <button type="submit">Accedi</button>
+    <button type="backtoHome" onclick="window.location.href='http://localhost:4200/home';">Torna alla home</button>
+  </form>
+</div>
 </body>
 </html>
