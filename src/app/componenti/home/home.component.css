@@ -18,24 +18,28 @@
   height: 50%;
 }
 
-form {
+.formRicerca {
   display: flex;
   width: 100%;
-  text-align: center;
-  align-items: center;
+  /*text-align: center;
   justify-content: center;
+  align-items: center;*/
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 3px
-}
-
-.bottone{
-  padding-bottom: 20px;
+  /*padding: 1px;*/
 }
 
 .barra{
-  width: 90%;
+  width: 70%;
   padding-top: 20px;
+  margin-left: 2%;
 }
+
+
+
+.bottone{
+  margin-top: 21px;
+}
+
 
 
 /*.cards-container{
@@ -56,8 +60,31 @@ form {
 }
 
 
-.ordina select { align-items: end; font-size: 20px;  background: white; color:#2596be; top: 10px; right: 20px;   }
+.ordina select { 
+  align-items: end; 
+  font-size: 20px;  
+  background: white; 
+  color:#2596be; 
+  top: 10px; 
+  right: 10px;
 
+}
+
+
+.filtri select{
+  margin-top: 15%;
+  margin-left: 10%;
+  height: 30px;
+  width: 100px;
+  font-size: 20px;  
+  background: white; 
+  color:#2596be; 
+
+}
+
+.filtri{
+  display: flex;
+}
 
 
 

@@ -28,17 +28,16 @@
   <div class="bordo">
     <h1>Recensioni:</h1>
 
-  </div>
-</div>
-<!--
-<div class="box-article">
-  <div class="bordo" *ngFor="let rec of recensioni">
-    <h1>Recensioni:</h1>
-    <p>{{rec.rating}}</p> ERRORE BACKEND recensione deve cercare sull'id dell'immobile non sulla chiave primaria
+      <mat-card class="cards" *ngFor="let rec of recensioni">
+        <mat-card-header>
+          <mat-card-title>{{rec.titolo}}</mat-card-title>
+          <mat-card-subtitle>{{rec.rating}}</mat-card-subtitle>
+          <mat-card-subtitle>{{rec.autore}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
 
   </div>
 </div>
--->
 
 <!--Proprietario-->
 <div class="box-article">
