@@ -32,13 +32,17 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+ 
+      <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')">
         <mat-icon>login</mat-icon>
-        <span routerLink="login" [routerLinkActive]="'active'">Accedi</span>
+        <!--<span routerLink="login" [routerLinkActive]="'active'">Accedi</span>-->
+        <a>Login</a>
       </button>
-      <button mat-menu-item>
+  
+      <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')">
         <mat-icon>app_registration</mat-icon>
-        <span routerLink="registrazione" [routerLinkActive]="'active'">Registrati</span>
+        <!--<span routerLink="registrazione" [routerLinkActive]="'active'">Registrati</span>-->
+        <a>Registrati</a>
       </button>
       <button mat-menu-item>
         <mat-icon>account_circle</mat-icon>
