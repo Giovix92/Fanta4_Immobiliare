@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("http://localhost:4200")
 @RequestMapping("/api/recensioni")
@@ -21,6 +23,9 @@ public class RecensioneController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Recensione> findByID(@PathVariable Integer id) { return r.getByID(id); }
+
+    @GetMapping("/findByImmobile/{immobileID}")
+    public ResponseEntity<List<Recensione>> findAllByImmobile(@PathVariable Integer immobileID) { return r.getByImmobileID(immobileID); }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

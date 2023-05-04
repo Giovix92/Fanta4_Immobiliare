@@ -63,6 +63,24 @@ public class RecensioneDaoPostgres implements RecensioneDao {
     }
 
     @Override
+    public List<Recensione> findByImmobile(Integer immobileId) {
+        List<Recensione> recensioni = new ArrayList<>();
+        String query = "select * from recensioni where immobile = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1, immobileId);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()) { recensioni.add(createNewEntity(rs)); }
+            return recensioni;
+        }
+        catch (SQLException e) {
+            // TODO: Delete stacktrace and add proper sql exception
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public boolean saveOrUpdate(Recensione recensione) {
         PreparedStatement st = null;
         Integer id = null;
