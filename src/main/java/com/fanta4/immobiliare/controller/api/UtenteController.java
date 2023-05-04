@@ -20,13 +20,11 @@ public class UtenteController {
         i.createUtente(utente);
     }
 
-    @GetMapping("/{cf}")
-    public ResponseEntity<Utente> findByID(@PathVariable String cf) {
-        return i.getByID(cf);
+    @GetMapping("/{string}")
+    public ResponseEntity<Utente> findByID(@PathVariable String string) {
+        if (string.contains("@")) return i.getByEmail(string);
+        return i.getByID(string);
     }
-
-    @GetMapping("/{email}")
-    public ResponseEntity<Utente> findByEmail(@PathVariable String email) { return i.getByEmail(email); }
 
     @DeleteMapping("/{cf}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
