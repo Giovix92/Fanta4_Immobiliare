@@ -7,27 +7,18 @@
 
   <form class="formRicerca">
 
-    <div class="filtri">
+    <div class="ordina">
       <select>
-        <option value="Villa">Villa</option>
-        <option value="Appartamento">Appartamento</option>
-        <option value="Garage">Garage</option>
-        <option value="Terreno">Terreno</option>
-        <option value="Negozi">Negozi</option>
-        <option value="Uffici">Uffici</option>
-      </select>
-      <select>
-        <option value="in_vendita">Asta</option>
         <option value="in_vendita">In vendita</option>
         <option value="in_affitto">In affitto</option>
       </select>
     </div>
       <mat-form-field class="barra">
-        <mat-label>Inserisci la città...</mat-label>
-        <input matInput #message maxlength="256" placeholder="Es. Cosenza">
+        <mat-label>Cerca qui...</mat-label>
+        <input matInput #message maxlength="256" placeholder="Es. Casa in Calabria">
       </mat-form-field>
       <div>
-        <button class="bottone" extended style="background-color:#259be2; color: white; height: 55px;">
+        <button extended style="background-color:#259be2; color: white; height: 55px;">
           <mat-icon>search</mat-icon>
           Cerca
         </button>
@@ -35,6 +26,7 @@
 
   </form>
 
+  <br>
 
   <div class="ordina">
     <select>
@@ -46,9 +38,11 @@
     </select>
   </div>
 
-  <ng-template *ngIf="!isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
+  <br>
+
+  <ng-template *ngIf="!Mobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
     <ng-template #bloccoIf>
-      <mat-grid-list cols="4" rowHeight="680px" gutterSize="20px">
+      <mat-grid-list cols="3" rowHeight="500px" gutterSize="10px">
         <mat-grid-tile *ngFor="let imm of immobili" >
           <mat-card class="cards" (click)="cliccato(imm.id)">
             <mat-card-header>
@@ -66,9 +60,11 @@
             </mat-card-actions>
           </mat-card>
         </mat-grid-tile>
-      </mat-grid-list>    </ng-template>
+      </mat-grid-list>
+    </ng-template>
+
     <ng-template #bloccoElse>
-      <mat-grid-list cols="2" rowHeight="360px" gutterSize="20px">
+      <mat-grid-list cols="1" rowHeight="420px" gutterSize="10px">
         <mat-grid-tile *ngFor="let imm of immobili" >
           <mat-card class="cards" (click)="cliccato(imm.id)">
             <mat-card-header>

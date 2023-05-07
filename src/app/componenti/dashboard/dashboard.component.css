@@ -43,13 +43,36 @@ strong{
   color:#259be2;
 }
 
-ul{
+.menu{
   display: flex;
   text-align: center;
-  text-decoration: underline;
-  width: 1200px;
+  width: 100%;
+  margin-right: 50px;
 }
 
-mat-list-item:hover{
+/*footer {
+  position:relative;
+  width: 100%; height: 70px;
+  background-color: #259be2;
+}*/
+
+mat-list-item {
+  display: flex;
+  color: white;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+mat-list-item:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+mat-list-item.active {
+  background-color: white;
+  color: black;
 }

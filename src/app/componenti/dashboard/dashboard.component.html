@@ -1,23 +1,22 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<!--<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">-->
+<div class="example-container">
   <mat-toolbar  class="example-toolbar">
-    <ng-template *ngIf="isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
+    <!--<ng-template *ngIf="isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>-->
+    <ng-template *ngIf="Mobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
     <ng-template #bloccoIf>
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <!--<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>-->
+      <button mat-icon-button (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
     </ng-template>
     <ng-template #bloccoElse>
-      <ul id="menu">
+      <ul class="menu">
         <mat-list-item routerLink="home" [routerLinkActive]="'active'">HomePage</mat-list-item>
         <mat-list-item routerLink="privacy" [routerLinkActive]="'active'">Privacy</mat-list-item>
         <mat-list-item routerLink="supporto" [routerLinkActive]="'active'">Supporto</mat-list-item>
-        <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi Siamo</mat-list-item>
+        <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi siamo</mat-list-item>
         <mat-list-item routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" *ngIf="Loggato">Aggiungi Annuncio</mat-list-item>
-        <mat-list-item routerLink="" [routerLinkActive]="'active'" *ngIf="Loggato">Asta</mat-list-item>
+        <mat-list-item routerLink="asta" [routerLinkActive]="'active'" *ngIf="Loggato">Aste</mat-list-item>
       </ul>
     </ng-template>
-
-    <!-- <button mat-icon-button (click)="snav.toggle()" ><mat-icon>menu</mat-icon></button> -->
-
-    <!--<h1 class="example-app-name">Immobiliare</h1> -->
 
     <span class="example-spacer"></span>
 
@@ -32,13 +31,13 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
- 
+
       <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')">
         <mat-icon>login</mat-icon>
         <!--<span routerLink="login" [routerLinkActive]="'active'">Accedi</span>-->
         <a>Login</a>
       </button>
-  
+
       <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')">
         <mat-icon>app_registration</mat-icon>
         <!--<span routerLink="registrazione" [routerLinkActive]="'active'">Registrati</span>-->
@@ -55,7 +54,7 @@
     </mat-menu>
 
   </mat-toolbar>
-
+  <!--
   <mat-sidenav-container class="example-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
@@ -70,8 +69,34 @@
       </mat-nav-list>
     </mat-sidenav>
 
+    Vecchia sidenav -> decidere se inerire questa con il relativo typescript oppure mantenere quella attuale
+  -->
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" [opened]="false">
+      <mat-nav-list>
+        <mat-list-item role="listitem" routerLink="home" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>home</mat-icon>HomePage</strong></mat-list-item>
+        <mat-list-item role="listitem" routerLink="privacy" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>security</mat-icon>Privacy</strong></mat-list-item>
+        <mat-list-item role="listitem" routerLink="supporto" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>help</mat-icon>Supporto</strong></mat-list-item>
+        <mat-list-item role="listitem" routerLink="chi-siamo" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>info</mat-icon>Chi siamo</strong></mat-list-item>
+        <mat-list-item role="listitem" routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>add</mat-icon>Aggiungi Annuncio</strong></mat-list-item>
+        <mat-list-item role="listitem" routerLink="asta" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>hardware</mat-icon>Aste</strong></mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
     <mat-sidenav-content>
       <router-outlet></router-outlet><!--Contenuto dinamico-->
+      <!--
+      <footer class="menu">
+        <ul class="menu">
+          <mat-list-item routerLink="privacy" [routerLinkActive]="'active'">Privacy</mat-list-item>
+          <mat-list-item routerLink="supporto" [routerLinkActive]="'active'">Supporto</mat-list-item>
+          <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi Siamo</mat-list-item>
+        </ul>
+      </footer>
+      Footer da inserire nella parte inferiore, ma si accavalla con le card della home, con gli altri componenti no. Risolvibile?
+      -->
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+
+

@@ -13,6 +13,7 @@ import { RegistrazioneComponent } from './componenti/GestioneProfilo/registrazio
 import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
+import { AstaComponent } from './componenti/sidenav/asta/asta.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +34,8 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +49,7 @@ import {MatSelectModule} from '@angular/material/select';
     ProfiloComponent,
     PagAnnuncioComponent,
     AggiungiAnnuncioComponent,
+    AstaComponent,
 
   ],
   imports: [

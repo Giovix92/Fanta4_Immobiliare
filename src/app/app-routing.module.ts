@@ -10,6 +10,7 @@ import { RegistrazioneComponent } from './componenti/GestioneProfilo/registrazio
 import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
+import { AstaComponent } from './componenti/sidenav/asta/asta.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -22,10 +23,9 @@ const routes: Routes = [
     {path: 'registrazione', component: RegistrazioneComponent},
     {path: 'profilo/:id', component: ProfiloComponent},
     {path: 'pag-annuncio/:id', component: PagAnnuncioComponent},
-    {path: 'aggiungi-annuncio', component: AggiungiAnnuncioComponent}
+    {path: 'aggiungi-annuncio', component: AggiungiAnnuncioComponent},
+    {path: 'asta', component: AstaComponent}
   ]},
-  {path: 'registrazione', component: RegistrazioneComponent},
-    
 
 ];
 
