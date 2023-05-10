@@ -1,3 +1,4 @@
+<!--
 <body>
   <form class="cover" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
     <div class="profilo">
@@ -37,9 +38,9 @@
               <option value="Affitto">Affitto</option>
               <option value="Vendita">Vendita</option>
           </select><br><br>
-  <!--
+
           <input type="file" formControlName="foto"><br><br>
-  -->
+
       </div>
 
       <div class="titolo">
@@ -53,4 +54,48 @@
     </div>
 
   </form>
+
+
+
+
+</body>
+-->
+<!DOCTYPE html>
+<head>
+  <title>Registrati!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/app/componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component.css">
+</head>
+<body>
+<div class="container">
+    <h2>Inserisci annuncio</h2>
+  <form class="AddImmobileForm" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="titolo" id="title" placeholder="Titolo" required>
+    <br>
+    <select id="type" formControlName="tipo" required>
+      <option value="Proprietà" disabled selected hidden>Tipo di proprietà</option>
+      <option value="Villa">Villa</option>
+      <option value="Appartamento">Appartamento</option>
+      <option value="Attico">Attico</option>
+      <option value="Mansarda">Mansarda</option>
+      <option value="Garage">Garage</option>
+      <option value="Ufficio">Ufficio</option>
+      <option value="Terreno">Terreno</option>
+    </select>
+    <br>
+    <input type="text" id="city" formControlName="citta" placeholder="Città" required>
+    <br>
+    <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
+    <br>
+    <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
+    <br>
+    <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
+    <br>
+    <input type="file" id="image" name="image" accept="image/*" multiple>
+
+
+    <button type="submit">Aggiungi annuncio</button>
+  </form>
+</div>
 </body>

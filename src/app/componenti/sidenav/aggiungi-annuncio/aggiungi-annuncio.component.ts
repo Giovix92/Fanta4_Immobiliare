@@ -35,7 +35,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
       tipo: this.formAggiungi.value.tipo,
       proprietario: "RSSMRA83H24H501R",
       tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
-    
+
     }).subscribe(data => {console.log(data)})
 
   }

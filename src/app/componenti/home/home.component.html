@@ -2,31 +2,44 @@
 
   <div class="logo-container">
     <img id="logo" src='.\assets\logo.png' alt="Foto logo">
-    <h1><strong>Comincia anche tu a Comprare e Vendere Immobili</strong></h1>
+    <h1><b><i>Comincia anche tu a Comprare e Vendere Immobili!</i></b></h1>
   </div>
 
   <form class="formRicerca">
 
-    <div class="ordina">
-      <select>
+    <div class="filtri">
+      <select class="sx">
+        <option value="Villa">Villa</option>
+        <option value="Appartamento">Appartamento</option>
+        <option value="Garage">Garage</option>
+        <option value="Terreno">Terreno</option>
+        <option value="Negozi">Negozi</option>
+        <option value="Uffici">Uffici</option>
+      </select>
+      <select class="dx">
+        <option value="in_vendita">Asta</option>
         <option value="in_vendita">In vendita</option>
         <option value="in_affitto">In affitto</option>
       </select>
     </div>
-      <mat-form-field class="barra">
-        <mat-label>Cerca qui...</mat-label>
-        <input matInput #message maxlength="256" placeholder="Es. Casa in Calabria">
-      </mat-form-field>
-      <div>
-        <button extended style="background-color:#259be2; color: white; height: 55px;">
-          <mat-icon>search</mat-icon>
-          Cerca
-        </button>
-      </div>
+
+    <mat-form-field class="barra" appearance="outline">
+      <mat-label>Inserisci la città..</mat-label>
+      <input matInput #message maxlength="256" placeholder="Es. Cosenza">
+    </mat-form-field>
+
+    <div>
+      <button class="searchbutton">
+        Cerca
+      </button>
+    </div>
 
   </form>
 
   <br>
+<mat-divider></mat-divider>
+  <br>
+
 
   <div class="ordina">
     <select>
@@ -87,29 +100,6 @@
 
 </body>
 
-
-<!--
-  <div class="box-immobili">
-    <div class="box-article" *ngFor="let imm of immobili">
-      <div class="bordo">
-
-        <div class="titolo">
-        <h1>{{imm.nome}}</h1>
-        <h4>Tipologia: {{imm.indirizzo}}</h4>
-        </div>
-
-
-        <img src="assets/background.jpg">
-
-
-        <button onclick="visualizzaUtente(utente.id)" mat-fab extended><mat-icon>shop_two</mat-icon>Visualizza Venditore</button>
-
-      </div>
-    </div>
-  </div>
-
-
--->
 
 
 
