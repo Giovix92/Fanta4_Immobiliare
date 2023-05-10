@@ -8,7 +8,7 @@ import { PrivacyComponent } from './componenti/sidenav/privacy/privacy.component
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.component';
 import { HomeComponent } from './componenti/home/home.component';
-import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.component';
+import { ProfiloComponent } from './componenti/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
 import { AstaComponent } from './componenti/sidenav/asta/asta.component';
@@ -45,7 +45,7 @@ import {MatSelectModule} from '@angular/material/select';
     ProfiloComponent,
     PagAnnuncioComponent,
     AggiungiAnnuncioComponent,
-    AstaComponent,
+    AstaComponent
 
   ],
   imports: [

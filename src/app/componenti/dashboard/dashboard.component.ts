@@ -10,33 +10,14 @@ import {AuthService} from "../../auth/auth.service";
 })
 
 export class DashboardComponent implements OnInit {
- /* mobileQuery: MediaQueryList;
 
-  private _mobileQueryListener: () => void;
-
-  Loggato = true; rendere dinamico
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }*/
-
-  /*isMobile(): boolean{
-    return this.mobileQuery.matches;
-  }*/
-
-  Loggato: boolean = false;
   isSidenavOpened: boolean = false;
   isMobile = false;
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   private mobileQuery: MediaQueryList;
-  constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, private auth: AuthService) {
+
+  constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, public auth: AuthService) {
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 600px)');
   }
 
@@ -48,8 +29,6 @@ export class DashboardComponent implements OnInit {
       this.isMobile = result.matches;
       this.sidenav.mode = this.isMobile ? 'over' : 'side';
       this.sidenav.close();
-      this.Loggato = this.auth.checkLogin();
-      console.log(this.Loggato);
     });
   }
 
@@ -58,10 +37,7 @@ export class DashboardComponent implements OnInit {
   }
 
   Mobile(): boolean {
-    /*return this.breakpointObserver.isMatched(Breakpoints.Handset);*/
     return this.mobileQuery.matches;
   }
-
-
 
 }

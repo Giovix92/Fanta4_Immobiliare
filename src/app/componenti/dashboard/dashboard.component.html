@@ -2,7 +2,7 @@
 <div class="example-container">
   <mat-toolbar  class="example-toolbar">
     <!--<ng-template *ngIf="isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>-->
-    <ng-template *ngIf="Mobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
+    <ng-template *ngIf="Mobile(); then bloccoIf else bloccoElse">  </ng-template>
     <ng-template #bloccoIf>
       <!--<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>-->
       <button mat-icon-button (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
@@ -13,8 +13,8 @@
         <mat-list-item routerLink="privacy" [routerLinkActive]="'active'">Privacy</mat-list-item>
         <mat-list-item routerLink="supporto" [routerLinkActive]="'active'">Supporto</mat-list-item>
         <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi siamo</mat-list-item>
-        <mat-list-item routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" *ngIf="Loggato">Aggiungi Annuncio</mat-list-item>
-        <mat-list-item routerLink="asta" [routerLinkActive]="'active'" *ngIf="Loggato">Aste</mat-list-item>
+        <mat-list-item routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" *ngIf="this.auth.isLoggedIn">Aggiungi Annuncio</mat-list-item>
+        <mat-list-item routerLink="asta" [routerLinkActive]="'active'" *ngIf="this.auth.isLoggedIn">Aste</mat-list-item>
       </ul>
     </ng-template>
 
@@ -24,24 +24,24 @@
     </button>
     <mat-menu #menu="matMenu">
 
-      <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')">
+      <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>login</mat-icon>
         <!--<span routerLink="login" [routerLinkActive]="'active'">Accedi</span>-->
         <a>Login</a>
       </button>
 
-      <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')">
+      <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>app_registration</mat-icon>
         <!--<span routerLink="registrazione" [routerLinkActive]="'active'">Registrati</span>-->
         <a>Registrati</a>
       </button>
-      <button mat-menu-item *ngIf="Loggato">
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn">
         <mat-icon>account_circle</mat-icon>
         <span routerLink="profilo" [routerLinkActive]="'active'">Profilo</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn" (click)="this.auth.logout()" >
         <mat-icon>logout</mat-icon>
-        <span routerLink="" [routerLinkActive]="'active'">Esci</span>
+        <span>Esci</span>
       </button>
     </mat-menu>
 

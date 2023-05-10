@@ -5,7 +5,7 @@ import { SupportoComponent } from './componenti/sidenav/supporto/supporto.compon
 import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.component';
 import { PrivacyComponent } from './componenti/sidenav/privacy/privacy.component';
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
-import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.component';
+import { ProfiloComponent } from './componenti/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
 import { AstaComponent } from './componenti/sidenav/asta/asta.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
     {path: 'supporto', component: SupportoComponent},
     {path: 'chi-siamo', component: ChiSiamoComponent},
     {path: 'privacy', component: PrivacyComponent},
-    {path: 'profilo/:id', component: ProfiloComponent},
+    {path: 'profilo', component: ProfiloComponent},
     {path: 'pag-annuncio/:id', component: PagAnnuncioComponent},
     {path: 'aggiungi-annuncio', component: AggiungiAnnuncioComponent},
     {path: 'asta', component: AstaComponent}

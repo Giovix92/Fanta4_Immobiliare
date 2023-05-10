@@ -23,35 +23,48 @@
   </div>
 </div>
 
-<!--Recensioni-->
-<div class="box-article">
-  <div class="bordo">
-    <h1>Recensioni:</h1>
-
-      <mat-card class="cards" *ngFor="let rec of recensioni">
-        <mat-card-header>
-          <mat-card-title>{{rec.titolo}}</mat-card-title>
-          <mat-card-subtitle>{{rec.rating}}</mat-card-subtitle>
-          <mat-card-subtitle>{{rec.autore}}</mat-card-subtitle>
-        </mat-card-header>
-      </mat-card>
-
-  </div>
-</div>
-
 <!--Proprietario-->
 <div class="box-article">
   <div class="bordo">
 
-    <div class="titolo" (click)="visualizzaUtente(utente.id)">
-    <h1>Venditore:</h1>
-    <p>{{utente.nome}} {{utente.cognome}}</p>
-    <p>Ruolo: {{utente.tipologia}}</p>
-    <h1>Contatti:</h1>
-    <p>Email: {{utente.email}}</p>
-    <p>Telefono: {{utente.telefono}}</p>
+      <div class="titolo" (click)="visualizzaUtente(utente.id)"> <!--NON DOVREBBE PI§ SERVIRE VEDERE L'UTENTE, non ho foto ne altro da mostrare-->
+      <h1>Venditore:</h1>
+      <p>{{utente.nome}} {{utente.cognome}}</p>
 
-    <button onclick="visualizzaUtente(utente.id)" mat-fab extended>Visualizza Venditore</button>
+      <h1>Contatti:</h1>
+      <p>Email: {{utente.email}}</p>
+      <p>Telefono: {{utente.telefono}}</p>
 
+      <button onclick="visualizzaUtente(utente.id)" mat-fab extended>Visualizza Venditore</button>
+
+    </div>
+  </div>
+</div>
+
+<!--Recensioni del venditore -->
+<div class="box-article">
+  <div class="bordo">
+ 
+    <h1>Recensioni dell'immobile:</h1>
+    <div class="bordo-article" *ngFor="let rec of recensioni" >
+      <p>{{rec.titolo}}</p>
+      <p>Scritta da:</p>
+      <p>{{rec.autore}}</p>
+      <p>Valutazione: {{rec.rating}}</p>
+        
+    </div>
+  </div>
+</div>
+
+<!--Altri annunci del venditore-->
+<div class="box-article">
+  <div class="bordo">
+ 
+    <h1>Altri annunci del venditore:</h1>
+    <div class="bordo-article" *ngFor="let rec of immobili" >
+      
+      <!--CODICE-->
+        
+    </div>
   </div>
 </div>

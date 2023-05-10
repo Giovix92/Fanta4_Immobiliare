@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
 
 
   Mobile(): boolean {
-    /*return this.breakpointObserver.isMatched(Breakpoints.Handset);*/
     return this.mobileQuery.matches;
   }
 
@@ -31,7 +30,6 @@ export class HomeComponent implements OnInit {
   cliccato(id: number) {
     this.router.navigate(['/pag-annuncio', id]);
   }
-
 
   public immobili: Immobile[] = [];
 
