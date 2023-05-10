@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {BreakpointObserver, Breakpoints, MediaMatcher} from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -29,13 +30,13 @@ export class DashboardComponent implements OnInit {
     return this.mobileQuery.matches;
   }*/
 
-  Loggato = true;
+  Loggato: boolean = false;
   isSidenavOpened: boolean = false;
   isMobile = false;
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   private mobileQuery: MediaQueryList;
-  constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher) {
+  constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, private auth: AuthService) {
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 600px)');
   }
 
@@ -47,6 +48,8 @@ export class DashboardComponent implements OnInit {
       this.isMobile = result.matches;
       this.sidenav.mode = this.isMobile ? 'over' : 'side';
       this.sidenav.close();
+      this.Loggato = this.auth.checkLogin();
+      console.log(this.Loggato);
     });
   }
 

@@ -25,9 +25,6 @@ export class ServiceService {
   setImmobile(body: {}) {
     return this.http.post('http://localhost:8080/api/immobili/inserisciImmobile', body);
   }
-  
-
-  
 
   getUtente(cf: string): Observable <Utente>{
     return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf );
@@ -37,13 +34,13 @@ export class ServiceService {
     return this.http.post('http://localhost:8080/api/utenti/inserisciUtente', body);
   }
 
-
-
-
   getRecensioni(id: string): Observable <Recensione[]>{
     return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/findByImmobile/' + id);
   }
 
+  getUserDetails(sessionId: string | null | undefined) {
+    return this.http.get<Utente>(`http://localhost:8080/api/utenti/user-details?sessionId=` + sessionId);
+  }
 
 
 }

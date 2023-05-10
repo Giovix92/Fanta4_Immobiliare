@@ -1,32 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Utente} from "../Model/Utente";
+import {ServiceService} from "../Service/service.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  cfAutenticate = "BRLLSN98L30C349Y";
-  isLoggedIn = true;
-  admin = false;
-
-  constructor(private http: HttpClient) { }
-
-  cfAutenticated(){
-    return this.cfAutenticate;
+  sessionId: string | null | undefined ;
+  utenteCorrente: Utente = new Utente();
+  isLoggedIn = false;
+  constructor(private http: HttpClient, private service: ServiceService, private route: ActivatedRoute) {
+    this.checkLogin();
   }
 
-  isAuthenticated(){
-    return this.isLoggedIn;
+  checkLogin(): boolean {
+    this.sessionId = this.route.snapshot.queryParams['sessionId'];
+    this.service.getUserDetails(this.sessionId).subscribe({
+      next: (data) => {
+        this.utenteCorrente = data;
+        console.log(data);
+        this.isLoggedIn = true;
+        return true;
+      },
+      error: (err) => {
+        this.isLoggedIn = false;
+        console.log("[!] SessionID not valid!");
+        console.log(err);
+      }
+    });
+    return false;
   }
 
-  isAdmin(){
-    return this.admin;
+  isAdmin(): boolean {
+    return this.utenteCorrente.tipologia == "admin";
   }
 
-
-  signIn(email: string, password: string){
-    const user = { email: email, password: password };
-    window.location.href="http://localhost:8080/Login.html"
+  logout(): void {
+    this.utenteCorrente = new Utente();
+    this.isLoggedIn = false;
+    this.sessionId = null;
   }
 }

@@ -19,14 +19,6 @@
     </ng-template>
 
     <span class="example-spacer"></span>
-
-    <!--<ng-template *ngIf="isMobile()"; then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
-    <ng-template #bloccoIf>
-      <button mat-icon-button role="listitem" routerLink="login" [routerLinkActive]="'active'"><mat-icon>account_circle</mat-icon></button>
-    </ng-template>
-    <ng-template #bloccoElse>
-      <button mat-icon-button role="listitem" routerLink="profilo" [routerLinkActive]="'active'"><mat-icon>account_circle</mat-icon></button>
-    </ng-template>-->
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>account_circle</mat-icon>
     </button>
@@ -43,7 +35,7 @@
         <!--<span routerLink="registrazione" [routerLinkActive]="'active'">Registrati</span>-->
         <a>Registrati</a>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="Loggato">
         <mat-icon>account_circle</mat-icon>
         <span routerLink="profilo" [routerLinkActive]="'active'">Profilo</span>
       </button>
@@ -54,23 +46,6 @@
     </mat-menu>
 
   </mat-toolbar>
-  <!--
-  <mat-sidenav-container class="example-sidenav-container"
-                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list class="lista-navbar">
-        <mat-list-item role="listitem" routerLink="home" [routerLinkActive]="'active'"><strong><mat-icon>home</mat-icon>HomePage</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="privacy" [routerLinkActive]="'active'"><strong><mat-icon>security</mat-icon>Privacy</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="supporto" [routerLinkActive]="'active'"><strong><mat-icon>help</mat-icon>Supporto</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="chi-siamo" [routerLinkActive]="'active'"><strong><mat-icon>info</mat-icon>Chi siamo</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="aggiungi-annuncio" [routerLinkActive]="'active'"><strong><mat-icon>info</mat-icon>Aggiungi Annuncio</strong></mat-list-item>
-
-      </mat-nav-list>
-    </mat-sidenav>
-
-    Vecchia sidenav -> decidere se inerire questa con il relativo typescript oppure mantenere quella attuale
-  -->
 
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" [opened]="false">

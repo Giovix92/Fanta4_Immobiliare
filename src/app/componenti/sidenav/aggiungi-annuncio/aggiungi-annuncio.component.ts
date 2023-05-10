@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceService } from 'src/app/Service/service.service';
+import {AuthService} from "../../../auth/auth.service";
 
 @Component({
   selector: 'app-aggiungi-annuncio',
@@ -11,7 +12,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
 
   public formAggiungi: FormGroup = new FormGroup({});
 
-  constructor(private service: ServiceService) {}
+  constructor(private service: ServiceService, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.formAggiungi = new FormGroup({
@@ -33,7 +34,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
       prezzo: this.formAggiungi.value.prezzo,
       metri_quadri: this.formAggiungi.value.superficie,
       tipo: this.formAggiungi.value.tipo,
-      proprietario: "RSSMRA83H24H501R",
+      proprietario: this.auth.utenteCorrente.id,
       tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
 
     }).subscribe(data => {console.log(data)})

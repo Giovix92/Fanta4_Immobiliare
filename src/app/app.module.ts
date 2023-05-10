@@ -3,13 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './componenti/GestioneProfilo/login/login.component';
 import { SupportoComponent } from './componenti/sidenav/supporto/supporto.component';
 import { PrivacyComponent } from './componenti/sidenav/privacy/privacy.component';
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.component';
 import { HomeComponent } from './componenti/home/home.component';
-import { RegistrazioneComponent } from './componenti/GestioneProfilo/registrazione/registrazione.component';
 import { ProfiloComponent } from './componenti/GestioneProfilo/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
@@ -39,13 +37,11 @@ import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     SupportoComponent,
     PrivacyComponent,
     DashboardComponent,
     ChiSiamoComponent,
     HomeComponent,
-    RegistrazioneComponent,
     ProfiloComponent,
     PagAnnuncioComponent,
     AggiungiAnnuncioComponent,
