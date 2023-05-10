@@ -2,6 +2,8 @@ package com.fanta4.immobiliare.controller.api;
 
 import com.fanta4.immobiliare.persistence.model.Utente;
 import com.fanta4.immobiliare.service.UtenteService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor // Crea in automatico un'istanza di UtenteService
 public class UtenteController {
     private final UtenteService i;
+    private final HttpServletRequest request;
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -37,4 +40,13 @@ public class UtenteController {
         return i.updateUtente(cf, utente);
     }
 
+    @GetMapping("/user-details")
+    public ResponseEntity<Utente> getUserDetails(@RequestParam String sessionId) {
+        HttpSession session = (HttpSession) request.getServletContext().getAttribute(sessionId);
+        if(session != null) {
+            Utente utente = (Utente) session.getAttribute("utente");
+            return ResponseEntity.ok(utente);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
