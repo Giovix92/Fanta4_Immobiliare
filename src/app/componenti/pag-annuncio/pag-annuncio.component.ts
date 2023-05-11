@@ -23,44 +23,50 @@ export class PagAnnuncioComponent {
   utente: Utente = new Utente();
   asta: Asta = new Asta();
 
+  existAsta: boolean = false;
+  existRecensioni: boolean = false;
+  existImmobili: boolean = false;
+
   ngOnInit() {
     //dato l'id dal routerLink interrogo il database per avere quell'immobile
     this.id += this.route.snapshot.paramMap.get("id");
-    this.service.getImmobile(this.id).subscribe(imm => this.immobile = imm); 
+    this.service.getImmobile(this.id).subscribe(imm => {
+      this.immobile = imm 
 
-    //ERRORE NON RIESCO A PRENDERE IL CF DEL PROPRIETARIO
-    //dato il cf del proprietario da immobile interrogo il database per avere i dati del venditore
-    this.service.getUtente("RSSMRA83H24H501R").subscribe(ute => this.utente = ute); 
+      if (this.immobile.tipo_annuncio=="Asta"){
+        this.service.getAstaByImmobile(this.immobile.id).subscribe(ast => this.asta = ast)
+        this.existAsta = true;
+      }
+
+      //dato il cf del proprietario da immobile interrogo il database per avere i dati del venditore
+      this.service.getUtente(this.immobile.proprietario).subscribe(ute => { 
+        this.utente = ute 
+        
+        //dato il cf del proprietario da immobile interrogo il database per avere altri annunci del venditore
+        this.service.getImmobiliByCF(this.utente.id).subscribe(imm => {
+          this.immobili = imm
+          this.existImmobili = true;
+          //DA FARE controllare se esistono altri annunci
+
+        });
+      });
+    });
 
     //dato l'id dell'immobile  interrogo il database per avere le recensioni dell'immobile
-    this.service.getRecensioni(this.immobile.id).subscribe(rec => this.recensioni = rec);
+    this.service.getRecensioni(this.id).subscribe(rec =>{ 
+      this.recensioni = rec 
+      this.existRecensioni = true;
+      //DA FARE controllare se esistono recensioni
+    });
 
-    //dato il cf del proprietario da immobile interrogo il database per avere altri annunci del venditore
-    this.service.getImmobiliByCF(this.utente.id).subscribe(imm => this.immobili = imm)
-
-  }
-
-  visualizzaUtente(id: string){
-    this.router.navigate(['/pag-venditore', id]);
   }
 
   cliccato(id: number) {
     this.router.navigate(['/pag-annuncio', id]);
   }
 
-  isAsta(){
-    if (this.immobile.tipo_annuncio == "asta"){
-      this.service.getAstaByImmobile(this.immobile.id).subscribe(ast => this.asta = ast)
-    }
-  }
 
-  findByFiltri(){
 
-    
-    //this.service.getImmobiliByFiltro().subscribe(); 
-
-  }
-   
   
 
 

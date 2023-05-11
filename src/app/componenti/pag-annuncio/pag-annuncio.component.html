@@ -1,81 +1,84 @@
 <!--IMMOBILE-->
-<div class="box-article">
-  <div class="bordo">
+<div class="bordo">
 
-    <div class="titolo">
-    <h1>{{immobile.nome}}</h1>
-    <h4>Tipologia: {{immobile.tipo}}</h4>
-    </div>
+  <div class="titolo">
+  <h1>{{immobile.nome}}</h1>
+  <h4>Tipologia: {{immobile.tipo}}</h4>
+  </div>
 
-    <div class="article">
-      <img src="assets/background.jpg">
-      
-      <div class="testo">
-        <p>Posizione: {{immobile.indirizzo}}</p>
-        <p>Prezzo: {{immobile.prezzo}} €</p>
-        <p>Superficie: {{immobile.metri_quadri}} mq </p>
-        <p>Tipo: {{immobile.tipo_annuncio}}</p>
-        <h1>Descrizione:</h1>
-        <p>{{immobile.descrizione}}</p>
-      </div> 
+  <div class="article">
+    <img src="assets/background.jpg">
+    
+    <div class="testo">
+      <p>Posizione: {{immobile.indirizzo}}</p>
+      <p>Prezzo: {{immobile.prezzo}} €</p>
+      <p>Superficie: {{immobile.metri_quadri}} mq </p>
+      <p>Tipo: {{immobile.tipo_annuncio}}</p>
 
-      <!--Controllo se è di tipo asta, viene mostrato solo se caricato-->
-      <div class = "testo">
-        <div *ngIf="isAsta()">
-          <h1>Offerta attuale</h1>
-          <p>{{asta.prezzo_corrente}}</p>
-          <button mat-fab extended>Fai Offerta</button>
-          <h1>Offerta iniziale</h1>
-          <p>{{asta.prezzo_partenza}}</p>
-        </div>
-      </div>
 
-    </div>
+      <h1>Descrizione:</h1>
+      <p>{{immobile.descrizione}}</p>
+
+    </div> 
+
   </div>
 </div>
+
+
+<!--Asta-->
+<!--Controllo se è di tipo asta, viene mostrato solo se caricato-->
+
+<div class="bordo" *ngIf="existAsta">
+    <h1>Dettagli dell'asta:</h1>
+    <p>Data di inizio: {{asta.partenza}}</p>
+    <p>Data di fine: {{asta.fine}}</p>
+    <p>Offerta iniziale:  {{asta.prezzo_partenza}}</p>
+    <p>Offerta attuale: {{asta.prezzo_corrente}}</p>
+    <button mat-fab extended>Fai Offerta</button>
+</div>
+
+
 
 <!--Proprietario-->
-<div class="box-article">
-  <div class="bordo">
 
-      <div class="titolo" (click)="visualizzaUtente(utente.id)"> <!--NON DOVREBBE PI§ SERVIRE VEDERE L'UTENTE, non ho foto ne altro da mostrare-->
-      <h1>Venditore:</h1>
-      <p>{{utente.nome}} {{utente.cognome}}</p>
+<div class="bordo">
+    
+  <h1>Venditore:</h1>
+  <p>{{utente.nome}} {{utente.cognome}}</p>
+  
+  <br>
 
-      <h1>Contatti:</h1>
-      <p>Email: {{utente.email}}</p>
-      <p>Telefono: {{utente.telefono}}</p>
+  <p>Email: {{utente.email}}</p>
+  <p>Telefono: {{utente.telefono}}</p>
 
-      <button onclick="visualizzaUtente(utente.id)" mat-fab extended>Visualizza Venditore</button>
+  <button mat-fab extended>Contatta venditore</button>
 
-    </div>
-  </div>
 </div>
+
 
 <!--Recensioni del venditore -->
-<div class="box-article">
-  <div class="bordo">
- 
-    <h1>Recensioni dell'immobile:</h1>
-    <div class="bordo-article" *ngFor="let rec of recensioni" >
-      <p>{{rec.titolo}}</p>
-      <p>Scritta da:</p>
-      <p>{{rec.autore}}</p>
-      <p>Valutazione: {{rec.rating}}</p>
-        
-    </div>
+<div class="bordo">
+
+  <h1>Recensioni dell'immobile:</h1>
+  <div class="bordo" *ngFor="let rec of recensioni" >
+    <p>{{rec.titolo}}</p>
+    <p>Scritta da: {{rec.autore}}</p>
+    <p>Valutazione: {{rec.rating}}</p>
   </div>
+
+  <button mat-fab extended>Aggiungi Recensione</button>
+
 </div>
 
+
 <!--Altri annunci del venditore-->
-<div class="box-article">
-  <div class="bordo">
- 
-    <h1>Altri annunci del venditore:</h1>
-    <div class="bordo-article" *ngFor="let rec of immobili" >
+
+<div class="bordo">
+
+  <h1>Altri annunci del venditore:</h1>
+  <div class="bordo" *ngFor="let rec of immobili" >
+    
+    <!--CODICE-->
       
-      <!--CODICE-->
-        
-    </div>
   </div>
 </div>
