@@ -24,7 +24,6 @@ public class UtenteDaoPostgres implements UtenteDao {
         u.setEmail(rs.getString("email"));
         u.setTelefono(rs.getLong("telefono"));
         u.setTipologia(rs.getString("tipologia"));
-        // TODO: Hash password properly [1/2]
         u.setPassword(rs.getString("password"));
         // Houses of the user, JSON file
         u.setProprieta(rs.getString("proprieta"));
@@ -82,7 +81,6 @@ public class UtenteDaoPostgres implements UtenteDao {
         String id = null;
         try {
             Utente u = findByPrimaryKey(utente.getId());
-            // TODO: Hash password properly [2/2]
             if (u == null) {
                 // User doesn't exist in the database, creating one
                 String insertQuery = "insert into utenti(nome, cognome, email, telefono, tipologia, password, proprieta, id) values(?,?,?,?,?,?,?,?)";
@@ -92,14 +90,15 @@ public class UtenteDaoPostgres implements UtenteDao {
                 String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, tipologia = ?, password = ?, proprieta = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
             }
-            st.setString(1, utente.getNome());
-            st.setString(2, utente.getCognome());
-            st.setString(3, utente.getEmail());
+
+            st.setString(1, utente.getNome().substring(0, 1).toUpperCase() + utente.getNome().substring(1).toLowerCase());
+            st.setString(2, utente.getCognome().substring(0, 1).toUpperCase() + utente.getCognome().substring(1).toLowerCase());
+            st.setString(3, utente.getEmail().toLowerCase());
             st.setLong(4, utente.getTelefono());
-            st.setString(5, utente.getTipologia());
+            st.setString(5, utente.getTipologia().toLowerCase());
             st.setString(6, utente.getPassword());
             st.setString(7, utente.getProprieta());
-            st.setString(8, utente.getId());
+            st.setString(8, utente.getId().toUpperCase());
 
             st.executeUpdate();
             return true;
