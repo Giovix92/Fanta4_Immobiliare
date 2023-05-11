@@ -29,6 +29,13 @@ public class AsteService {
         return ResponseEntity.noContent().build();
     }
 
+    public ResponseEntity<Aste> getAstabyImmobileID(Integer id) {
+        Aste aste = DBManager.getInstance().getAsteDAO().findByImmobile(id);
+        if(aste == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(aste);
+    }
+
     public ResponseEntity<Aste> updateAste(Integer id, Aste aste) {
         Aste aste1 = DBManager.getInstance().getAsteDAO().findByPrimaryKey(id);
         if(aste == null)
@@ -36,11 +43,9 @@ public class AsteService {
         else{
             // TODO: 19/03/23 controllare gli input (aste)
             aste1.setImmobile(aste.getImmobile());
-            aste1.setProprietario(aste.getProprietario());
             aste1.setAcquirente(aste.getAcquirente());
             aste1.setPrezzo_partenza(aste.getPrezzo_partenza());
             aste1.setPrezzo_corrente(aste.getPrezzo_corrente());
-            aste1.setPartenza(aste.getPartenza());
             aste1.setFine(aste.getFine());
             if(DBManager.getInstance().getAsteDAO().saveOrUpdate(aste1))
                 return ResponseEntity.ok(aste1);

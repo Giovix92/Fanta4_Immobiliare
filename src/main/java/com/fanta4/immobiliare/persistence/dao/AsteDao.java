@@ -9,6 +9,8 @@ public interface AsteDao {
 
     Aste findByPrimaryKey(Integer id);
 
+    Aste findByImmobile(Integer id);
+
     boolean saveOrUpdate(Aste aste);
 
     void delete(Aste aste);

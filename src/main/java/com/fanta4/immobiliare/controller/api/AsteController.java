@@ -26,6 +26,11 @@ public class AsteController {
         return a.getByID(id);
     }
 
+    @GetMapping("/findByImmobile/{immobileID}")
+    public ResponseEntity<Aste> findByImmobileID(@PathVariable Integer immobileID) {
+        return a.getAstabyImmobileID(immobileID);
+    }
+
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

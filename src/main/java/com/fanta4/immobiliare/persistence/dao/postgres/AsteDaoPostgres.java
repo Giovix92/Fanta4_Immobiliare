@@ -22,12 +22,10 @@ public class AsteDaoPostgres implements AsteDao {
         Aste a = new Aste();
         a.setId(rs.getInt("id"));
         a.setImmobile(rs.getInt("immobile"));
-        a.setProprietario(rs.getString("proprietario"));
         a.setAcquirente(rs.getString("acquirente"));
         a.setPrezzo_partenza(rs.getInt("prezzo_partenza"));
         a.setPrezzo_corrente(rs.getInt("prezzo_corrente"));
-        a.setPartenza(rs.getTimestamp("partenza"));
-        a.setFine(rs.getTimestamp("fine"));
+        a.setFine(rs.getLong("fine"));
         return a;
     }
 
@@ -51,6 +49,21 @@ public class AsteDaoPostgres implements AsteDao {
         String query = "select * from aste where id=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1,id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) { return createNewEntity(rs); }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Aste findByImmobile(Integer id) {
+        String query = "select * from aste where immobile=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1,id);
             ResultSet rs = st.executeQuery();
             if(rs.next()) { return createNewEntity(rs); }
         } catch (SQLException e) {
@@ -65,22 +78,22 @@ public class AsteDaoPostgres implements AsteDao {
         Integer id = null;
         try {
             if(aste.getId() == null) {
-                String insertQuery = "insert into aste(immobile, proprietario, acquirente, prezzo_partenza, prezzo_corrente, partenza, fine, id) values(?,?,?,?,?,?,?,?)";
+                String insertQuery = "insert into aste(immobile, acquirente, prezzo_partenza, prezzo_corrente, fine, id) values(?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
                 id = IdBroker.getAsteId(connection);
             } else {
-                String updateQuery = "update aste set immobile = ?, proprietario = ?, acquirente = ?, prezzo_partenza = ?, prezzo_corrente = ?, partenza = ?, fine = ? where id = ?";
+                String updateQuery = "update aste set immobile = ?, acquirente = ?, prezzo_partenza = ?, prezzo_corrente = ?, fine = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
                 id = aste.getId();
             }
             st.setInt(1, aste.getImmobile());
-            st.setString(2, aste.getProprietario());
-            st.setString(3, aste.getAcquirente());
-            st.setInt(4, aste.getPrezzo_partenza());
-            st.setInt(5, aste.getPrezzo_corrente());
-            st.setTimestamp(6, aste.getPartenza());
-            st.setTimestamp(7, aste.getFine());
-            st.setInt(8, id);
+            st.setString(2, aste.getAcquirente());
+            st.setInt(3, aste.getPrezzo_partenza());
+            st.setInt(4, aste.getPrezzo_corrente());
+            st.setLong(5, aste.getFine());
+            st.setInt(6, id);
+
+            st.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
