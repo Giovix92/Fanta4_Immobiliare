@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Immobile } from '../Model/Immobile';
 import { Utente } from '../Model/Utente';
 import { Recensione } from '../Model/Recensione';
+import { Asta } from '../Model/Asta';
+import { Filtro } from '../Model/Filtro';
 
 
 @Injectable({
@@ -17,6 +19,11 @@ export class ServiceService {
   //Effettua una findAll per avere tutti gli annunci
   getImmobili(): Observable <Immobile[]>{
     return this.http.get<Immobile[]>('http://localhost:8080/api/immobili/findAll');
+  }
+
+  //Effettua una findByFiltro per avere tutti gli annunci e li ordina
+  getImmobiliByFiltro(filtri: Filtro): Observable <Immobile[]>{
+    return this.http.get<Immobile[]>('http://localhost:8080/api/immobili/' + filtri);
   }
 
   //Effettua una ricerca dell'annuncio dato l'id dell'immobile
@@ -36,6 +43,8 @@ export class ServiceService {
 
 
 
+
+
   //#######################################################UTENTE#######################################################
   getUtente(cf: string): Observable <Utente>{
     return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf );
@@ -47,6 +56,8 @@ export class ServiceService {
 
   
 
+  
+
 
 
   //#######################################################RECENSIONE#######################################################
@@ -54,6 +65,13 @@ export class ServiceService {
     return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/findByImmobile/' + id);
   }
 
+
+
+
+  //#######################################################RECENSIONE#######################################################
+  getAstaByImmobile(id: number): Observable <Asta>{
+    return this.http.get<Asta>('http://localhost:8080/api/VEDEREEEEEEE' + id);
+  }
 
 
 

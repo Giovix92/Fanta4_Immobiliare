@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Asta } from 'src/app/Model/Asta';
 import { Immobile } from 'src/app/Model/Immobile';
 import { Recensione } from 'src/app/Model/Recensione';
 import { Utente } from 'src/app/Model/Utente';
@@ -16,10 +17,11 @@ export class PagAnnuncioComponent {
   constructor(private route: ActivatedRoute, private service: ServiceService, private router: Router) {}
 
   id: string = "";
-  public immobile: Immobile = new Immobile();
-  public recensioni: Recensione[] = []
-  public immobili: Immobile[] = [];
-  public utente: Utente = new Utente();
+  immobile: Immobile = new Immobile();
+  recensioni: Recensione[] = []
+  immobili: Immobile[] = [];
+  utente: Utente = new Utente();
+  asta: Asta = new Asta();
 
   ngOnInit() {
     //dato l'id dal routerLink interrogo il database per avere quell'immobile
@@ -44,6 +46,19 @@ export class PagAnnuncioComponent {
 
   cliccato(id: number) {
     this.router.navigate(['/pag-annuncio', id]);
+  }
+
+  isAsta(){
+    if (this.immobile.tipo_annuncio == "asta"){
+      this.service.getAstaByImmobile(this.immobile.id).subscribe(ast => this.asta = ast)
+    }
+  }
+
+  findByFiltri(){
+
+    
+    //this.service.getImmobiliByFiltro().subscribe(); 
+
   }
    
   

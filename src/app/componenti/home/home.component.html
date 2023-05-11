@@ -1,14 +1,15 @@
 <body class="home">
 
+  <!--LOGO-->
   <div class="logo-container">
     <img id="logo" src='.\assets\logo.png' alt="Foto logo">
     <h1><b><i>Comincia anche tu a Comprare e Vendere Immobili!</i></b></h1>
   </div>
 
-  <form class="formRicerca">
-
+  <!--FILTRI-->
+  <form class="formRicerca" [formGroup]="formFiltri" (ngSubmit)="onSubmit()">
     <div class="filtri">
-      <select class="sx">
+      <select class="sx" formControlName="tipo">
         <option value="Villa">Villa</option>
         <option value="Appartamento">Appartamento</option>
         <option value="Garage">Garage</option>
@@ -16,20 +17,20 @@
         <option value="Negozi">Negozi</option>
         <option value="Uffici">Uffici</option>
       </select>
-      <select class="dx">
-        <option value="in_vendita">Asta</option>
+      <select class="dx" formControlName="tipoAnnuncio">
         <option value="in_vendita">In vendita</option>
         <option value="in_affitto">In affitto</option>
+        <option value="asta">Asta</option>
       </select>
     </div>
 
-    <mat-form-field class="barra" appearance="outline">
+    <mat-form-field class="barra" appearance="outline" formControlName="citta">
       <mat-label>Inserisci la città..</mat-label>
       <input matInput #message maxlength="256" placeholder="Es. Cosenza">
     </mat-form-field>
 
     <div>
-      <button class="searchbutton">
+      <button class="searchbutton" type="submit">
         Cerca
       </button>
     </div>
@@ -37,12 +38,12 @@
   </form>
 
   <br>
-<mat-divider></mat-divider>
+  <mat-divider></mat-divider>
   <br>
 
-
+  <!--SELECT PER ORDINAMENTO-->
   <div class="ordina">
-    <select>
+    <select type="submit"> <!--non so se funziona così controllare, altrimenti aggiungere al form-->
       <option value="automatico">Automatico</option>
       <option value="più_costosi">Più costosi</option>
       <option value="meno_costosi">Meno costosi</option>
@@ -53,6 +54,7 @@
 
   <br>
 
+  <!--ANNUNCI-->
   <ng-template *ngIf="!Mobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
     <ng-template #bloccoIf>
       <mat-grid-list cols="3" rowHeight="500px" gutterSize="10px">

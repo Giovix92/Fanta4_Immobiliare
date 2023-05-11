@@ -19,6 +19,17 @@
         <p>{{immobile.descrizione}}</p>
       </div> 
 
+      <!--Controllo se è di tipo asta, viene mostrato solo se caricato-->
+      <div class = "testo">
+        <div *ngIf="isAsta()">
+          <h1>Offerta attuale</h1>
+          <p>{{asta.prezzo_corrente}}</p>
+          <button mat-fab extended>Fai Offerta</button>
+          <h1>Offerta iniziale</h1>
+          <p>{{asta.prezzo_partenza}}</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
