@@ -33,7 +33,7 @@ export class ServiceService {
 
   //Effettua una ricerca di tutti gli annunci inseriti dal venditore tramite cf
   getImmobiliByCF(cf: string): Observable <Immobile[]>{
-    return this.http.get<Immobile[]>('http://localhost:8080/api/immobili/findAll' + cf);
+    return this.http.get<Immobile[]>('http://localhost:8080/api/immobili/' + cf);
   }
 
   //Salva l'annuncio 
@@ -63,6 +63,10 @@ export class ServiceService {
   //#######################################################RECENSIONE#######################################################
   getRecensioni(id: string): Observable <Recensione[]>{
     return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/findByImmobile/' + id);
+  }
+
+  setRecensione(body: {}){ 
+    return this.http.post('http://localhost:8080/api/utenti/inserisciUtente', body);
   }
 
 

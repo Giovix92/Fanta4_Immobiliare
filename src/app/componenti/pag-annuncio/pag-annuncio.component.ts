@@ -1,11 +1,13 @@
 
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Asta } from 'src/app/Model/Asta';
 import { Immobile } from 'src/app/Model/Immobile';
 import { Recensione } from 'src/app/Model/Recensione';
 import { Utente } from 'src/app/Model/Utente';
 import { ServiceService } from 'src/app/Service/service.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-pag-annuncio',
@@ -14,7 +16,7 @@ import { ServiceService } from 'src/app/Service/service.service';
 })
 export class PagAnnuncioComponent {
 
-  constructor(private route: ActivatedRoute, private service: ServiceService, private router: Router) {}
+  constructor(public auth: AuthService, private route: ActivatedRoute, private service: ServiceService, private router: Router) {}
 
   id: string = "";
   immobile: Immobile = new Immobile();
@@ -26,6 +28,10 @@ export class PagAnnuncioComponent {
   existAsta: boolean = false;
   existRecensioni: boolean = false;
   existImmobili: boolean = false;
+
+  addRecensione: boolean = false;
+  formAggRec: FormGroup = new FormGroup({ titolo: new FormControl(), rating: new FormControl() });
+
 
   ngOnInit() {
     //dato l'id dal routerLink interrogo il database per avere quell'immobile
@@ -63,6 +69,20 @@ export class PagAnnuncioComponent {
 
   cliccato(id: number) {
     this.router.navigate(['/pag-annuncio', id]);
+  }
+
+  aggRecensione(){
+    this.addRecensione = true;
+  }
+
+  onSubmit(){
+    this.service.setRecensione({
+      titolo: this.formAggRec.value.titolo,
+      rating: this.formAggRec.value.valutazione,
+      autore: this.auth.utenteCorrente.id,
+      immobile: this.id
+    }).subscribe()
+    this.addRecensione = false;
   }
 
 

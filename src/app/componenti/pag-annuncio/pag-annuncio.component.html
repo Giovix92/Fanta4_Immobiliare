@@ -42,7 +42,6 @@
 <!--Proprietario-->
 
 <div class="bordo">
-    
   <h1>Venditore:</h1>
   <p>{{utente.nome}} {{utente.cognome}}</p>
   
@@ -66,19 +65,26 @@
     <p>Valutazione: {{rec.rating}}</p>
   </div>
 
-  <button mat-fab extended>Aggiungi Recensione</button>
+  <button *ngIf="this.auth.isLoggedIn" (click)="aggRecensione()" mat-fab extended>Aggiungi Recensione</button>
 
+  <div class="bordo" *ngIf="this.addRecensione" [formGroup]="formAggRec">
+    <p>Titolo: </p>
+    <input type="text" formControlName="titolo" placeholder="Inserisci qui la recensione " required>
+    <p>Valutazione: </p>
+    <input type="number" formControlName="valutazione" placeholder="Inserisci qui la valutazione " required>
+    <button type="submit" mat-fab extended>Pubblica</button>
+  </div>
+
+    
 </div>
 
 
 <!--Altri annunci del venditore-->
-
 <div class="bordo">
 
   <h1>Altri annunci del venditore:</h1>
-  <div class="bordo" *ngFor="let rec of immobili" >
-    
-    <!--CODICE-->
-      
+  <div class="article" *ngFor="let imm of immobili" >
+    <p>{{imm.nome}}</p>
+    <p>{{imm.prezzo}}</p>
   </div>
 </div>
