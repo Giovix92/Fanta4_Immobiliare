@@ -1,13 +1,7 @@
 package com.fanta4.immobiliare.persistence;
 
-import com.fanta4.immobiliare.persistence.dao.AsteDao;
-import com.fanta4.immobiliare.persistence.dao.ImmobileDao;
-import com.fanta4.immobiliare.persistence.dao.RecensioneDao;
-import com.fanta4.immobiliare.persistence.dao.UtenteDao;
-import com.fanta4.immobiliare.persistence.dao.postgres.AsteDaoPostgres;
-import com.fanta4.immobiliare.persistence.dao.postgres.ImmobileDaoPostgres;
-import com.fanta4.immobiliare.persistence.dao.postgres.RecensioneDaoPostgres;
-import com.fanta4.immobiliare.persistence.dao.postgres.UtenteDaoPostgres;
+import com.fanta4.immobiliare.persistence.dao.*;
+import com.fanta4.immobiliare.persistence.dao.postgres.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -66,6 +60,10 @@ public class DBManager {
 
     public AsteDao getAsteDAO() {
         return new AsteDaoPostgres(getConnection());
+    }
+
+    public ImagesDao getImagesDAO() {
+        return new ImagesDaoPostgres(getConnection());
     }
 }
 

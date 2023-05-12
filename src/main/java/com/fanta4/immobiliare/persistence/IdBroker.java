@@ -35,4 +35,8 @@ public class IdBroker {
     public static Integer getAsteId(Connection connection){
         return getId(connection, "select nextval('aste_id') as id");
     }
+
+    public static Integer getImagesId(Connection connection){
+        return getId(connection, "select nextval('images_id') as id");
+    }
 }
