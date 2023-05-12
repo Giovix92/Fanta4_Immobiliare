@@ -23,7 +23,6 @@ public class ImmobileController {
         i.createImmobile(immobile);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Immobile> findByID(@PathVariable Integer id){
         return i.getByID(id);
@@ -34,12 +33,31 @@ public class ImmobileController {
         return i.getAllEntries();
     }
 
+    @GetMapping("/findAllLP")
+    public ResponseEntity<List<Immobile>> findByLowerPrice() {
+        return i.getAllEntriesLP();
+    }
+
+    @GetMapping("/findAllLPD")
+    public ResponseEntity<List<Immobile>> findByLowerPriceDESC() {
+        return i.getAllEntriesLPDESC();
+    }
+
+    @GetMapping("/findAllLA")
+    public ResponseEntity<List<Immobile>> findByLowerArea() {
+        return i.getAllEntriesLA();
+    }
+
+    @GetMapping("/findAllLAD")
+    public ResponseEntity<List<Immobile>> findByLowerAreaDESC() {
+        return i.getAllEntriesLADESC();
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteImmobile(@PathVariable Integer id){
         return i.deleteByID(id);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Immobile> updateImmobile(@PathVariable Integer id, @RequestBody Immobile immobile){

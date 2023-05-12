@@ -31,10 +31,8 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         return i;
     }
 
-    @Override
-    public List<Immobile> findAll() {
+    public List<Immobile> genericFind(String query) {
         ArrayList<Immobile> immobili = new ArrayList<>();
-        String query = "select * from immobili";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             ResultSet rs = st.executeQuery();
@@ -49,15 +47,41 @@ public class ImmobileDaoPostgres implements ImmobileDao {
     }
 
     @Override
+    public List<Immobile> findAll() {
+        return genericFind("select * from immobili");
+    }
+
+    @Override
+    public List<Immobile> findByLowerPrice() {
+        return genericFind("select * from immobili order by prezzo");
+    }
+
+    @Override
+    public List<Immobile> findByLowerPriceDESC() {
+        return genericFind("select * from immobili order by prezzo DESC");
+    }
+
+    @Override
+    public List<Immobile> findByLowerArea() {
+        return genericFind("select * from immobili order by metri_quadri");
+    }
+
+    @Override
+    public List<Immobile> findByLowerAreaDESC() {
+        return genericFind("select * from immobili order by metri_quadri DESC");
+    }
+
+    @Override
     public Immobile findByPrimaryKey(Integer id) {
         String query = "select * from immobili where id=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            st.setInt(1,id);
+            st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-            if (rs.next()) { return createNewEntity(rs); }
-        }
-        catch (SQLException e) {
+            if (rs.next()) {
+                return createNewEntity(rs);
+            }
+        } catch (SQLException e) {
             // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }

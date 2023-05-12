@@ -18,7 +18,7 @@ public class ImmobileService {
 
     public ResponseEntity<Immobile> getByID(Integer id) {
         Immobile immobile = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
-        if(immobile == null)
+        if (immobile == null)
             return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
         return ResponseEntity.ok(immobile); //genera un entità di risposta positiva
         // TODO: 19/03/23 controllo da fare: controllo sulla validità dell'ID 
@@ -26,6 +26,34 @@ public class ImmobileService {
 
     public ResponseEntity<List<Immobile>> getAllEntries() {
         List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findAll();
+        if(immobili == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(immobili);
+    }
+
+    public ResponseEntity<List<Immobile>> getAllEntriesLP() {
+        List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findByLowerPrice();
+        if(immobili == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(immobili);
+    }
+
+    public ResponseEntity<List<Immobile>> getAllEntriesLPDESC() {
+        List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findByLowerPriceDESC();
+        if(immobili == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(immobili);
+    }
+
+    public ResponseEntity<List<Immobile>> getAllEntriesLA() {
+        List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findByLowerArea();
+        if(immobili == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(immobili);
+    }
+
+    public ResponseEntity<List<Immobile>> getAllEntriesLADESC() {
+        List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findByLowerAreaDESC();
         if(immobili == null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(immobili);

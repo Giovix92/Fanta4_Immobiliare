@@ -13,5 +13,12 @@ public interface ImmobileDao {
 
     void delete(Immobile immobile);//cancella un immobile
 
+    List<Immobile> findByLowerPrice();
+
+    List<Immobile> findByLowerPriceDESC();
+
+    List<Immobile> findByLowerArea();
+
+    List<Immobile> findByLowerAreaDESC();
 
 }
