@@ -44,7 +44,6 @@ public class UtenteService {
             utente1.setTelefono(utente.getTelefono());
             utente1.setTipologia(utente.getTipologia());
             utente1.setPassword(utente.getPassword());
-            utente1.setProprieta(utente.getProprieta());
             if(DBManager.getInstance().getUtenteDAO().saveOrUpdate(utente1))
                 return ResponseEntity.ok(utente1);
             else return ResponseEntity.internalServerError().build();

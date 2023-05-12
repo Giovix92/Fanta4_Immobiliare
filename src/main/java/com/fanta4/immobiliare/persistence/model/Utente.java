@@ -15,9 +15,7 @@ public class Utente {
 
     private String password;
 
-    private String proprieta;
-
-    public Utente(String id, String nome, String cognome, String email, Long telefono, String tipologia, String password, String proprieta) {
+    public Utente(String id, String nome, String cognome, String email, Long telefono, String tipologia, String password) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -25,7 +23,6 @@ public class Utente {
         this.telefono = telefono;
         this.tipologia = tipologia;
         this.password = password;
-        this.proprieta = proprieta;
     }
 
     public Utente() {
@@ -85,13 +82,5 @@ public class Utente {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getProprieta() {
-        return proprieta;
-    }
-
-    public void setProprieta(String proprieta) {
-        this.proprieta = proprieta;
     }
 }
