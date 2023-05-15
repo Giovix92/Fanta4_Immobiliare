@@ -64,13 +64,12 @@
 
 .ordina select {
   align-items: end;
-  background: white;
-  color:#2596be;
+  background: #2596be;
+  color:white;
   top: 10px;
   right: 10px;
   font-size: 20px;
 }
-
 
 
 
