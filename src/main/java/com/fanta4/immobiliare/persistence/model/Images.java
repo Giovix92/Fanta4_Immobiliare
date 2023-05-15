@@ -1,13 +1,11 @@
 package com.fanta4.immobiliare.persistence.model;
 
-import java.sql.Blob;
-
 public class Images {
     private Integer id;
     private Integer immobile;
-    private Blob img;
+    private String img;
 
-    public Images(Integer id, Integer immobile, Blob img) {
+    public Images(Integer id, Integer immobile, String img) {
         this.id = id;
         this.immobile = immobile;
         this.img = img;
@@ -31,11 +29,11 @@ public class Images {
         this.immobile = immobile;
     }
 
-    public Blob getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Blob img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }

@@ -21,7 +21,7 @@ public class ImagesDaoPostgres implements ImagesDao {
         Images i = new Images();
         i.setId(rs.getInt("id"));
         i.setImmobile(rs.getInt("immobile"));
-        i.setImg(rs.getBlob("img"));
+        i.setImg(rs.getString("img"));
         return i;
     }
 
@@ -81,9 +81,9 @@ public class ImagesDaoPostgres implements ImagesDao {
             Integer id = IdBroker.getImagesId(connection);
             String insertQuery = "insert into images(id, immobile, img) values(?,?,?)";
             PreparedStatement st = connection.prepareStatement(insertQuery);
-            st.setInt(1, image.getId());
+            st.setInt(1, id);
             st.setInt(2, image.getImmobile());
-            st.setBlob(3, image.getImg());
+            st.setString(3, image.getImg());
 
             st.executeUpdate();
             return true;
@@ -96,7 +96,7 @@ public class ImagesDaoPostgres implements ImagesDao {
     @Override
     public void delete(Images image) {
         if (findByPrimaryKey(image.getId()) == null) return;
-        String query = "delete from recensioni where id = ?";
+        String query = "delete from images where id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setInt(1, image.getId());
