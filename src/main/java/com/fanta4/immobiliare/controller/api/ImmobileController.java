@@ -53,6 +53,16 @@ public class ImmobileController {
         return i.getAllEntriesLADESC();
     }
 
+    @GetMapping("/getLastAddedByOwner/{cf}")
+    public ResponseEntity<Integer> getLastAddedByOwner(@PathVariable String cf) {
+        return i.getLastAddedByOwner(cf);
+    }
+
+    @GetMapping("/findAllByOwner/{cf}")
+    public ResponseEntity<List<Immobile>> findAllByOwner(@PathVariable String cf) {
+        return i.findAllByOwner(cf);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteImmobile(@PathVariable Integer id){

@@ -59,6 +59,20 @@ public class ImmobileService {
         return ResponseEntity.ok(immobili);
     }
 
+    public ResponseEntity<Integer> getLastAddedByOwner(String cf) {
+        Integer immobile_id = DBManager.getInstance().getImmobileDAO().getLastAddedByOwner(cf);
+        if (immobile_id == null)
+            return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
+        return ResponseEntity.ok(immobile_id); //genera un entità di risposta positiva
+    }
+
+    public ResponseEntity<List<Immobile>> findAllByOwner(String cf) {
+        List<Immobile> immobili = DBManager.getInstance().getImmobileDAO().findAllByOwner(cf);
+        if (immobili == null)
+            return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
+        return ResponseEntity.ok(immobili); //genera un entità di risposta positiva
+    }
+
     public ResponseEntity<Object> deleteByID(Integer id) {
         Immobile immobile = DBManager.getInstance().getImmobileDAO().findByPrimaryKey(id);
         if(immobile == null)

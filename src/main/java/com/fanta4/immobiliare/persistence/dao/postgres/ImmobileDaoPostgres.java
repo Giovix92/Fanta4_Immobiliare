@@ -72,6 +72,38 @@ public class ImmobileDaoPostgres implements ImmobileDao {
     }
 
     @Override
+    public Integer getLastAddedByOwner(String cf) {
+        String query = "select MAX(id) AS max_id from immobili where proprietario=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, cf);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("max_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Immobile> findAllByOwner(String cf) {
+        ArrayList<Immobile> immobili = new ArrayList<>();
+        String query = "select * from immobili where proprietario=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, cf);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()) { immobili.add(createNewEntity(rs)); }
+            return immobili;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Immobile findByPrimaryKey(Integer id) {
         String query = "select * from immobili where id=?";
         try {
@@ -82,7 +114,6 @@ public class ImmobileDaoPostgres implements ImmobileDao {
                 return createNewEntity(rs);
             }
         } catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;

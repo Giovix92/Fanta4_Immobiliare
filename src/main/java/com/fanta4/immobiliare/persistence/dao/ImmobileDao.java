@@ -21,4 +21,8 @@ public interface ImmobileDao {
 
     List<Immobile> findByLowerAreaDESC();
 
+    Integer getLastAddedByOwner(String cf);
+
+    List<Immobile> findAllByOwner(String cf);
+
 }
