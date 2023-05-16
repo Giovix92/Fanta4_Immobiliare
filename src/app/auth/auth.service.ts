@@ -41,6 +41,5 @@ export class AuthService {
     this.utenteCorrente = new Utente();
     this.isLoggedIn = false;
     this.sessionId = null;
-    //bisogna fare router link to home
   }
 }

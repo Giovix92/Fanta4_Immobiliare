@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import {BreakpointObserver, Breakpoints, MediaMatcher} from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints, MediaMatcher} from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import {AuthService} from "../../auth/auth.service";
 

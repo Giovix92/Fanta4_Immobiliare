@@ -1,70 +1,61 @@
-<!--<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">-->
-<div class="example-container">
-  <mat-toolbar  class="example-toolbar">
-    <!--<ng-template *ngIf="isMobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>-->
-    <ng-template *ngIf="Mobile(); then bloccoIf else bloccoElse">  </ng-template>
+<div class="main-container">
+  <mat-toolbar class="main-toolbar">
+    <ng-template *ngIf="Mobile(); then bloccoIf else bloccoElse"></ng-template>
     <ng-template #bloccoIf>
-      <!--<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>-->
-      <button mat-icon-button (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
     </ng-template>
     <ng-template #bloccoElse>
       <ul class="menu">
-        <mat-list-item routerLink="home" [routerLinkActive]="'active'">HomePage</mat-list-item>
-        <mat-list-item routerLink="privacy" [routerLinkActive]="'active'">Privacy</mat-list-item>
-        <mat-list-item routerLink="supporto" [routerLinkActive]="'active'">Supporto</mat-list-item>
-        <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi siamo</mat-list-item>
-        <mat-list-item routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" *ngIf="this.auth.isLoggedIn">Aggiungi Annuncio</mat-list-item>
-        <mat-list-item routerLink="asta" [routerLinkActive]="'active'" *ngIf="this.auth.isLoggedIn">Aste</mat-list-item>
+        <mat-list-item routerLink="home">HomePage</mat-list-item>
+        <mat-list-item routerLink="privacy">Privacy</mat-list-item>
+        <mat-list-item routerLink="supporto">Supporto</mat-list-item>
+        <mat-list-item routerLink="chi-siamo">Chi siamo</mat-list-item>
       </ul>
     </ng-template>
 
-    <span class="example-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <span class="profile-icon-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
 
+    <mat-menu #menu="matMenu">
       <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>login</mat-icon>
-        <!--<span routerLink="login" [routerLinkActive]="'active'">Accedi</span>-->
         <a>Login</a>
       </button>
-
       <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>app_registration</mat-icon>
-        <!--<span routerLink="registrazione" [routerLinkActive]="'active'">Registrati</span>-->
         <a>Registrati</a>
       </button>
-      <button mat-menu-item *ngIf="this.auth.isLoggedIn">
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn" routerLink="profilo">
         <mat-icon>account_circle</mat-icon>
-        <span routerLink="profilo" [routerLinkActive]="'active'">Profilo</span>
+        <span>Profilo</span>
       </button>
-      <button mat-menu-item *ngIf="this.auth.isLoggedIn" (click)="this.auth.logout()" >
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn" routerLink="aggiungi-annuncio">
+        <mat-icon>plus_one</mat-icon>
+        <span>Aggiungi annuncio</span>
+      </button>
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn" (click)="this.auth.logout()" routerLink="home">
         <mat-icon>logout</mat-icon>
         <span>Esci</span>
       </button>
     </mat-menu>
-
   </mat-toolbar>
 
   <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over" [opened]="false">
       <mat-nav-list>
-        <mat-list-item role="listitem" routerLink="home" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>home</mat-icon>HomePage</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="privacy" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>security</mat-icon>Privacy</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="supporto" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>help</mat-icon>Supporto</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="chi-siamo" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>info</mat-icon>Chi siamo</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="aggiungi-annuncio" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>add</mat-icon>Aggiungi Annuncio</strong></mat-list-item>
-        <mat-list-item role="listitem" routerLink="asta" [routerLinkActive]="'active'" (click)="toggleSidenav()"><strong><mat-icon>hardware</mat-icon>Aste</strong></mat-list-item>
+        <mat-list-item role="listitem" routerLink="home" (click)="toggleSidenav()"><mat-icon>home</mat-icon>HomePage</mat-list-item>
+        <mat-list-item role="listitem" routerLink="privacy" (click)="toggleSidenav()"><mat-icon>security</mat-icon>Privacy</mat-list-item>
+        <mat-list-item role="listitem" routerLink="supporto" (click)="toggleSidenav()"><mat-icon>help</mat-icon>Supporto</mat-list-item>
+        <mat-list-item role="listitem" routerLink="chi-siamo" (click)="toggleSidenav()"><mat-icon>info</mat-icon>Chi siamo</mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <router-outlet></router-outlet><!--Contenuto dinamico-->
-
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
-
-
 </div>
