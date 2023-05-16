@@ -11,7 +11,6 @@ import { HomeComponent } from './componenti/home/home.component';
 import { ProfiloComponent } from './componenti/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
-import { AstaComponent } from './componenti/sidenav/asta/asta.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +44,6 @@ import {MatSelectModule} from '@angular/material/select';
     ProfiloComponent,
     PagAnnuncioComponent,
     AggiungiAnnuncioComponent,
-    AstaComponent
 
   ],
   imports: [

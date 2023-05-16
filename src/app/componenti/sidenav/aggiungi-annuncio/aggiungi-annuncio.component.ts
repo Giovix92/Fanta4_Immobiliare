@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceService } from 'src/app/Service/service.service';
 import {AuthService} from "../../../auth/auth.service";
+
 
 @Component({
   selector: 'app-aggiungi-annuncio',
@@ -11,6 +12,11 @@ import {AuthService} from "../../../auth/auth.service";
 export class AggiungiAnnuncioComponent implements OnInit{
 
   public formAggiungi: FormGroup = new FormGroup({});
+
+  selected: boolean = false;
+
+  selectedValue : string | undefined;
+
 
   constructor(private service: ServiceService, private auth: AuthService) {}
 
@@ -23,6 +29,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
       superficie: new FormControl(),
       tipo: new FormControl(),
       foto: new FormControl(),
+      time: new FormControl()
     });
   }
 
@@ -38,6 +45,15 @@ export class AggiungiAnnuncioComponent implements OnInit{
       tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
 
     }).subscribe(data => {console.log(data)})
-
+    if(this.selected){
+      this.service.setAsta({})
+    }
   }
+
+  onSelected(){
+    this.selected = (this.selectedValue === 'Asta');
+  }
+
+
+
 }

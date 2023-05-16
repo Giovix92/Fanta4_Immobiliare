@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   private mobileQuery: MediaQueryList;
-
   constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, public auth: AuthService) {
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 600px)');
   }

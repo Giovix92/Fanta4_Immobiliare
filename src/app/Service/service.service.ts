@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Immobile } from '../Model/Immobile';
@@ -36,9 +36,9 @@ export class ServiceService {
     return this.http.get<Immobile[]>('http://localhost:8080/api/immobili/' + cf);
   }
 
-  //Salva l'annuncio 
+  //Salva l'annuncio
   setImmobile(body: {}) {
-    return this.http.post('http://localhost:8080/api/immobili/inserisciImmobile', body);
+    return this.http.post('http://localhost:8080/api/immobili', body);
   }
 
 
@@ -51,12 +51,12 @@ export class ServiceService {
   }
 
   setUtente(body: {}) {
-    return this.http.post('http://localhost:8080/api/utenti/inserisciUtente', body);
+    return this.http.post('http://localhost:8080/api/utenti', body);
   }
 
-  
 
-  
+
+
 
 
 
@@ -65,12 +65,14 @@ export class ServiceService {
     return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/findByImmobile/' + id);
   }
 
-  setRecensione(body: {}){ 
-    return this.http.post('http://localhost:8080/api/utenti/inserisciUtente', body);
+  setRecensione(body: {}){
+    return this.http.post('http://localhost:8080/api/recensioni', body);
   }
 
-
-
+  //asta
+  setAsta(body: {}) {
+    return this.http.post('http://localhost:8080/api/aste', body);
+  }
 
   //#######################################################RECENSIONE#######################################################
   getAstaByImmobile(id: number): Observable <Asta>{

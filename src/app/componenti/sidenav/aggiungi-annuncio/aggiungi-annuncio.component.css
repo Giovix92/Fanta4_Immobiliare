@@ -28,7 +28,7 @@ body{
   box-sizing: border-box;
 }
 
-body {
+body{
   margin: 0;
   font-family: Arial, sans-serif;
   background-image: url("src/assets/background.jpg");
@@ -43,7 +43,7 @@ body {
   backdrop-filter: blur(3px);
 }
 
-.form {
+.AddImmobileForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,9 +61,9 @@ body {
   margin: 20px;
 }
 
-.form input,
-.form textarea,
-.form select {
+.AddImmobileForm input,
+.AddImmobileForm textarea,
+.AddImmobileForm select {
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -75,7 +75,7 @@ body {
   border-radius: 3px;
 }
 
-.form button {
+.AddImmobileForm button {
   margin-top: 10px;
   display: block;
   width: 100%;
@@ -87,7 +87,7 @@ body {
   cursor: pointer;
 }
 
-.form select {
+.AddImmobileForm select {
   color: #757575;
 }
 

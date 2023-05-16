@@ -1,80 +1,11 @@
-<!--
-<body>
-  <form class="cover" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
-    <div class="profilo">
-      <br>
-      <h1>Aggiungi Annuncio</h1>
-      <div class="box">
-
-          <label>Titolo: </label>
-          <input type="text" formControlName="titolo"><br><br>
-
-          <label>Tipo: </label>
-          <select formControlName="tipo">
-              <option value="Villa">Villa</option>
-              <option value="Appartamento">Appartamento</option>
-              <option value="Attico">Attico</option>
-              <option value="Mansarda">Mansarda</option>
-              <option value="Garage">Garage</option>
-              <option value="Ufficio">Uffico</option>
-              <option value="Terreno">Terreno</option>
-          </select><br><br>
-
-          <label>Prezzo: </label>
-          <input type="number" formControlName="prezzo"><br><br>
-
-          <label>Descrizione: </label>
-          <input type="text" formControlName="descrizione"><br><br>
-
-
-          <label>Metri quadri: </label>
-          <input type="number" formControlName="superficie"><br><br>
-
-          <label>Città: </label>
-          <input type="text" formControlName="citta"><br><br>
-
-          <label>Tipo annuncio: </label>
-          <select formControlName="tipo_annuncio">
-              <option value="Affitto">Affitto</option>
-              <option value="Vendita">Vendita</option>
-          </select><br><br>
-
-          <input type="file" formControlName="foto"><br><br>
-
-      </div>
-
-      <div class="titolo">
-          <button type="submit" class="bottone" mat-fab extended style="background-color: #259be2;">
-            <mat-icon>login</mat-icon>
-            Aggiungi Immobile
-          </button>
-        </div>
-
-      <br>
-    </div>
-
-  </form>
-
-
-
-
-</body>
--->
-<!DOCTYPE html>
-<head>
-  <title>Registrati!</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/app/componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component.css">
-</head>
 <body>
 <div class="container">
+  <div style="text-align:center;">
     <h2>Inserisci annuncio</h2>
+  </div>
   <form class="AddImmobileForm" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
     <input type="text" formControlName="titolo" id="title" placeholder="Titolo" required>
-    <br>
     <select id="type" formControlName="tipo" required>
-      <option value="Proprietà" disabled selected hidden>Tipo di proprietà</option>
       <option value="Villa">Villa</option>
       <option value="Appartamento">Appartamento</option>
       <option value="Attico">Attico</option>
@@ -83,18 +14,18 @@
       <option value="Ufficio">Ufficio</option>
       <option value="Terreno">Terreno</option>
     </select>
-    <br>
+    <select [(ngModel)]="selectedValue" (ngModelChange)="onSelected()" id="type2" formControlName="tipo_annuncio" required>
+      <option value="In_Affitto">In Affitto</option>
+      <option value="In_Vendita">In Vendita</option>
+      <option value="Asta">Asta</option>
+    </select>
+
+    <input type="time" id="time" formControlName="citta" placeholder="Città" required>
     <input type="text" id="city" formControlName="citta" placeholder="Città" required>
-    <br>
     <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
-    <br>
     <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
-    <br>
     <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
-    <br>
-    <input type="file" id="image" name="image" accept="image/*" multiple>
-
-
+    <input type="file" id="image" formControlName="foto" accept="image/*" multiple>
     <button type="submit">Aggiungi annuncio</button>
   </form>
 </div>

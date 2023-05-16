@@ -36,11 +36,11 @@ export class HomeComponent implements OnInit {
   //quando imposto i filtri chiedo al backend di inviarmi gli immobili ordinati e filtrati
   onSubmit() {
     this.filtro.tipo = this.formFiltri.value.tipo,
-    this.filtro.tipoAnnuncio = this.formFiltri.value.tipAnnuncio,
+    this.filtro.tipoAnnuncio = this.formFiltri.value.tipoAnnuncio,
     this.filtro.citta = this.formFiltri.value.citta,
     this.filtro.ordine = this.formFiltri.value.ordine
 
-    this.service.getImmobiliByFiltro(this.filtro).subscribe(imm => this.immobili = imm) 
+    this.service.getImmobiliByFiltro(this.filtro).subscribe(imm => this.immobili = imm)
   }
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
