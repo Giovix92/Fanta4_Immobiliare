@@ -1,34 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Utente} from "../Model/Utente";
-import {ServiceService} from "../Service/service.service";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import { Utente } from "../Model/Utente";
+import { ServiceService } from "../Service/service.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   sessionId: string | null | undefined ;
-  utenteCorrente: Utente = new Utente();
-  isLoggedIn = false;
-  constructor(private http: HttpClient, private service: ServiceService, private route: ActivatedRoute) {
+  utenteCorrente: any;
+  isLoggedIn: Boolean = false;
+  constructor(private http: HttpClient, private service: ServiceService, private route: ActivatedRoute, private router: Router) {
     this.checkLogin();
   }
 
   checkLogin(): boolean {
+    /**
+     * Ritorna true se l'utente è già loggato e le informazioni sono già caricate
+     */
+    if(this.utenteCorrente != null) return true;
     this.sessionId = this.route.snapshot.queryParams['sessionId'];
     this.service.getUserDetails(this.sessionId).subscribe({
       next: (data) => {
+        this.utenteCorrente = new Utente();
         this.utenteCorrente = data;
-        console.log(data);
         this.isLoggedIn = true;
         return true;
       },
-      error: (err) => {
+      error:() => {
         this.isLoggedIn = false;
         console.log("[!] SessionID not valid!");
-        console.log(err);
-      }
+      },
     });
     return false;
   }
@@ -42,7 +45,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.utenteCorrente = new Utente();
+    this.utenteCorrente = null;
     this.isLoggedIn = false;
     this.sessionId = null;
   }
