@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.filtro.citta = this.formFiltri.value.citta,
     this.filtro.ordine = this.formFiltri.value.ordine
 
-    this.service.getImmobiliByFiltro(this.filtro).subscribe(imm => this.immobili = imm)
+    // TODO: Filtra immobili
   }
 
   @ViewChild('sidenav') sidenav!: MatSidenav;

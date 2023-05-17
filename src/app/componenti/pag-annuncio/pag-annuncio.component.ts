@@ -59,7 +59,7 @@ export class PagAnnuncioComponent {
     });
 
     //dato l'id dell'immobile  interrogo il database per avere le recensioni dell'immobile
-    this.service.getRecensioni(this.id).subscribe(rec =>{ 
+    this.service.getRecensioniByImmobileID(this.id).subscribe(rec =>{ 
       this.recensioni = rec 
       this.existRecensioni = true;
       //DA FARE controllare se esistono recensioni
@@ -84,10 +84,4 @@ export class PagAnnuncioComponent {
     }).subscribe()
     this.addRecensione = false;
   }
-
-
-
-  
-
-
 }

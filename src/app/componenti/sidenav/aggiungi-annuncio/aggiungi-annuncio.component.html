@@ -14,19 +14,20 @@
       <option value="Ufficio">Ufficio</option>
       <option value="Terreno">Terreno</option>
     </select>
-    <select [(ngModel)]="selectedValue" (ngModelChange)="onSelected()" id="type2" formControlName="tipo_annuncio" required>
-      <option value="In_Affitto">In Affitto</option>
+    <select name="tipo_annuncio" id="tipo_annuncio" formControlName="tipo_annuncio" [(ngModel)]="selectedValue" (change)="onValueSelected($event)" required>
+      <option value="In_Affitto" selected>In Affitto</option>
       <option value="In_Vendita">In Vendita</option>
-      <option value="Asta">Asta</option>
+      <option value="In_Asta">Asta</option>
     </select>
 
-    <input type="time" id="time" formControlName="citta" placeholder="Città" required>
     <input type="text" id="city" formControlName="citta" placeholder="Città" required>
     <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
     <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
     <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
-    <input type="file" id="image" formControlName="foto" accept="image/*" multiple>
+    <input type="datetime-local" id="asta_endtime" formControlName="asta_endtime" *ngIf="astaSelected" required>
+    <input type="file" id="image" formControlName="foto" accept="image/*" multiple (change)="onFileChange($event)">
     <button type="submit">Aggiungi annuncio</button>
   </form>
+  
 </div>
 </body>

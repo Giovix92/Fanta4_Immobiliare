@@ -37,6 +37,10 @@ export class AuthService {
     return this.utenteCorrente.tipologia == "admin";
   }
 
+  isBuyer(): boolean {
+    return this.utenteCorrente.tipologia == "buyer";
+  }
+
   logout(): void {
     this.utenteCorrente = new Utente();
     this.isLoggedIn = false;

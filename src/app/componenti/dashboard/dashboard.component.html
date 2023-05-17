@@ -33,7 +33,7 @@
         <mat-icon>account_circle</mat-icon>
         <span>Profilo</span>
       </button>
-      <button mat-menu-item *ngIf="this.auth.isLoggedIn" routerLink="aggiungi-annuncio">
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn && !this.auth.isBuyer()" routerLink="aggiungi-annuncio">
         <mat-icon>plus_one</mat-icon>
         <span>Aggiungi annuncio</span>
       </button>
