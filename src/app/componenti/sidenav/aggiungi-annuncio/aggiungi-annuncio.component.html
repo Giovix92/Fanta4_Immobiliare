@@ -1,33 +1,42 @@
 <body>
-<div class="container">
-  <div style="text-align:center;">
-    <h2>Inserisci annuncio</h2>
-  </div>
-  <form class="AddImmobileForm" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="titolo" id="title" placeholder="Titolo" required>
-    <select id="type" formControlName="tipo" required>
-      <option value="Villa">Villa</option>
-      <option value="Appartamento">Appartamento</option>
-      <option value="Attico">Attico</option>
-      <option value="Mansarda">Mansarda</option>
-      <option value="Garage">Garage</option>
-      <option value="Ufficio">Ufficio</option>
-      <option value="Terreno">Terreno</option>
-    </select>
-    <select name="tipo_annuncio" id="tipo_annuncio" formControlName="tipo_annuncio" [(ngModel)]="selectedValue" (change)="onValueSelected($event)" required>
-      <option value="In_Affitto" selected>In Affitto</option>
-      <option value="In_Vendita">In Vendita</option>
-      <option value="In_Asta">Asta</option>
-    </select>
+  <div class="background">
+    <div class="blur-overlay"></div>
+    <div class="container">
+      <div style="text-align:center;">
+        <h2>Inserisci annuncio</h2>
+      </div>
+      <form class="AddImmobileForm" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="titolo" id="title" placeholder="Titolo" required>
+        <select id="type" formControlName="tipo" required>
+          <option value="Villa">Villa</option>
+          <option value="Appartamento">Appartamento</option>
+          <option value="Attico">Attico</option>
+          <option value="Mansarda">Mansarda</option>
+          <option value="Garage">Garage</option>
+          <option value="Ufficio">Ufficio</option>
+          <option value="Terreno">Terreno</option>
+        </select>
+        <select name="tipo_annuncio" id="tipo_annuncio" formControlName="tipo_annuncio" [(ngModel)]="selectedValue" (change)="onValueSelected($event)" required>
+          <option value="In_Affitto" selected>In Affitto</option>
+          <option value="In_Vendita">In Vendita</option>
+          <option value="In_Asta">Asta</option>
+        </select>
 
-    <input type="text" id="city" formControlName="citta" placeholder="Città" required>
-    <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
-    <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
-    <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
-    <input type="datetime-local" id="asta_endtime" formControlName="asta_endtime" *ngIf="astaSelected" required>
-    <input type="file" id="image" formControlName="foto" accept="image/*" multiple (change)="onFileChange($event)">
-    <button type="submit">Aggiungi annuncio</button>
-  </form>
-  
-</div>
+        <div class="address-fields">
+          <input type="text" id="street" formControlName="street" placeholder="Street" required>
+          <div class="address-row">
+            <input type="text" id="country" formControlName="country" placeholder="Country" required>
+            <input type="text" id="city" formControlName="city" placeholder="City" required>
+            <input type="text" id="postalCode" formControlName="postalCode" placeholder="Postal Code" required>
+          </div>
+        </div>
+        <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
+        <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
+        <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
+        <input type="datetime-local" id="asta_endtime" formControlName="asta_endtime" *ngIf="astaSelected" required>
+        <input type="file" id="image" formControlName="foto" accept="image/*" multiple (change)="onFileChange($event)">
+        <button type="submit">Aggiungi annuncio</button>
+      </form>
+    </div>
+  </div>
 </body>

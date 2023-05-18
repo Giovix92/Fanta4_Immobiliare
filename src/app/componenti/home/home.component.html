@@ -10,7 +10,7 @@
   <form class="formRicerca" [formGroup]="formFiltri" (ngSubmit)="onSubmit()">
     <div class="filtri">
       <select class="sx" formControlName="tipo">
-        <option value="" disabled selected>diocane</option>
+        <option value="" disabled selected>Proprieta:</option>
         <option value="Villa">Villa</option>
         <option value="Appartamento">Appartamento</option>
         <option value="Garage">Garage</option>
@@ -19,6 +19,7 @@
         <option value="Uffici">Uffici</option>
       </select>
       <select class="dx" formControlName="tipoAnnuncio">
+        <option value="" disabled selected>Tipo:</option>
         <option value="in_vendita">In vendita</option>
         <option value="in_affitto">In affitto</option>
         <option value="asta">Asta</option>

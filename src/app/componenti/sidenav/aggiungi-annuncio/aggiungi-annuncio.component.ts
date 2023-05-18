@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceService } from 'src/app/Service/service.service';
 import { AuthService } from "../../../auth/auth.service";
-import { Immobile } from 'src/app/Model/Immobile';
 
 
 @Component({
@@ -11,7 +10,7 @@ import { Immobile } from 'src/app/Model/Immobile';
   styleUrls: ['./aggiungi-annuncio.component.css']
 })
 export class AggiungiAnnuncioComponent implements OnInit{
-
+  
   public formAggiungi: FormGroup = new FormGroup({});
 
   astaSelected: boolean = false;

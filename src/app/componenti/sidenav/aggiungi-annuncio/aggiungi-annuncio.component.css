@@ -2,37 +2,59 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
   font-family: Arial, sans-serif;
+}
+
+.background {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex; /* Added */
+  justify-content: center; /* Added */
+  align-items: center; /* Added */
+}
+
+.background::before {
+  content: "";
   background-image: url("src/assets/background.jpg");
   background-size: cover;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  padding: 10px;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 500px; /* Updated */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  padding: 30px; /* Updated */
+  margin: 20px auto;
 }
 
 .AddImmobileForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
   margin: 0;
-}
-
-.container {
-  width: 100%;
-  max-width: 400px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
-  padding: 20px;
-  margin: 20px;
 }
 
 .AddImmobileForm input,
@@ -44,9 +66,16 @@ body{
   display: block;
   width: 100%;
   padding: 10px;
+  max-width: 100%;
+  min-width: 100%;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+.AddImmobileForm textarea {
+  min-height: 60px;
+  max-height: 100px;
 }
 
 .AddImmobileForm button {
@@ -65,6 +94,19 @@ body{
   color: #757575;
 }
 
+.address-fields {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.address-row {
+  padding-top: 10px;
+  display: flex;
+  gap: 10%;
+  max-width: 31.23%;
+}
+
 .loginTitle {
   text-align: center;
 }
@@ -74,4 +116,3 @@ body{
     padding: 15px;
   }
 }
-
