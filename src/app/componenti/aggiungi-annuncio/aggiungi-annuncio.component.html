@@ -7,8 +7,9 @@
       </div>
       <form class="AddImmobileForm" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
         <input type="text" formControlName="titolo" id="title" placeholder="Titolo" required>
-        <select id="type" formControlName="tipo" required>
-          <option value="Villa">Villa</option>
+        <select id="type" formControlName="tipo" required [(ngModel)]="selectedValueType" (change)="onValueTypeSelected($event)">
+          <option value="" selected disabled>-- Seleziona tipo immobile --</option>
+          <option value="Villa" selected>Villa</option>
           <option value="Appartamento">Appartamento</option>
           <option value="Attico">Attico</option>
           <option value="Mansarda">Mansarda</option>
@@ -17,17 +18,18 @@
           <option value="Terreno">Terreno</option>
         </select>
         <select name="tipo_annuncio" id="tipo_annuncio" formControlName="tipo_annuncio" [(ngModel)]="selectedValue" (change)="onValueSelected($event)" required>
-          <option value="In_Affitto" selected>In Affitto</option>
+          <option value="" disabled selected>-- Seleziona tipo annuncio --</option>
+          <option value="In_Affitto">In Affitto</option>
           <option value="In_Vendita">In Vendita</option>
           <option value="In_Asta">Asta</option>
         </select>
 
         <div class="address-fields">
-          <input type="text" id="street" formControlName="street" placeholder="Street" required>
+          <input type="text" id="street" formControlName="street" placeholder="Via" required>
           <div class="address-row">
-            <input type="text" id="country" formControlName="country" placeholder="Country" required>
-            <input type="text" id="city" formControlName="city" placeholder="City" required>
-            <input type="text" id="postalCode" formControlName="postalCode" placeholder="Postal Code" required>
+            <input type="text" id="city" formControlName="city" placeholder="Città" required>
+            <input type="text" id="country" formControlName="country" placeholder="Country (??????)" required>
+            <input type="text" id="postalCode" formControlName="postalCode" placeholder="CAP" required>
           </div>
         </div>
         <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>

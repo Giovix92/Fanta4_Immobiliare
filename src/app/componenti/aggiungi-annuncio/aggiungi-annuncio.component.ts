@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceService } from 'src/app/Service/service.service';
-import { AuthService } from "../../../auth/auth.service";
-
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: 'app-aggiungi-annuncio',
@@ -14,7 +13,8 @@ export class AggiungiAnnuncioComponent implements OnInit{
   public formAggiungi: FormGroup = new FormGroup({});
 
   astaSelected: boolean = false;
-  selectedValue: String = "In_Affitto";
+  selectedValue: String = "";
+  selectedValueType: String = "";
   images: String[] = [];
 
   constructor(private service: ServiceService, private auth: AuthService) {}
@@ -70,7 +70,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
       tipo: this.formAggiungi.value.tipo,
       proprietario: this.auth.utenteCorrente.id,
       tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
-    }).subscribe(data => {console.log(data)})
+    });
 
     setTimeout(() => {
       /**
@@ -79,16 +79,14 @@ export class AggiungiAnnuncioComponent implements OnInit{
        * In questo modo, non ci saranno problemi a ricevere l'ID ed effettuare la nuova POST su aste.
        */
       this.service.getLastAddedByOwner(this.auth.utenteCorrente.id).subscribe(imm_id => {
-        console.log("[i] DEBUG: IMMOBILE ID: " + imm_id);
         if(this.astaSelected) {
-          console.log("[i] CARICO ASTA");
           this.service.setAsta({
             immobile: imm_id,
             acquirente: null,
             prezzo_partenza: this.formAggiungi.value.prezzo,
             prezzo_corrente: this.formAggiungi.value.prezzo,
             fine: this.convertToTimestamp(this.formAggiungi.value.asta_endtime),
-          }).subscribe(data => { console.log(data); });
+          });
         }
 
         if(this.images.length > 0) {
@@ -97,7 +95,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
               id: null,
               immobile: imm_id,
               img: image,
-            }).subscribe(data => {console.log(data); });
+            });
           });
         }
 
@@ -112,5 +110,10 @@ export class AggiungiAnnuncioComponent implements OnInit{
     } else {
       this.astaSelected = false;
     }
+  }
+
+  onValueTypeSelected(event: any) {
+    const selectedValue = event.target.value;
+    this.selectedValueType = selectedValue;
   }
 }

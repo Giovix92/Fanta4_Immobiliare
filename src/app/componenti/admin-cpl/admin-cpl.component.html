@@ -1,0 +1,32 @@
+<body>
+    <div class="background">
+        <div class="blur-overlay"></div>
+        <div class="container">
+            <div style="text-align: center;">
+                <h2>Pannello di controllo</h2>
+            </div>
+            <hr class="horizontalrow">
+            <h2 style="text-align: center;">Cambia ruolo utente</h2>
+            <div class="changeUserTypeContainer">
+                <form class="changeUserTypeForm" [formGroup]="changeUserTypeForm" (ngSubmit)="onUserTypeFormSubmit()">
+                    <input type="text" formControlName="user_id_1" id="user_id" placeholder="ID User" required>
+                    <select formControlName="user_type" id="user_type" required [(ngModel)]="selectedValueUserType" (change)="onValueUserTypeSelected($event)">
+                        <option value="" selected disabled>-- Seleziona ruolo --</option>
+                        <option value="buyer">Acquirente</option>
+                        <option value="seller">Venditore</option>
+                        <option value="admin">Amministratore</option>
+                    </select>
+                    <button type="submit">Applica</button>
+                </form>
+            </div>
+            <hr class="horizontalrow2">
+            <h2 style="text-align: center;">Banna utente</h2>
+            <div class="banUserContainer">
+                <form class="banUserForm" [formGroup]="banUserForm" (ngSubmit)="onBanUserFormSubmit()">
+                    <input type="text" formControlName="user_id_2" id="user_id" placeholder="ID User" required>
+                    <button type="submit">Applica</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

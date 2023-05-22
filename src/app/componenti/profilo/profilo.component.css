@@ -1,45 +1,75 @@
-/* profilo.component.css */
-
-body{
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("src/assets/background.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+* {
+    box-sizing: border-box;
 }
 
-.profilo{
-  box-shadow: inset 0 0 2000px 100px rgba(0, 0, 0, 0.5);
-  display: block;
-  text-align: center;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.profilo h1 {
-  font-size: 50px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  color: white;
+.background {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-strong{
-  color: #259be2;
+.background::before {
+    content: "";
+    background-image: url("src/assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-span{
-  color: white;
+.blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
-
-.profilo-item strong {
-  display: block;
-  font-weight: bold;
-  font-size: large;
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 30px;
+    margin: 20px auto;
 }
 
-.profilo-item span {
-  display: block;
-  font-size: medium;
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.field {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.actions button {
+    margin-right: 10px;
 }

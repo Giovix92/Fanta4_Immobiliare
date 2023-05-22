@@ -1,4 +1,4 @@
-export class Utente{
+export class Utente {
     nome!: string;
     cognome!: string;
     id!: string;
@@ -6,4 +6,5 @@ export class Utente{
     email!: string;
     password!: string;
     tipologia!: string;
+    bannato!: boolean;
 }

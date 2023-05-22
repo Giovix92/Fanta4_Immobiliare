@@ -92,7 +92,7 @@ export class ServiceService {
    * Update utente dato id + body
    */
   updateUtente(cf: string, body: {}): Observable<Utente> {
-    return this.http.put<Utente>('http://localhost:8080/api/utenti' + cf, body);
+    return this.http.put<Utente>('http://localhost:8080/api/utenti/' + cf, body);
   }
 
   /**

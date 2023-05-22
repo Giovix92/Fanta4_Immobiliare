@@ -10,28 +10,25 @@ import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.comp
 import { HomeComponent } from './componenti/home/home.component';
 import { ProfiloComponent } from './componenti/profilo/profilo.component';
 import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
-import { AggiungiAnnuncioComponent } from './componenti/sidenav/aggiungi-annuncio/aggiungi-annuncio.component';
+import { AggiungiAnnuncioComponent } from './componenti/aggiungi-annuncio/aggiungi-annuncio.component';
+import { AdminCplComponent } from './componenti/admin-cpl/admin-cpl.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatSelectModule} from '@angular/material/select';
-
-
-
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,7 +41,7 @@ import {MatSelectModule} from '@angular/material/select';
     ProfiloComponent,
     PagAnnuncioComponent,
     AggiungiAnnuncioComponent,
-
+    AdminCplComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,8 +64,6 @@ import {MatSelectModule} from '@angular/material/select';
     MatMenuModule,
     MatGridListModule,
     MatSelectModule,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

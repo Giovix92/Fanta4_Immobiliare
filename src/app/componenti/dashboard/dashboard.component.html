@@ -37,6 +37,10 @@
         <mat-icon>plus_one</mat-icon>
         <span>Aggiungi annuncio</span>
       </button>
+      <button mat-menu-item *ngIf="this.auth.isLoggedIn && this.auth.isAdmin()" routerLink="admin-cpl">
+        <mat-icon>star_half</mat-icon>
+        <span>Pannello di controllo</span>
+      </button>
       <button mat-menu-item *ngIf="this.auth.isLoggedIn" (click)="this.auth.logout()" routerLink="home">
         <mat-icon>logout</mat-icon>
         <span>Esci</span>
