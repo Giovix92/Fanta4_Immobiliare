@@ -25,6 +25,7 @@ public class UtenteDaoPostgres implements UtenteDao {
         u.setTelefono(rs.getLong("telefono"));
         u.setTipologia(rs.getString("tipologia"));
         u.setPassword(rs.getString("password"));
+        u.setBannato(rs.getBoolean("bannato"));
         return u;
     }
 
@@ -81,11 +82,11 @@ public class UtenteDaoPostgres implements UtenteDao {
             Utente u = findByPrimaryKey(utente.getId());
             if (u == null) {
                 // User doesn't exist in the database, creating one
-                String insertQuery = "insert into utenti(nome, cognome, email, telefono, tipologia, password, id) values(?,?,?,?,?,?,?)";
+                String insertQuery = "insert into utenti(nome, cognome, email, telefono, tipologia, password, bannato, id) values(?,?,?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
             } else {
                 // User exists in the database, updating its infos
-                String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, tipologia = ?, password = ? where id = ?";
+                String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, tipologia = ?, password = ?, bannato = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
             }
 
@@ -95,7 +96,8 @@ public class UtenteDaoPostgres implements UtenteDao {
             st.setLong(4, utente.getTelefono());
             st.setString(5, utente.getTipologia().toLowerCase());
             st.setString(6, utente.getPassword());
-            st.setString(7, utente.getId().toUpperCase());
+            st.setBoolean(7, utente.getBannato());
+            st.setString(8, utente.getId().toUpperCase());
 
             st.executeUpdate();
             return true;

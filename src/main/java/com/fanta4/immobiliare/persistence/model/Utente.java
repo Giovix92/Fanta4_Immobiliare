@@ -15,7 +15,9 @@ public class Utente {
 
     private String password;
 
-    public Utente(String id, String nome, String cognome, String email, Long telefono, String tipologia, String password) {
+    private Boolean bannato;
+
+    public Utente(String id, String nome, String cognome, String email, Long telefono, String tipologia, String password, Boolean bannato) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -23,6 +25,7 @@ public class Utente {
         this.telefono = telefono;
         this.tipologia = tipologia;
         this.password = password;
+        this.bannato = bannato;
     }
 
     public Utente() {
@@ -82,5 +85,13 @@ public class Utente {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getBannato() {
+        return bannato;
+    }
+
+    public void setBannato(Boolean bannato) {
+        this.bannato = bannato;
     }
 }

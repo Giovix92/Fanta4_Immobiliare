@@ -27,7 +27,7 @@ public class RegistrationServlet extends HttpServlet {
         Utente utente = udao.findByPrimaryKey(cf);
 
         if(utente == null){
-            boolean reg = udao.saveOrUpdate(new Utente(cf,name,surname,email,phone,role,password));
+            boolean reg = udao.saveOrUpdate(new Utente(cf,name,surname,email,phone,role,password,false));
             if(reg) {
                 // Registrazione andata a buon fine: popup
                 String successMessage = "Registrazione completata con successo! Sarai reindirizzato alla pagina di login.";
