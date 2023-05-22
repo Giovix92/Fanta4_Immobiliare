@@ -25,7 +25,13 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         if(utente != null) {
-            if (password.equals(utente.getPassword())) {
+            if(utente.getBannato()) {
+                String errorMessage = "Questo utente è bannato.";
+                String script = "<script>alert('" + errorMessage + "');window.location.href='Login.html';</script>";
+                resp.setContentType("text/html");
+                resp.getWriter().println(script);
+            }
+            else if (password.equals(utente.getPassword())) {
                 logged = true;
                 session.setAttribute("utente", utente);
                 session.setAttribute("sessionId", session.getId());
