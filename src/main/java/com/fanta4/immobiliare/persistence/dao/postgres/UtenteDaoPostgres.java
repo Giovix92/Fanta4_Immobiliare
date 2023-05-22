@@ -85,7 +85,7 @@ public class UtenteDaoPostgres implements UtenteDao {
                 st = connection.prepareStatement(insertQuery);
             } else {
                 // User exists in the database, updating its infos
-                String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, tipologia = ?, password = ?, where id = ?";
+                String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, tipologia = ?, password = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
             }
 
