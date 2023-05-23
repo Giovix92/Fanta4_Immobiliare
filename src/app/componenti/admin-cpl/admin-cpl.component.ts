@@ -3,6 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from "src/app/auth/auth.service";
 import { Utente } from "src/app/Model/Utente";
 import { ServiceService } from 'src/app/Service/service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrordialogComponent } from 'src/app/componenti/errordialog/errordialog.component';
+import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
 
 @Component({
   selector: 'app-admin-cpl',
@@ -15,7 +18,7 @@ export class AdminCplComponent implements OnInit {
   selectedValueUserType: String = "";
   public utente: any;
 
-  constructor(private service: ServiceService, private auth: AuthService) {}
+  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.changeUserTypeForm = new FormGroup({
@@ -29,9 +32,8 @@ export class AdminCplComponent implements OnInit {
   }
 
   onUserTypeFormSubmit() {
-    try {
-      this.service.getUtente(this.changeUserTypeForm.value.user_id_1).subscribe(
-        data => {
+      this.service.getUtente(this.changeUserTypeForm.value.user_id_1).subscribe({
+        next: (data) => {
           this.utente = new Utente();
           this.utente = data;
 
@@ -46,26 +48,23 @@ export class AdminCplComponent implements OnInit {
             password: this.utente.password,
             tipologia: this.utente.tipologia,
             bannato: this.utente.bannato,
-          }).subscribe()
-        }
-      )
-    } catch (err) {
-      console.log('Oops!', err)
-      return false;
-    }
+          }).subscribe({
+            error: () => this.dialog.open(ErrordialogComponent),
+          })
+        },
+        error: () => this.dialog.open(ErrordialogComponent),
+        complete: () => this.dialog.open(SuccessdialogComponent),
+      });
     return true;
   }
 
   onBanUserFormSubmit() {
-    console.log("STARTING BAN");
-    try {
-      this.service.getUtente(this.banUserForm.value.user_id_2).subscribe(
-        data => {
+      this.service.getUtente(this.banUserForm.value.user_id_2).subscribe({
+        next: (data) => {
           this.utente = new Utente();
           this.utente = data;
 
           this.utente.bannato = true;
-          console.log("CALLING UPDATE");
 
           this.service.updateUtente(this.utente.id, {
             nome: this.utente.nome,
@@ -76,14 +75,13 @@ export class AdminCplComponent implements OnInit {
             password: this.utente.password,
             tipologia: this.utente.tipologia,
             bannato: this.utente.bannato,
-          }).subscribe(data => console.log(data))
-        }
-      )
-    } catch (err) {
-      console.log('Oops!', err)
-      return false;
-    }
-    return true;
+          }).subscribe({
+            error: () => this.dialog.open(ErrordialogComponent),
+          })
+        },
+        error: () => this.dialog.open(ErrordialogComponent),
+        complete: () => this.dialog.open(SuccessdialogComponent),
+      });
   }
     
 

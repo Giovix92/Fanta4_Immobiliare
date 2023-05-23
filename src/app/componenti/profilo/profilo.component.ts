@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ServiceService } from 'src/app/Service/service.service';
+import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
+import { ErrordialogComponent } from '../errordialog/errordialog.component';
 
 @Component({
     selector: 'app-profilo',
@@ -18,7 +22,7 @@ export class ProfiloComponent implements OnInit {
     passwordValue: string = '';
     tipologiaValue: string = '';
 
-    constructor(public auth: AuthService, private service: ServiceService) { }
+    constructor(private auth: AuthService, private service: ServiceService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.nomeValue = this.auth.utenteCorrente.nome;
@@ -47,15 +51,17 @@ export class ProfiloComponent implements OnInit {
             password: this.passwordValue,
             tipologia: this.tipologiaValue,
             bannato: false,
-        }).subscribe(
-            () => {
+        }).subscribe({
+            next: () => {
                 this.auth.utenteCorrente.nome = this.nomeValue;
                 this.auth.utenteCorrente.cognome = this.cognomeValue;
                 this.auth.utenteCorrente.telefono = this.telefonoValue;
                 this.auth.utenteCorrente.email = this.emailValue;
                 this.auth.utenteCorrente.password = this.passwordValue;
                 this.auth.utenteCorrente.tipologia = this.tipologiaValue;
-            }
-        );
+            },
+            error: () => this.dialog.open(ErrordialogComponent),
+            complete: () => this.dialog.open(SuccessdialogComponent),
+        });
     }
 }

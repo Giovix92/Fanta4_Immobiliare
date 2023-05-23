@@ -2,6 +2,9 @@ import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceService } from 'src/app/Service/service.service';
 import { AuthService } from "src/app/auth/auth.service";
+import { MatDialog } from '@angular/material/dialog';
+import { ErrordialogComponent } from 'src/app/componenti/errordialog/errordialog.component';
+import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
 
 @Component({
   selector: 'app-aggiungi-annuncio',
@@ -17,7 +20,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
   selectedValueType: String = "";
   images: String[] = [];
 
-  constructor(private service: ServiceService, private auth: AuthService) {}
+  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.formAggiungi = new FormGroup({
@@ -70,37 +73,37 @@ export class AggiungiAnnuncioComponent implements OnInit{
       tipo: this.formAggiungi.value.tipo,
       proprietario: this.auth.utenteCorrente.id,
       tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
-    });
-
-    setTimeout(() => {
-      /**
-       * Dirty hack: Timeout di 1 secondo tra una richiesta ed un'altra
-       * Dobbiamo dare il tempo al database di ricevere la POST e salvare tutte le modifiche.
-       * In questo modo, non ci saranno problemi a ricevere l'ID ed effettuare la nuova POST su aste.
-       */
-      this.service.getLastAddedByOwner(this.auth.utenteCorrente.id).subscribe(imm_id => {
-        if(this.astaSelected) {
-          this.service.setAsta({
-            immobile: imm_id,
-            acquirente: null,
-            prezzo_partenza: this.formAggiungi.value.prezzo,
-            prezzo_corrente: this.formAggiungi.value.prezzo,
-            fine: this.convertToTimestamp(this.formAggiungi.value.asta_endtime),
-          });
-        }
-
-        if(this.images.length > 0) {
-          this.images.forEach(image => {
-            this.service.createImage({
-              id: null,
+    }).subscribe({
+      next: () => {
+        this.service.getLastAddedByOwner(this.auth.utenteCorrente.id).subscribe(imm_id => {
+          if(this.astaSelected) {
+            this.service.setAsta({
               immobile: imm_id,
-              img: image,
+              acquirente: null,
+              prezzo_partenza: this.formAggiungi.value.prezzo,
+              prezzo_corrente: this.formAggiungi.value.prezzo,
+              fine: this.convertToTimestamp(this.formAggiungi.value.asta_endtime),
+            }).subscribe({
+              error: () => this.dialog.open(ErrordialogComponent),
             });
-          });
-        }
+          }
 
-      });
-    }, 1000);
+          if(this.images.length > 0) {
+            this.images.forEach(image => {
+              this.service.createImage({
+                id: null,
+                immobile: imm_id,
+                img: image,
+              }).subscribe({
+                error: () => this.dialog.open(ErrordialogComponent),
+              });
+            });
+          }
+        });
+      },
+      error: () => this.dialog.open(ErrordialogComponent),
+      complete: () => this.dialog.open(SuccessdialogComponent),
+    });
   }
 
   onValueSelected(event: any) {
