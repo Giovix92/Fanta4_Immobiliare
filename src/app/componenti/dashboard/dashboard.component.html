@@ -16,9 +16,12 @@
     </ng-template>
 
     <span class="profile-icon-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>account_circle</mat-icon>
-    </button>
+
+    <div class="profile-icon-wrapper">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
 
     <mat-menu #menu="matMenu">
       <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')" *ngIf="!this.auth.isLoggedIn">

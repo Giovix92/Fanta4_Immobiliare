@@ -8,16 +8,18 @@
   right: 0;
 }
 
+.main-toolbar {
+  display: flex;
+  align-items: center;
+  background-color: #259be2;
+  color: white;
+}
+
 .profile-icon-spacer {
   flex: 1 1 auto;
 }
 
-mat-toolbar{
-  background-color:#259be2;
-  color: white;
-}
-
-.menu{
+.menu {
   display: flex;
   text-align: center;
   width: 100%;
@@ -41,4 +43,15 @@ mat-list-item:hover {
 
 mat-list-item.active {
   font-size: 1.3em;
+}
+
+.profile-icon-wrapper {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-icon-wrapper button {
+  margin-right: 10px;
 }
