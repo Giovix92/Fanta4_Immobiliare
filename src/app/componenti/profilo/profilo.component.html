@@ -1,44 +1,45 @@
 <body>
     <div class="background">
-        <div class="blur-overlay"></div>
-        <div class="container">
-            <h1>Profilo utente</h1>
-            <div class="profile-info">
-                <div class="field">
-                    <label for="nome">Nome:</label>
-                    <input id="nome" type="text" [(ngModel)]="auth.utenteCorrente.nome" [disabled]="!isEditing">
-                </div>
-                <div class="field">
-                    <label for="cognome">Cognome:</label>
-                    <input id="cognome" type="text" [(ngModel)]="auth.utenteCorrente.cognome" [disabled]="!isEditing">
-                </div>
-                <div class="field">
-                    <label for="telefono">Telefono:</label>
-                    <input id="telefono" type="text" [(ngModel)]="auth.utenteCorrente.telefono" [disabled]="!isEditing">
-                </div>
-                <div class="field">
-                    <label for="email">Email:</label>
-                    <input id="email" type="text" [(ngModel)]="auth.utenteCorrente.email" [disabled]="!isEditing">
-                </div>
-                <div class="field">
-                    <label for="password">Password:</label>
-                    <div class="password-input-container">
-                        <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="auth.utenteCorrente.password" [disabled]="!isEditing">
-                        <mat-icon class="toggle-password-icon" (click)="togglePasswordVisibility()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="tipologia">Tipologia:</label>
-                    <select id="tipologia" [(ngModel)]="auth.utenteCorrente.tipologia" [disabled]="!isEditing">
-                        <option value="buyer">Acquirente</option>
-                        <option value="seller">Venditore</option>
-                    </select>
-                </div>
+      <div class="blur-overlay"></div>
+      <div class="container">
+        <h1>Profilo utente</h1>
+        <div class="profile-info">
+          <div class="field">
+            <label for="nome">Nome:</label>
+            <input id="nome" type="text" [(ngModel)]="nomeValue" [disabled]="!isEditing">
+          </div>
+          <div class="field">
+            <label for="cognome">Cognome:</label>
+            <input id="cognome" type="text" [(ngModel)]="cognomeValue" [disabled]="!isEditing">
+          </div>
+          <div class="field">
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" type="text" [(ngModel)]="telefonoValue" [disabled]="!isEditing">
+          </div>
+          <div class="field">
+            <label for="email">Email:</label>
+            <input id="email" type="text" [(ngModel)]="emailValue" [disabled]="!isEditing">
+          </div>
+          <div class="field">
+            <label for="password">Password:</label>
+            <div class="password-input-container">
+              <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordValue" [disabled]="!isEditing">
+              <mat-icon class="toggle-password-icon" (click)="togglePasswordVisibility()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </div>
-            <div class="actions">
-                <button class="modifyContent" (click)="toggleEditing()">Modifica</button>
-                <button class="applyContent" (click)="sendToServer()" [disabled]="!isEditing">Applica</button>
-            </div>
+          </div>
+          <div class="field">
+            <label for="tipologia">Tipologia:</label>
+            <select id="tipologia" [(ngModel)]="tipologiaValue" [disabled]="!isEditing">
+              <option value="buyer">Acquirente</option>
+              <option value="seller">Venditore</option>
+            </select>
+          </div>
         </div>
+        <div class="actions">
+          <button class="modifyContent" (click)="toggleEditing()">Modifica</button>
+          <button class="applyContent" (click)="sendToServer()" [disabled]="!isEditing">Applica</button>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
+  
