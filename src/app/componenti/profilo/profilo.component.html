@@ -2,7 +2,7 @@
     <div class="background">
         <div class="blur-overlay"></div>
         <div class="container">
-            <h1>Profile Infos</h1>
+            <h1>Profilo utente</h1>
             <div class="profile-info">
                 <div class="field">
                     <label for="nome">Nome:</label>
@@ -36,8 +36,8 @@
                 </div>
             </div>
             <div class="actions">
-                <button (click)="toggleEditing()">Edit</button>
-                <button (click)="sendToServer()" [disabled]="!isEditing">Send to Server</button>
+                <button class="modifyContent" (click)="toggleEditing()">Modifica</button>
+                <button class="applyContent" (click)="sendToServer()" [disabled]="!isEditing">Applica</button>
             </div>
         </div>
     </div>

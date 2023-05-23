@@ -43,7 +43,7 @@ body {
 .container {
     position: relative;
     z-index: 1;
-    max-width: 500px;
+    width: 325px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
     padding: 30px;
@@ -68,10 +68,16 @@ input, select {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    height: 28px;
 }
 
 .actions button {
+    margin-left: 18px;
     margin-right: 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
 }
 
 .password-input-container {
@@ -84,6 +90,16 @@ input, select {
     top: 50%;
     transform: translate(0, -50%);
     cursor: pointer;
-    font-size: 22px; /* Adjust the font size as needed */
-    color: #999; /* Adjust the color as needed */
+    font-size: 22px;
+    color: #999; 
+}
+
+.modifyContent{
+    background-color: #007bff;
+    color: #fff;  
+}
+
+.applyContent{
+    background-color: #b30000;
+    color: #fff;
 }
