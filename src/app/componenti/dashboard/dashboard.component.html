@@ -8,10 +8,10 @@
     </ng-template>
     <ng-template #bloccoElse>
       <ul class="menu">
-        <mat-list-item routerLink="home">HomePage</mat-list-item>
-        <mat-list-item routerLink="privacy">Privacy</mat-list-item>
-        <mat-list-item routerLink="supporto">Supporto</mat-list-item>
-        <mat-list-item routerLink="chi-siamo">Chi siamo</mat-list-item>
+        <mat-list-item routerLink="home" [routerLinkActive]="'active'">HomePage</mat-list-item>
+        <mat-list-item routerLink="privacy" [routerLinkActive]="'active'">Privacy</mat-list-item>
+        <mat-list-item routerLink="supporto" [routerLinkActive]="'active'">Supporto</mat-list-item>
+        <mat-list-item routerLink="chi-siamo" [routerLinkActive]="'active'">Chi siamo</mat-list-item>
       </ul>
     </ng-template>
 

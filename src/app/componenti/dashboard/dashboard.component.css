@@ -36,9 +36,9 @@ mat-list-item {
 
 mat-list-item:hover {
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 1.3em;
 }
 
 mat-list-item.active {
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
