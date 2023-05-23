@@ -22,7 +22,10 @@
                 </div>
                 <div class="field">
                     <label for="password">Password:</label>
-                    <input id="password" type="password" [(ngModel)]="auth.utenteCorrente.password" [disabled]="!isEditing">
+                    <div class="password-input-container">
+                        <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="auth.utenteCorrente.password" [disabled]="!isEditing">
+                        <mat-icon class="toggle-password-icon" (click)="togglePasswordVisibility()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </div>
                 </div>
                 <div class="field">
                     <label for="tipologia">Tipologia:</label>

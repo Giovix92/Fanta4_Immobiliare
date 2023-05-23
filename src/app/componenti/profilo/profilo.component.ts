@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { FormsModule, FormControl, FormGroup } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-profilo',
@@ -22,5 +23,12 @@ export class ProfiloComponent implements OnInit {
 
     sendToServer(): void {
         // Implement your server logic here
+    }
+
+    // Inside your component class
+    showPassword: boolean = false;
+
+    togglePasswordVisibility(): void {
+        this.showPassword = !this.showPassword;
     }
 }

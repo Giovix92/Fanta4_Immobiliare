@@ -73,3 +73,17 @@ input, select {
 .actions button {
     margin-right: 10px;
 }
+
+.password-input-container {
+    position: relative;
+}
+
+.toggle-password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    font-size: 22px; /* Adjust the font size as needed */
+    color: #999; /* Adjust the color as needed */
+}
