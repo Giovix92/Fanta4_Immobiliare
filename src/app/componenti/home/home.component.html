@@ -1,107 +1,94 @@
 <body class="home">
-
   <!--LOGO-->
   <div class="logo-container">
     <img id="logo" src='.\assets\logo.png' alt="Foto logo">
-    <h1><b><i>Comincia anche tu a Comprare e Vendere Immobili!</i></b></h1>
+    <h1 class="initialText"><b><i>Comincia anche tu a Comprare e Vendere Immobili!</i></b></h1>
   </div>
 
-  <!--FILTRI-->
-  <form class="formRicerca" [formGroup]="formFiltri" (ngSubmit)="onSubmit()">
-    <div class="filtri">
-      <select class="sx" formControlName="tipo">
-        <option value="" disabled selected>Proprieta:</option>
-        <option value="Villa">Villa</option>
-        <option value="Appartamento">Appartamento</option>
-        <option value="Garage">Garage</option>
-        <option value="Terreno">Terreno</option>
-        <option value="Negozi">Negozi</option>
-        <option value="Uffici">Uffici</option>
-      </select>
-      <select class="dx" formControlName="tipoAnnuncio">
-        <option value="" disabled selected>Tipo:</option>
-        <option value="in_vendita">In vendita</option>
-        <option value="in_affitto">In affitto</option>
-        <option value="asta">Asta</option>
-      </select>
-    </div>
+  <div class="filtriRicercaContainer">
+    <form class="filtri" class="formRicerca" [formGroup]="formFiltri" (ngSubmit)="onSubmit()">
+      <div class="filtri">
+        <select class="tipoImmobileSelect" formControlName="tipoImmobile" [(ngModel)]="tipoImmobileValue" (change)="tipoImmobileValueChange($event)" required>
+          <option value="" selected disabled>Seleziona tipo immobile</option>
+          <option value="Villa">Villa</option>
+          <option value="Appartamento">Appartamento</option>
+          <option value="Garage">Garage</option>
+          <option value="Terreno">Terreno</option>
+          <option value="Negozi">Negozi</option>
+          <option value="Uffici">Uffici</option>
+        </select>
+        <select class="tipoAnnuncioSelect" formControlName="tipoAnnuncio" [(ngModel)]="tipoAnnuncioValue" (change)="tipoAnnuncioValueChange($event)" required>
+          <option value="" disabled selected>Seleziona tipo annuncio</option>
+          <option value="In_Vendita">In vendita</option>
+          <option value="In_Affitto">In affitto</option>
+          <option value="In_Asta">Asta</option>
+        </select>
+        <select class="tipoOrdinamentoSelect" formControlName="tipoOrdinamento" [(ngModel)]="tipoOrdinamentoValue" (change)="tipoOrdinamentoValueChange($event)" required>
+          <option value="" disabled selected>Ordina per:</option>
+          <option value="automatico">Automatico</option>
+          <option value="più_costosi">Più costosi</option>
+          <option value="meno_costosi">Meno costosi</option>
+          <option value="più_grandi">Più grandi</option>
+          <option value="meno_grandi">Meno grandi</option>
+        </select>
+      </div>
+    </form>
+  </div>
 
-    <mat-form-field class="barra" appearance="outline" formControlName="citta">
+  <div class="ricercaContainer">
+    <mat-form-field class="searchBar" formControlName="citta">
       <mat-label>Inserisci la città...</mat-label>
       <input matInput #message maxlength="256" placeholder="Es. Cosenza">
     </mat-form-field>
-
-    <div>
-      <button class="searchbutton" type="submit">
-        Cerca
-      </button>
-    </div>
-
-  </form>
-
-  <br>
-  <mat-divider></mat-divider>
-  <br>
-
-  <!--SELECT PER ORDINAMENTO-->
-  <div class="ordina">
-    <select type="submit"> <!--non so se funziona così controllare, altrimenti aggiungere al form-->
-      <option value="automatico">Automatico</option>
-      <option value="più_costosi">Più costosi</option>
-      <option value="meno_costosi">Meno costosi</option>
-      <option value="più_grandi">Più grandi</option>
-      <option value="meno_grandi">Meno grandi</option>
-    </select>
+    <button class="searchButton" type="submit">
+      Cerca
+    </button>
   </div>
-
-  <br>
 
   <!--ANNUNCI-->
   <ng-template *ngIf="!Mobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
-    <ng-template #bloccoIf>
-      <mat-grid-list cols="3" rowHeight="500px" gutterSize="10px">
-        <mat-grid-tile *ngFor="let imm of immobili" >
-          <mat-card class="cards" (click)="cliccato(imm.id)">
-            <mat-card-header>
-              <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
-              <mat-card-title>{{imm.nome}}</mat-card-title>
-              <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
+  <ng-template #bloccoIf>
+    <mat-grid-list cols="3" rowHeight="500px" gutterSize="10px">
+      <mat-grid-tile *ngFor="let imm of immobili" >
+        <mat-card class="cards" (click)="cliccato(imm.id)">
+          <mat-card-header>
+            <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
+            <mat-card-title>{{imm.nome}}</mat-card-title>
+            <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
 
-            <mat-card-actions>
-              <button mat-fab extended style="background-color:#259be2; color: white;">
-                <mat-icon>shop_two</mat-icon>
-                Visualizza Annuncio
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </ng-template>
+          <mat-card-actions>
+            <button mat-fab extended style="background-color:#259be2; color: white;">
+              <mat-icon>shop_two</mat-icon>
+              Visualizza Annuncio
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
 
-    <ng-template #bloccoElse>
-      <mat-grid-list cols="1" rowHeight="420px" gutterSize="10px">
-        <mat-grid-tile *ngFor="let imm of immobili" >
-          <mat-card class="cards" (click)="cliccato(imm.id)">
-            <mat-card-header>
-              <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
-              <mat-card-title>{{imm.nome}}</mat-card-title>
-              <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
-            <mat-card-actions>
-              <button mat-fab extended style="background-color:#259be2; color: white;">
-                <mat-icon>shop_two</mat-icon>
-                Visualizza Annuncio
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </ng-template>
-
-
+  <ng-template #bloccoElse>
+    <mat-grid-list cols="1" rowHeight="420px" gutterSize="10px">
+      <mat-grid-tile *ngFor="let imm of immobili" >
+        <mat-card class="cards" (click)="cliccato(imm.id)">
+          <mat-card-header>
+            <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
+            <mat-card-title>{{imm.nome}}</mat-card-title>
+            <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
+          <mat-card-actions>
+            <button mat-fab extended style="background-color:#259be2; color: white;">
+              <mat-icon>shop_two</mat-icon>
+              Visualizza Annuncio
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
 </body>
 
 

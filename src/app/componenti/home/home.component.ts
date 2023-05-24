@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {BreakpointObserver, MediaMatcher} from '@angular/cdk/layout';
+import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Immobile } from 'src/app/Model/Immobile';
@@ -20,17 +20,25 @@ export class HomeComponent implements OnInit {
   formFiltri : FormGroup = new FormGroup({});
   filtro: Filtro = new Filtro();
 
+  tipoImmobileValue: String = "";
+  tipoAnnuncioValue: String = "";
+  tipoOrdinamentoValue: String = "";
+
   ngOnInit(): void {
     //caricamento di tutti gli immobili nel database
     this.service.getImmobili().subscribe(imm => this.immobili = imm);
 
     //inizializzazione dei form che restano in attesa
     this.formFiltri = new FormGroup({
-      tipo: new FormControl(),
+      tipoImmobile: new FormControl(),
       tipoAnnuncio: new FormControl(),
       citta: new FormControl(),
-      ordine: new FormControl()
+      tipoOrdinamento: new FormControl()
     });
+
+    this.tipoImmobileValue = "";
+    this.tipoAnnuncioValue = "";
+    this.tipoOrdinamentoValue = "";
   }
 
   //quando imposto i filtri chiedo al backend di inviarmi gli immobili ordinati e filtrati
@@ -52,6 +60,21 @@ export class HomeComponent implements OnInit {
 
   Mobile(): boolean {
     return this.mobileQuery.matches;
+  }
+
+  tipoImmobileValueChange(event: any) {
+    const selectedValuea = event.target.value;
+    this.tipoImmobileValue = selectedValuea;
+  }
+
+  tipoAnnuncioValueChange(event: any) {
+    const selectedValueb = event.target.value;
+    this.tipoAnnuncioValue = selectedValueb;
+  }
+
+  tipoOrdinamentoValueChange(event: any) {
+    const selectedValuec = event.target.value;
+    this.tipoOrdinamentoValue = selectedValuec;
   }
 
   //quando clicco su un immobile si apre la pagina di quell'immobile

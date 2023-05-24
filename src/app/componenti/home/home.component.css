@@ -1,57 +1,79 @@
-.home{
+.home {
   align-items: center;
   margin: 0%;
 }
 
-h1{
+.initialText {
   color: white;
 }
 
-.logo-container{
-  width: 100%;
+.logo-container {
+  width: 100% auto;
   text-align: center;
   background-color: #259be2;
+  padding: 20px;
 }
 
-#logo{
-  width: 50%;
-  height: 50%;
+#logo {
+  width: 30%;
+  height: auto;
 }
 
 .formRicerca {
   height: 13.5%;
   display: flex;
-  width: 100%;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 15px;
-}
-
-.filtri select{
-  margin-top: 5%;
-  height: 58px;
-  font-size: 20px;
-  border-radius: 5px;
-  background: #259be2;
-  color: white;
-}
-
-.barra{
-  width: 73%;
-  padding-top: 14px;
-  margin-left: 0px;
-  height: 80px;
-}
-
-.searchbutton{
-  margin-top: 19%;
-  height: 58px;
+  justify-content: left;
   background-color: #259be2;
-  color: white;
-  font-size: 16px;
-  width: 75px;
-  border-radius: 5px;
 }
 
+.filtri {
+  color: white;
+  margin-left: 11.5%;
+}
+
+.searchBar {
+  width: 100%;
+  margin-left: 11.5%;
+  height: 10%;
+}
+
+.searchButton {
+  z-index: 1;
+  display: block;
+  cursor: pointer;
+  margin-right: 11.5%;
+  margin-bottom: 22px;
+  height: 56px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0d47a1;
+  color: white;
+  width: 80px;
+}
+
+.ricercaContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #259be2;
+}
+
+.tipoImmobileSelect, .tipoAnnuncioSelect, .tipoOrdinamentoSelect {
+  background-color: transparent;
+  color: white;
+  border: none;
+  width: 165px;
+  height: 50px;
+  margin-right: 25px;
+}
+
+.tipoImmobileSelect:focus, .tipoAnnuncioSelect:focus, .tipoOrdinamentoSelect:focus{
+  outline: none;
+}
+
+.tipoOrdinamentoSelect {
+  width: 100px !important;
+}
 
 .mat-grid-list {
   display: flex;
@@ -65,30 +87,3 @@ h1{
 .example-header-image {
   background-size: cover;
 }
-
-
-.ordina select {
-  align-items: end;
-  background: #2596be;
-  color:white;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-}
-
-
-
-.sx{
-  margin-left: 20px;
-  width: 160px;
-}
-
-.dx{
-  width: 105%;
-}
-
-.filtri{
-  display: flex;
-
-}
-
