@@ -5,7 +5,6 @@ import com.fanta4.immobiliare.persistence.model.Immobile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -89,11 +88,12 @@ public class ImmobileService {
             // TODO: 19/03/23 controllare gli input (immobile)
             immobile1.setNome(immobile.getNome());
             immobile1.setTipo(immobile.getTipo());
-            immobile1.setPrezzo(immobile.getPrezzo());
+            immobile1.setPrezzo_orig(immobile.getPrezzo_orig());
             immobile1.setDescrizione(immobile.getDescrizione());
             immobile1.setMetri_quadri(immobile.getMetri_quadri());
             immobile1.setIndirizzo(immobile.getIndirizzo());
             immobile1.setTipo_annuncio(immobile.getTipo_annuncio());
+            immobile1.setPrezzo_attuale(immobile.getPrezzo_attuale());
             if(DBManager.getInstance().getImmobileDAO().saveOrUpdate(immobile1))
                 return ResponseEntity.ok(immobile1);
             else return ResponseEntity.internalServerError().build();

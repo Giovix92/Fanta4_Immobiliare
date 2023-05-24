@@ -22,12 +22,13 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         i.setId(rs.getInt("id"));
         i.setNome(rs.getString("nome"));
         i.setTipo(rs.getString("tipo"));
-        i.setPrezzo(rs.getDouble("prezzo"));
+        i.setPrezzo_orig(rs.getDouble("prezzo_orig"));
         i.setDescrizione(rs.getString("descrizione"));
         i.setMetri_quadri(rs.getDouble("metri_quadri"));
         i.setIndirizzo(rs.getString("indirizzo"));
         i.setProprietario(rs.getString("proprietario"));
         i.setTipo_annuncio(rs.getString("tipo_annuncio"));
+        i.setPrezzo_attuale(rs.getDouble("prezzo_attuale"));
         return i;
     }
 
@@ -125,23 +126,24 @@ public class ImmobileDaoPostgres implements ImmobileDao {
         Integer id = null;
         try {
             if(immobile.getId() == null) {
-                String insertQuery = "insert into immobili(nome, tipo, prezzo, descrizione, metri_quadri, indirizzo, proprietario, tipo_annuncio, id) values(?,?,?,?,?,?,?,?,?)";
+                String insertQuery = "insert into immobili(nome, tipo, prezzo_orig, descrizione, metri_quadri, indirizzo, proprietario, tipo_annuncio, prezzo_attuale, id) values(?,?,?,?,?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
                 id = IdBroker.getImmobileId(connection);
             } else {
-                String updateQuery = "update immobili set nome = ?, tipo = ?, prezzo = ?, descrizione = ?, metri_quadri = ?, indirizzo = ?, proprietario = ?, tipo_annuncio = ? where id = ?";
+                String updateQuery = "update immobili set nome = ?, tipo = ?, prezzo_orig = ?, descrizione = ?, metri_quadri = ?, indirizzo = ?, proprietario = ?, tipo_annuncio = ?, prezzo_attuale = ? where id = ?";
                 st = connection.prepareStatement(updateQuery);
                 id = immobile.getId();
             }
             st.setString(1, immobile.getNome());
             st.setString(2, immobile.getTipo());
-            st.setDouble(3,immobile.getPrezzo());
+            st.setDouble(3,immobile.getPrezzo_orig());
             st.setString(4,immobile.getDescrizione());
             st.setDouble(5,immobile.getMetri_quadri());
             st.setString(6,immobile.getIndirizzo());
             st.setString(7, immobile.getProprietario());
             st.setString(8, immobile.getTipo_annuncio());
-            st.setInt(9, id);
+            st.setDouble(9, immobile.getPrezzo_attuale());
+            st.setInt(10, id);
 
             st.executeUpdate();
             return true;

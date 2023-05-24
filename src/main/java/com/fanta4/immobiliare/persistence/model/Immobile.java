@@ -4,18 +4,20 @@ public class Immobile {
     private Integer id;
     private String nome;
     private String tipo;
-    private Double prezzo;
+    private Double prezzo_orig;
+    private Double prezzo_attuale;
     private String descrizione;
     private Double metri_quadri;
     private String indirizzo;
     private String proprietario;
     private String tipo_annuncio;
 
-    public Immobile(Integer id, String nome, String tipo, Double prezzo, String descrizione, Double metri_quadri, String indirizzo, String proprietario, String tipo_annuncio) {
+    public Immobile(Integer id, String nome, String tipo, Double prezzo_orig, String descrizione, Double metri_quadri, String indirizzo, String proprietario, String tipo_annuncio, Double prezzo_attuale) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
-        this.prezzo = prezzo;
+        this.prezzo_orig = prezzo_orig;
+        this.prezzo_attuale = prezzo_attuale;
         this.descrizione = descrizione;
         this.metri_quadri = metri_quadri;
         this.indirizzo = indirizzo;
@@ -50,12 +52,12 @@ public class Immobile {
         this.tipo = tipo;
     }
 
-    public Double getPrezzo() {
-        return prezzo;
+    public Double getPrezzo_orig() {
+        return prezzo_orig;
     }
 
-    public void setPrezzo(Double prezzo) {
-        this.prezzo = prezzo;
+    public void setPrezzo_orig(Double prezzo_orig) {
+        this.prezzo_orig = prezzo_orig;
     }
 
     public String getDescrizione() {
@@ -96,5 +98,13 @@ public class Immobile {
 
     public void setTipo_annuncio(String tipo_annuncio) {
         this.tipo_annuncio = tipo_annuncio;
+    }
+
+    public Double getPrezzo_attuale() {
+        return prezzo_attuale;
+    }
+
+    public void setPrezzo_attuale(Double prezzo_attuale) {
+        this.prezzo_attuale = prezzo_attuale;
     }
 }
