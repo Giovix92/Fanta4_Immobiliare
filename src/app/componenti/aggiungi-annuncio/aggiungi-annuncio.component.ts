@@ -26,7 +26,10 @@ export class AggiungiAnnuncioComponent implements OnInit{
     this.formAggiungi = new FormGroup({
       titolo: new FormControl(),
       descrizione: new FormControl(),
-      citta: new FormControl(),
+      street: new FormControl(),
+      city: new FormControl(),
+      country: new FormControl(),
+      postalCode: new FormControl(),
       prezzo: new FormControl(),
       superficie: new FormControl(),
       tipo: new FormControl(),
@@ -64,11 +67,13 @@ export class AggiungiAnnuncioComponent implements OnInit{
   }
 
   onSubmit() {
+    const addressStr: String = this.formAggiungi.value.street + ";" + this.formAggiungi.value.city + ";" + this.formAggiungi.value.country + ";" + this.formAggiungi.value.postalCode;
     this.service.setImmobile({
       nome: this.formAggiungi.value.titolo,
       descrizione: this.formAggiungi.value.descrizione,
-      indirizzo: this.formAggiungi.value.citta,
-      prezzo: this.formAggiungi.value.prezzo,
+      indirizzo: addressStr,
+      prezzo_orig: this.formAggiungi.value.prezzo,
+      prezzo_attuale: this.formAggiungi.value.prezzo,
       metri_quadri: this.formAggiungi.value.superficie,
       tipo: this.formAggiungi.value.tipo,
       proprietario: this.auth.utenteCorrente.id,
