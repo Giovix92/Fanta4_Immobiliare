@@ -61,7 +61,10 @@ export class ProfiloComponent implements OnInit {
                 this.auth.utenteCorrente.tipologia = this.tipologiaValue;
             },
             error: () => this.dialog.open(ErrordialogComponent),
-            complete: () => this.dialog.open(SuccessdialogComponent),
+            complete: () => {
+              this.dialog.open(SuccessdialogComponent);
+              this.isEditing = !this.isEditing;
+            }
         });
     }
 }
