@@ -5,6 +5,7 @@ import { AuthService } from "src/app/auth/auth.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ErrordialogComponent } from 'src/app/componenti/errordialog/errordialog.component';
 import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 @Component({
   selector: 'app-aggiungi-annuncio',
@@ -20,7 +21,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
   selectedValueType: String = "";
   images: String[] = [];
 
-  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog) {}
+  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog, private imageCompress: NgxImageCompressService) {}
 
   ngOnInit(): void {
     this.formAggiungi = new FormGroup({
@@ -46,14 +47,20 @@ export class AggiungiAnnuncioComponent implements OnInit{
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const image = e.target.result;
+
+          this.imageCompress
+            .compressFile(image, -1, 50, 50) // 50% ratio, 50% quality
+            .then(compressedImage => {
+              this.images.push(compressedImage);
+            })
+            .catch(error => {
+              console.error('Error during image compression:', error);
+              this.dialog.open(ErrordialogComponent);
+            });
+        };
         reader.readAsDataURL(file);
-        reader.onload = () => {
-          const base64 = (reader.result as string).split(',')[1];
-          this.images.push(base64);
-        };
-        reader.onerror = (error) => {
-          console.log('Error: ', error);
-        };
       }
     }
   }

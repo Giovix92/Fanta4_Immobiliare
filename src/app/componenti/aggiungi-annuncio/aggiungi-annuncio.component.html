@@ -36,7 +36,7 @@
         <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
         <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
         <input type="datetime-local" id="asta_endtime" formControlName="asta_endtime" *ngIf="astaSelected" required>
-        <input type="file" id="image" formControlName="foto" accept="image/*" multiple (change)="onFileChange($event)">
+        <input type="file" id="image" formControlName="foto" accept="image/*" multiple (change)="onFileChange($event)" required>
         <button type="submit">Aggiungi annuncio</button>
       </form>
     </div>
