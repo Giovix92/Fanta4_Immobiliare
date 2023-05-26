@@ -113,7 +113,7 @@ export class ServiceService {
   /**
    * Trova recensioni dato l'immobile id
    */
-  getRecensioniByImmobileID(id: string): Observable <Recensione[]>{
+  getRecensioniByImmobileID(id: number): Observable <Recensione[]>{
     return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/findByImmobile/' + id);
   }
 
