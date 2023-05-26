@@ -10,26 +10,26 @@
       <div class="filtri">
         <select class="tipoImmobileSelect" formControlName="tipoImmobile" [(ngModel)]="tipoImmobileValue" (change)="tipoImmobileValueChange($event)" required>
           <option value="" selected disabled>Seleziona tipo immobile</option>
-          <option value="Villa">Villa</option>
-          <option value="Appartamento">Appartamento</option>
-          <option value="Garage">Garage</option>
-          <option value="Terreno">Terreno</option>
-          <option value="Negozi">Negozi</option>
-          <option value="Uffici">Uffici</option>
+          <option class="optionEntry" value="Villa">Villa</option>
+          <option class="optionEntry" value="Appartamento">Appartamento</option>
+          <option class="optionEntry" value="Garage">Garage</option>
+          <option class="optionEntry" value="Terreno">Terreno</option>
+          <option class="optionEntry" value="Negozi">Negozi</option>
+          <option class="optionEntry" value="Uffici">Uffici</option>
         </select>
         <select class="tipoAnnuncioSelect" formControlName="tipoAnnuncio" [(ngModel)]="tipoAnnuncioValue" (change)="tipoAnnuncioValueChange($event)" required>
           <option value="" disabled selected>Seleziona tipo annuncio</option>
-          <option value="In_Vendita">In vendita</option>
-          <option value="In_Affitto">In affitto</option>
-          <option value="In_Asta">Asta</option>
+          <option class="optionEntry" value="In_Vendita">In vendita</option>
+          <option class="optionEntry" value="In_Affitto">In affitto</option>
+          <option class="optionEntry" value="In_Asta">Asta</option>
         </select>
         <select class="tipoOrdinamentoSelect" formControlName="tipoOrdinamento" [(ngModel)]="tipoOrdinamentoValue" (change)="tipoOrdinamentoValueChange($event)" required>
           <option value="" disabled selected>Ordina per:</option>
-          <option value="automatico">Automatico</option>
-          <option value="più_costosi">Più costosi</option>
-          <option value="meno_costosi">Meno costosi</option>
-          <option value="più_grandi">Più grandi</option>
-          <option value="meno_grandi">Meno grandi</option>
+          <option class="optionEntry" value="automatico">Automatico</option>
+          <option class="optionEntry" value="più_costosi">Più costosi</option>
+          <option class="optionEntry" value="meno_costosi">Meno costosi</option>
+          <option class="optionEntry" value="più_grandi">Più grandi</option>
+          <option class="optionEntry" value="meno_grandi">Meno grandi</option>
         </select>
       </div>
     </form>
@@ -46,17 +46,17 @@
   </div>
 
   <!--ANNUNCI-->
-  <ng-template *ngIf="!Mobile(); then bloccoIf else bloccoElse"> //*ngIf="isAuthenticated()"// </ng-template>
-  <ng-template #bloccoIf>
+  <ng-template *ngIf="!Mobile(); then desktopView else mobileView"></ng-template>
+
+  <ng-template #desktopView>
     <mat-grid-list cols="3" rowHeight="500px" gutterSize="10px">
       <mat-grid-tile *ngFor="let imm of immobili" >
-        <mat-card class="cards" (click)="cliccato(imm.id)">
-          <mat-card-header>
-            <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
+        <mat-card class="cards" (click)="OpenImmobile(imm.id)">
+          <img mat-card-image [src]="this.images[imm.id]">
+          <mat-card-footer>
             <mat-card-title>{{imm.nome}}</mat-card-title>
             <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
+          </mat-card-footer>
 
           <mat-card-actions>
             <button mat-fab extended style="background-color:#259be2; color: white;">
@@ -69,16 +69,15 @@
     </mat-grid-list>
   </ng-template>
 
-  <ng-template #bloccoElse>
+  <ng-template #mobileView>
     <mat-grid-list cols="1" rowHeight="420px" gutterSize="10px">
       <mat-grid-tile *ngFor="let imm of immobili" >
-        <mat-card class="cards" (click)="cliccato(imm.id)">
+        <mat-card class="cards" (click)="OpenImmobile(imm.id)">
           <mat-card-header>
-            <img mat-card-avatar src="./assets/background.jpg" alt="Foto di una casa">
             <mat-card-title>{{imm.nome}}</mat-card-title>
             <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="./assets/background.jpg" alt="Foto di una casa">
+          <img mat-card-image [src]="this.images[imm.id]">
           <mat-card-actions>
             <button mat-fab extended style="background-color:#259be2; color: white;">
               <mat-icon>shop_two</mat-icon>

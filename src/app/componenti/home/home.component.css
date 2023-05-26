@@ -67,6 +67,10 @@
   margin-right: 25px;
 }
 
+.optionEntry {
+  color: black;
+}
+
 .tipoImmobileSelect:focus, .tipoAnnuncioSelect:focus, .tipoOrdinamentoSelect:focus{
   outline: none;
 }

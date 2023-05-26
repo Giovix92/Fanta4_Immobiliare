@@ -7,8 +7,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Filtro } from 'src/app/Model/Filtro';
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,6 +15,7 @@ import { Filtro } from 'src/app/Model/Filtro';
 export class HomeComponent implements OnInit {
 
   immobili: Immobile[] = [];
+  images: String[] = [];
   formFiltri : FormGroup = new FormGroup({});
   filtro: Filtro = new Filtro();
 
@@ -25,8 +24,25 @@ export class HomeComponent implements OnInit {
   tipoOrdinamentoValue: String = "";
 
   ngOnInit(): void {
-    //caricamento di tutti gli immobili nel database
-    this.service.getImmobili().subscribe(imm => this.immobili = imm);
+    /**
+     * Prendo tutti gli immobili e applico le modifiche grafiche all'indirizzo
+     */
+    this.service.getImmobili().subscribe({
+      next: (immobili) => {
+        immobili.forEach(immobile => {
+          immobile.indirizzo = immobile.indirizzo.split(";").join(", ");
+          this.service.findImagesByImmobileID(immobile.id).subscribe({
+            next: (imgs) => {
+              if (imgs.length > 0) {
+                const base64String = imgs[0].img;
+                this.images[immobile.id] = base64String;
+              }
+            }
+          })
+        })
+        this.immobili = immobili;
+      },
+    });
 
     //inizializzazione dei form che restano in attesa
     this.formFiltri = new FormGroup({
@@ -78,11 +94,19 @@ export class HomeComponent implements OnInit {
   }
 
   //quando clicco su un immobile si apre la pagina di quell'immobile
-  cliccato(id: number) {
+  OpenImmobile(id: number) {
     this.router.navigate(['/pag-annuncio', id]);
   }
 
+  pickImgGivenId(id: number): String {
+    let imageURL: String = "";
+    this.service.findImagesByImmobileID(id).subscribe({
+      next: (imgs) => {
+        if (imgs.length >= 0) {
+          imageURL = 'data:image/jpeg;base64,' + imgs[0];
+        }
+      },
+    });
+    return imageURL;
+  }
 }
-
-
-
