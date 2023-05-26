@@ -151,6 +151,6 @@ export class ServiceService {
    * Find all images dato id
    */
   findImagesByImmobileID(id: number): Observable<Image[]> {
-    return this.http.get<Image[]>('http://localhost:8080/findByImmobile/' + id);
+    return this.http.get<Image[]>('http://localhost:8080/api/images/findByImmobile/' + id);
   }
 }
