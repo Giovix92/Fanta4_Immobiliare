@@ -6,11 +6,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrordialogComponent } from 'src/app/componenti/errordialog/errordialog.component';
 import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-aggiungi-annuncio',
   templateUrl: './aggiungi-annuncio.component.html',
-  styleUrls: ['./aggiungi-annuncio.component.css']
+  styleUrls: ['./aggiungi-annuncio.component.css'],
+  providers: [DatePipe],
 })
 export class AggiungiAnnuncioComponent implements OnInit{
   
@@ -20,8 +22,9 @@ export class AggiungiAnnuncioComponent implements OnInit{
   selectedValue: String = "";
   selectedValueType: String = "";
   images: String[] = [];
+  minDateTime: any;
 
-  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog, private imageCompress: NgxImageCompressService) {}
+  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog, private imageCompress: NgxImageCompressService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.formAggiungi = new FormGroup({
@@ -38,6 +41,10 @@ export class AggiungiAnnuncioComponent implements OnInit{
       asta_endtime: new FormControl(),
       tipo_annuncio: new FormControl()
     });
+
+    const currentDate = new Date();
+    const nextDay = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
+    this.minDateTime = this.datePipe.transform(nextDay, 'yyyy-MM-ddTHH:mm');
   }
 
   onFileChange(event: any) {
