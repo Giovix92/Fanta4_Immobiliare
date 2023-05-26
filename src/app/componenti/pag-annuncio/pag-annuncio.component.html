@@ -64,9 +64,9 @@
     <p>Valutazione: {{rec.rating}}</p>
   </div>
 
-  <button *ngIf="this.auth.isLoggedIn" (click)="aggRecensione()" mat-fab extended>Aggiungi Recensione</button>
+  <button *ngIf="this.auth.isLoggedIn" (click)="this.showRecensioneForm = true" mat-fab extended>Aggiungi Recensione</button>
 
-  <div class="bordo" *ngIf="this.addRecensione" [formGroup]="formAggRec">
+  <div class="bordo" *ngIf="this.showRecensioneForm" [formGroup]="formAddRecensione">
     <p>Titolo: </p>
     <input type="text" formControlName="titolo" placeholder="Inserisci qui la recensione " required>
     <p>Valutazione: </p>

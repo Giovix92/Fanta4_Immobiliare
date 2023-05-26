@@ -27,7 +27,7 @@ export class ServiceService {
   /**
    * Get singolo immobile dato id
    */
-  getImmobile(id: string): Observable<Immobile>{
+  getImmobile(id: number): Observable<Immobile>{
     return this.http.get<Immobile>('http://localhost:8080/api/immobili/' + id );
   }
 

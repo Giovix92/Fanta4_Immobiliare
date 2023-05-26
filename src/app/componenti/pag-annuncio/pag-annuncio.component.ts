@@ -8,6 +8,9 @@ import { Recensione } from 'src/app/Model/Recensione';
 import { Utente } from 'src/app/Model/Utente';
 import { ServiceService } from 'src/app/Service/service.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrordialogComponent } from '../errordialog/errordialog.component';
+import { SuccessdialogComponent } from '../successdialog/successdialog.component';
 
 @Component({
   selector: 'app-pag-annuncio',
@@ -16,72 +19,98 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class PagAnnuncioComponent {
 
-  constructor(public auth: AuthService, private route: ActivatedRoute, private service: ServiceService, private router: Router) {}
+  constructor(public auth: AuthService, private route: ActivatedRoute, private service: ServiceService, public dialog: MatDialog) {}
 
-  id: string = "";
+  id: number = 0;
+  stringID: string = "";
   immobile: Immobile = new Immobile();
   recensioni: Recensione[] = []
   immobili: Immobile[] = [];
   utente: Utente = new Utente();
   asta: Asta = new Asta();
+  images: String[] = [];
 
   existAsta: boolean = false;
-  existRecensioni: boolean = false;
-  existImmobili: boolean = false;
 
-  addRecensione: boolean = false;
-  formAggRec: FormGroup = new FormGroup({ titolo: new FormControl(), rating: new FormControl() });
-
+  showRecensioneForm: boolean = false;
+  formAddRecensione: FormGroup = new FormGroup({});
 
   ngOnInit() {
-    //dato l'id dal routerLink interrogo il database per avere quell'immobile
-    this.id += this.route.snapshot.paramMap.get("id");
-    this.service.getImmobile(this.id).subscribe(imm => {
-      this.immobile = imm 
+    /**
+     * Prendo i dettagli dell'immobile dato l'id
+     */
+    this.stringID += this.route.snapshot.paramMap.get("id");
+    this.id = Number.parseInt(this.stringID);
+    this.service.getImmobile(this.id).subscribe({
+      next: (immobile) => {
+        this.immobile = immobile;
 
-      if (this.immobile.tipo_annuncio=="Asta"){
-        this.service.getAstaByImmobile(this.immobile.id).subscribe(ast => this.asta = ast)
-        this.existAsta = true;
-      }
+        /**
+         * Se l'immobile è di tipo asta, faccio una GET al server per prendere i dati dell'asta
+         */
+        if(immobile.tipo_annuncio == "In_Asta") {
+          this.service.getAstaByImmobile(immobile.id).subscribe({
+            next: (asta_info) => {
+              this.asta = asta_info;
+              this.existAsta = true;
+            }
+          });
+        }
 
-      //dato il cf del proprietario da immobile interrogo il database per avere i dati del venditore
-      this.service.getUtente(this.immobile.proprietario).subscribe(ute => { 
-        this.utente = ute 
-        
-        //dato il cf del proprietario da immobile interrogo il database per avere altri annunci del venditore
-        this.service.getImmobiliByCF(this.utente.id).subscribe(imm => {
-          this.immobili = imm
-          this.existImmobili = true;
-          //DA FARE controllare se esistono altri annunci
-
+        /**
+         * Prendo le immagini dal database, se esistono
+         */
+        this.service.findImagesByImmobileID(immobile.id).subscribe({
+          next: (imgs) => {
+            if(imgs.length > 0) {
+                imgs.forEach(img => {
+                  this.images.push('data:image/jpeg;base64,' + img.img);
+              })
+            }
+          }
         });
-      });
+
+        /**
+         * Prendo le recensioni dal database, se esistono
+         */
+        this.service.getRecensioniByImmobileID(immobile.id).subscribe({
+          next: (recensioni) => {
+            if(recensioni.length > 0) {
+              this.recensioni = recensioni;
+            }
+          }
+        })
+      }
     });
 
-    //dato l'id dell'immobile  interrogo il database per avere le recensioni dell'immobile
-    this.service.getRecensioniByImmobileID(this.id).subscribe(rec =>{ 
-      this.recensioni = rec 
-      this.existRecensioni = true;
-      //DA FARE controllare se esistono recensioni
+    /**
+     * Inizializza il form per le recensioni con i suoi campi
+     */
+    this.formAddRecensione = new FormGroup({ 
+      titolo: new FormControl(), 
+      rating: new FormControl() 
     });
-
   }
 
-  cliccato(id: number) {
-    this.router.navigate(['/pag-annuncio', id]);
+  updateImmobile() {
+    // TODO: Fare form come profilo
   }
 
-  aggRecensione(){
-    this.addRecensione = true;
+  deleteImmobile() {
+    this.service.deleteImmobile(this.id);
+    this.dialog.open(SuccessdialogComponent);
   }
 
   onSubmit(){
     this.service.setRecensione({
-      titolo: this.formAggRec.value.titolo,
-      rating: this.formAggRec.value.valutazione,
+      titolo: this.formAddRecensione.value.titolo,
+      rating: this.formAddRecensione.value.valutazione,
       autore: this.auth.utenteCorrente.id,
       immobile: this.id
-    }).subscribe()
-    this.addRecensione = false;
+    }).subscribe({
+      next: () => this.dialog.open(SuccessdialogComponent),
+      error: () => this.dialog.open(ErrordialogComponent),
+    })
+    this.showRecensioneForm = false;
   }
 }
