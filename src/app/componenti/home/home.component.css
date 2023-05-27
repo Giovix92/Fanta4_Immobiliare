@@ -58,7 +58,9 @@
   background-color: #259be2;
 }
 
-.tipoImmobileSelect, .tipoAnnuncioSelect, .tipoOrdinamentoSelect {
+.tipoImmobileSelect,
+.tipoAnnuncioSelect,
+.tipoOrdinamentoSelect {
   background-color: transparent;
   color: white;
   border: none;
@@ -71,7 +73,9 @@
   color: black;
 }
 
-.tipoImmobileSelect:focus, .tipoAnnuncioSelect:focus, .tipoOrdinamentoSelect:focus{
+.tipoImmobileSelect:focus,
+.tipoAnnuncioSelect:focus,
+.tipoOrdinamentoSelect:focus {
   outline: none;
 }
 
@@ -86,8 +90,35 @@
 
 .cards {
   width: 100%;
+  border-radius: 20px;
+  border: lightgray 1px solid !important;
 }
 
-.example-header-image {
-  background-size: cover;
+.cards:hover {
+  cursor: pointer;
+  border: #259be2 2px solid !important;
+}
+
+.gridList {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.matCardImg {
+  width: 95%;
+  height: 100%;
+  border-radius: 20px;
+  align-self: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  margin-left: 20px;
+}
+
+mat-card-footer {
+  margin-bottom: 10px;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
+import { BreakpointObserver, BreakpointState, MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { ServiceService } from 'src/app/Service/service.service';
 import { Immobile } from 'src/app/Model/Immobile';
@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   tipoImmobileValue: String = "";
   tipoAnnuncioValue: String = "";
   tipoOrdinamentoValue: String = "";
+
+  showOnly2Cols: boolean = false;
 
   ngOnInit(): void {
     /**
@@ -69,10 +71,18 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   private mobileQuery: MediaQueryList;
+
   constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, private router: Router, private service: ServiceService) {
+    // detect screen size changes
+    this.breakpointObserver.observe(["(max-width: 1450px)"]).subscribe((result: BreakpointState) => {
+      if (result.matches) {
+          this.showOnly2Cols = true;     
+      } else {
+          this.showOnly2Cols = false;
+      }
+    });
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 600px)');
   }
-
 
   Mobile(): boolean {
     return this.mobileQuery.matches;
