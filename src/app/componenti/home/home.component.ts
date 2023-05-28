@@ -15,13 +15,16 @@ import { Filtro } from 'src/app/Model/Filtro';
 export class HomeComponent implements OnInit {
 
   immobili: Immobile[] = [];
+  immobili_backup: Immobile[] = [];
   images: String[] = [];
   formFiltri : FormGroup = new FormGroup({});
+  formRicerca: FormGroup = new FormGroup({});
   filtro: Filtro = new Filtro();
 
   tipoImmobileValue: String = "";
   tipoAnnuncioValue: String = "";
   tipoOrdinamentoValue: String = "";
+  searchWord: String = "";
 
   showOnly2Cols: boolean = false;
 
@@ -50,23 +53,17 @@ export class HomeComponent implements OnInit {
     this.formFiltri = new FormGroup({
       tipoImmobile: new FormControl(),
       tipoAnnuncio: new FormControl(),
-      citta: new FormControl(),
       tipoOrdinamento: new FormControl()
+    });
+
+    this.formRicerca = new FormGroup({
+      searchWord: new FormControl()
     });
 
     this.tipoImmobileValue = "";
     this.tipoAnnuncioValue = "";
     this.tipoOrdinamentoValue = "";
-  }
-
-  //quando imposto i filtri chiedo al backend di inviarmi gli immobili ordinati e filtrati
-  onSubmit() {
-    this.filtro.tipo = this.formFiltri.value.tipo,
-    this.filtro.tipoAnnuncio = this.formFiltri.value.tipoAnnuncio,
-    this.filtro.citta = this.formFiltri.value.citta,
-    this.filtro.ordine = this.formFiltri.value.ordine
-
-    // TODO: Filtra immobili
+    this.searchWord = "";
   }
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
@@ -101,11 +98,54 @@ export class HomeComponent implements OnInit {
   tipoOrdinamentoValueChange(event: any) {
     const selectedValuec = event.target.value;
     this.tipoOrdinamentoValue = selectedValuec;
+    console.log(selectedValuec);
   }
 
   //quando clicco su un immobile si apre la pagina di quell'immobile
   OpenImmobile(id: number) {
     this.router.navigate(['/pag-annuncio', id]);
+  }
+
+  onSubmit() {
+    if(this.immobili_backup.length == 0) {
+      this.immobili_backup = this.immobili;
+    } else {
+      this.immobili = this.immobili_backup;
+    }
+
+    this.filtro.tipoImmobile = this.formFiltri.value.tipoImmobile;
+    this.filtro.tipoAnnuncio = this.formFiltri.value.tipoAnnuncio;
+    this.filtro.tipoOrdinamento = this.formFiltri.value.tipoOrdinamento;
+    this.filtro.searchWord = this.formRicerca.value.searchWord;
+
+    if(this.formFiltri.value.tipoImmobile == "" &&
+       this.formFiltri.value.tipoAnnuncio == "" &&
+       this.formFiltri.value.tipoOrdinamento == "" &&
+       this.formRicerca.value.searchWord == null) return;
+    else {
+      this.immobili = this.immobili.filter(imm => {
+        if (this.filtro.tipoImmobile && !this.filtro.tipoAnnuncio && !this.filtro.searchWord) {
+          return imm.tipo === this.filtro.tipoImmobile;
+        } else if ((!this.filtro.tipoImmobile || this.filtro.tipoImmobile === "") && this.filtro.tipoAnnuncio && !this.filtro.searchWord) {
+          return imm.tipo_annuncio === this.filtro.tipoAnnuncio;
+        } else if ((!this.filtro.tipoImmobile || this.filtro.tipoImmobile === "") && (!this.filtro.tipoAnnuncio || this.filtro.tipoAnnuncio === "") && (this.filtro.searchWord || this.filtro.searchWord === "")) {
+          const searchWordLower = this.filtro.searchWord ? this.filtro.searchWord.toLowerCase() : "";
+          const isWordInNome = imm.nome.toLowerCase().includes(searchWordLower);
+          const isWordInDescrizione = imm.descrizione.toLowerCase().includes(searchWordLower);
+          const isWordInIndirizzo = imm.indirizzo.toLowerCase().includes(searchWordLower);
+          return isWordInNome || isWordInDescrizione || isWordInIndirizzo;
+        } else {
+          const isTipoMatch = (!this.filtro.tipoImmobile || imm.tipo === this.filtro.tipoImmobile);
+          const isTipoAnnuncioMatch = (!this.filtro.tipoAnnuncio || imm.tipo_annuncio === this.filtro.tipoAnnuncio);
+          const searchWordLower = this.filtro.searchWord ? this.filtro.searchWord.toLowerCase() : "";
+          const isWordInNome = (!this.filtro.searchWord || imm.nome.toLowerCase().includes(searchWordLower));
+          const isWordInDescrizione = (!this.filtro.searchWord || imm.descrizione.toLowerCase().includes(searchWordLower));
+          const isWordInIndirizzo = (!this.filtro.searchWord || imm.indirizzo.toLowerCase().includes(searchWordLower));
+          const isTipoAndAnnuncioMatch = isTipoMatch && isTipoAnnuncioMatch;
+          return (isTipoAndAnnuncioMatch && (isWordInNome || isWordInDescrizione || isWordInIndirizzo));
+        }
+      });
+    }
   }
 
   pickImgGivenId(id: number): String {

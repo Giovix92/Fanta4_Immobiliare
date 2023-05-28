@@ -1,7 +1,6 @@
 export class Filtro{
-    tipo!: string;
+    tipoImmobile!: string;
     tipoAnnuncio!: string;
-    citta!: string;
-    ordine!: string;
-   
+    tipoOrdinamento!: string;
+    searchWord!: string;
 }

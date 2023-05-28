@@ -19,14 +19,14 @@
   height: auto;
 }
 
-.formRicerca {
+.formFiltri {
   height: 13.5%;
   display: flex;
   justify-content: left;
   background-color: #259be2;
 }
 
-.filtri {
+.filtriContainer {
   color: white;
   margin-left: 11.5%;
 }

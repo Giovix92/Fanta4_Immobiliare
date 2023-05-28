@@ -6,8 +6,8 @@
   </div>
 
   <div class="filtriRicercaContainer">
-    <form class="filtri" class="formRicerca" [formGroup]="formFiltri" (ngSubmit)="onSubmit()">
-      <div class="filtri">
+    <form class="formFiltri" [formGroup]="formFiltri">
+      <div class="filtriContainer">
         <select class="tipoImmobileSelect" formControlName="tipoImmobile" [(ngModel)]="tipoImmobileValue" (change)="tipoImmobileValueChange($event)" required>
           <option value="" selected disabled>Seleziona tipo immobile</option>
           <option class="optionEntry" value="Villa">Villa</option>
@@ -26,24 +26,24 @@
         <select class="tipoOrdinamentoSelect" formControlName="tipoOrdinamento" [(ngModel)]="tipoOrdinamentoValue" (change)="tipoOrdinamentoValueChange($event)" required>
           <option value="" disabled selected>Ordina per:</option>
           <option class="optionEntry" value="automatico">Automatico</option>
-          <option class="optionEntry" value="più_costosi">Più costosi</option>
+          <option class="optionEntry" value="piu_costosi">Più costosi</option>
           <option class="optionEntry" value="meno_costosi">Meno costosi</option>
-          <option class="optionEntry" value="più_grandi">Più grandi</option>
+          <option class="optionEntry" value="piu_grandi">Più grandi</option>
           <option class="optionEntry" value="meno_grandi">Meno grandi</option>
         </select>
       </div>
     </form>
   </div>
 
-  <div class="ricercaContainer">
-    <mat-form-field class="searchBar" formControlName="citta">
-      <mat-label>Inserisci la città...</mat-label>
-      <input matInput #message maxlength="256" placeholder="Es. Cosenza">
-    </mat-form-field>
-    <button class="searchButton" type="submit">
-      Cerca
-    </button>
-  </div>
+  <form [formGroup]="formRicerca" (ngSubmit)="onSubmit()">
+    <div class="ricercaContainer">
+      <mat-form-field class="searchBar">
+        <mat-label>Cerca il tuo immobile!</mat-label>
+        <input matInput formControlName="searchWord" placeholder="Es. Cosenza">
+      </mat-form-field>
+      <button class="searchButton" type="submit">Cerca</button>
+    </div>
+  </form>
 
   <!--ANNUNCI-->
   <ng-template *ngIf="!Mobile(); then desktopView else mobileView"></ng-template>
