@@ -1,11 +1,70 @@
-.statica{
-  padding: 1%;
-  font-size: large;
-  /*background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url("https://www.dire.it/wp-content/uploads/2020/06/palazzi-colorati_casa_case_Sigma-Coatings-5-scaled.jpg");
-  color: white;*/
+* {
+  box-sizing: border-box;
 }
 
-.titolo{
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.background {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.background::before {
+  content: "";
+  background-image: url("src/assets/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.container {
+  position: absolute;
+  margin-top: 70px;
+  margin-bottom: 30px;
+  padding: 30px;
+  backdrop-filter: blur(3px);
+  max-width: 80%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-style: oblique;
+  overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    max-width: 95%;
+    padding: 10px;
+  }
 }
