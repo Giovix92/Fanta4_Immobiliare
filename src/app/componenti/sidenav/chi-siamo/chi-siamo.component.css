@@ -5,15 +5,15 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 .background {
   position: relative;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
 }
 
 .background::before {
@@ -41,18 +41,17 @@ body {
 }
 
 .container {
-  position: absolute;
-  margin-top: 70px;
-  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
   padding: 30px;
+  margin: 40px auto;
   backdrop-filter: blur(3px);
   max-width: 80%;
+  max-height: 70%;
+  overflow: scroll;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  overflow: auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -60,11 +59,19 @@ body {
     max-width: 90%;
     padding: 20px;
   }
+
+  body {
+    overflow-y: scroll;
+  }
 }
 
 @media screen and (max-width: 480px) {
   .container {
     max-width: 95%;
     padding: 10px;
+  }
+
+  body {
+    overflow-y: scroll;
   }
 }

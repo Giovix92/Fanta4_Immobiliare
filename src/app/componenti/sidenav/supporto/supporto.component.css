@@ -1,12 +1,13 @@
 * {
   box-sizing: border-box;
+  
 }
 
 body {
   margin: 0;
+  font-size: medium;
   font-family: Arial, sans-serif;
   overflow: hidden;
-  font-size: medium;
 }
 
 .background {
@@ -15,7 +16,7 @@ body {
   overflow: hidden;
   display: flex; 
   justify-content: center; 
-  align-items: start; 
+  align-items: center; 
 }
 
 .background::before {
@@ -43,26 +44,40 @@ body {
 }
 
 .container {
-  position: absolute;
-  top: 39%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 1%;
-  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+  padding: 30px;
+  margin: 40px auto;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  width: 1400px;
-  padding: 30px;
   max-width: 80%;
+  max-height: 70%;
+  overflow: scroll;
 }
 
-
-.titolo h1{
-  margin-top: 10px;
-  margin-left: 350px;
+.titolo {
+  text-align: center;
 }
 
-.titolo h2{
-  margin-top: -1%;
-  margin-left: 420px;
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
+  body {
+    overflow-y: scroll;
+  }
 }
+
+@media screen and (max-width: 480px) {
+  .container {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  body {
+    overflow-y: scroll;
+  }
+}
+
