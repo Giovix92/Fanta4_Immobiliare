@@ -63,9 +63,9 @@
 .tipoOrdinamentoSelect {
   background-color: transparent;
   color: white;
-  border: none;
   width: 165px;
   height: 50px;
+  border: none;
   margin-right: 25px;
 }
 
@@ -77,6 +77,12 @@
 .tipoAnnuncioSelect:focus,
 .tipoOrdinamentoSelect:focus {
   outline: none;
+}
+
+.tipoImmobileSelect:hover,
+.tipoAnnuncioSelect:hover,
+.tipoOrdinamentoSelect:hover {
+  cursor: pointer;
 }
 
 .tipoOrdinamentoSelect {
