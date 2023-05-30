@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,20 +12,20 @@ import { ErrordialogComponent } from '../errordialog/errordialog.component';
 import { SuccessdialogComponent } from '../successdialog/successdialog.component';
 
 @Component({
-  selector: 'app-pag-annuncio',
-  templateUrl: './pag-annuncio.component.html',
-  styleUrls: ['./pag-annuncio.component.css']
+  selector: 'app-annuncio',
+  templateUrl: './annuncio.component.html',
+  styleUrls: ['./annuncio.component.css']
 })
-export class PagAnnuncioComponent {
+export class AnnuncioComponent {
 
-  constructor(public auth: AuthService, private route: ActivatedRoute, private service: ServiceService, public dialog: MatDialog) {}
+  constructor(public auth: AuthService, private route: ActivatedRoute, private router: Router, private service: ServiceService, public dialog: MatDialog) {}
 
   id: number = 0;
   stringID: string = "";
   immobile: Immobile = new Immobile();
   recensioni: Recensione[] = []
   immobili: Immobile[] = [];
-  utente: Utente = new Utente();
+  proprietario: Utente = new Utente();
   asta: Asta = new Asta();
   images: String[] = [];
 
@@ -44,6 +43,15 @@ export class PagAnnuncioComponent {
     this.service.getImmobile(this.id).subscribe({
       next: (immobile) => {
         this.immobile = immobile;
+
+        /**
+         * Prendo le info dell'utente
+         */
+        this.service.getUtente(immobile.proprietario).subscribe({
+          next: (utente) => {
+            this.proprietario = utente;
+          }
+        })
 
         /**
          * Se l'immobile è di tipo asta, faccio una GET al server per prendere i dati dell'asta
@@ -64,7 +72,7 @@ export class PagAnnuncioComponent {
           next: (imgs) => {
             if(imgs.length > 0) {
                 imgs.forEach(img => {
-                  this.images.push('data:image/jpeg;base64,' + img.img);
+                  this.images.push(img.img);
               })
             }
           }
@@ -99,6 +107,14 @@ export class PagAnnuncioComponent {
   deleteImmobile() {
     this.service.deleteImmobile(this.id);
     this.dialog.open(SuccessdialogComponent);
+  }
+
+  sendEmail() {
+    window.location.href = `mailto:${this.proprietario.email}`;
+  }
+
+  makeCall() {
+    window.location.href = `tel:${this.proprietario.telefono}`;
   }
 
   onSubmit(){

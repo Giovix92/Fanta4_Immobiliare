@@ -115,7 +115,7 @@ export class HomeComponent implements OnInit {
 
   //quando clicco su un immobile si apre la pagina di quell'immobile
   OpenImmobile(id: number) {
-    this.router.navigate(['/pag-annuncio', id]);
+    this.router.navigate(['/annuncio', id]);
   }
 
   onSubmit() {
@@ -161,18 +161,5 @@ export class HomeComponent implements OnInit {
 
       this.sortImmobili(this.filtro.tipoOrdinamento);
     }
-  }
-  
-
-  pickImgGivenId(id: number): String {
-    let imageURL: String = "";
-    this.service.findImagesByImmobileID(id).subscribe({
-      next: (imgs) => {
-        if (imgs.length >= 0) {
-          imageURL = 'data:image/jpeg;base64,' + imgs[0];
-        }
-      },
-    });
-    return imageURL;
   }
 }

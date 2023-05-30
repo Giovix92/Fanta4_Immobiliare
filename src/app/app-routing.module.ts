@@ -6,9 +6,9 @@ import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.comp
 import { PrivacyComponent } from './componenti/sidenav/privacy/privacy.component';
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { ProfiloComponent } from './componenti/profilo/profilo.component';
-import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/aggiungi-annuncio/aggiungi-annuncio.component';
 import { AdminCplComponent } from './componenti/admin-cpl/admin-cpl.component';
+import { AnnuncioComponent } from './componenti/annuncio/annuncio.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
@@ -18,9 +18,9 @@ const routes: Routes = [
     {path: 'chi-siamo', component: ChiSiamoComponent},
     {path: 'privacy', component: PrivacyComponent},
     {path: 'profilo', component: ProfiloComponent},
-    {path: 'pag-annuncio/:id', component: PagAnnuncioComponent},
     {path: 'aggiungi-annuncio', component: AggiungiAnnuncioComponent},
     {path: 'admin-cpl', component: AdminCplComponent},
+    {path: 'annuncio/:id', component: AnnuncioComponent},
   ]},
 
 ];

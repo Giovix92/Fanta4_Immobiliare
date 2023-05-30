@@ -1,0 +1,39 @@
+<body>
+    <div class="firstRow">
+        <div class="imageCarousel">
+            <img class="img" *ngFor="let image of images" [src]="image" alt="Image">
+        </div>
+
+        <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
+    
+        <div class="sellerInfos">
+            <mat-card class="sellerCard">
+                <mat-card-footer>
+                  <mat-card-title>Contatta il venditore</mat-card-title>
+                  <button class="sendMailButton" (click)="sendEmail()">Invia una mail!</button>
+                  Oppure
+                  <button class="callButton" (click)="makeCall()">Chiama!</button>
+                </mat-card-footer>
+              </mat-card>
+        </div>
+    </div>
+    
+    <div class="secondRow">
+        <div class="immobileInfos">
+            <!-- Price, asta and other stuff -->
+        </div>
+
+        <div class="immobileDescription">
+            <!-- Description of the immobile -->
+        </div>
+    </div>
+
+    <div class="thirdRow">
+        <div class="immobileMap">
+            <!-- Map of the immobile, OpenStreetMap -->
+        </div>
+        <div class="reviews">
+            <!-- Reviews of the immobile -->
+        </div>
+    </div>
+</body>

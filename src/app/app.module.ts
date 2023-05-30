@@ -9,9 +9,9 @@ import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { ChiSiamoComponent } from './componenti/sidenav/chi-siamo/chi-siamo.component';
 import { HomeComponent } from './componenti/home/home.component';
 import { ProfiloComponent } from './componenti/profilo/profilo.component';
-import { PagAnnuncioComponent } from './componenti/pag-annuncio/pag-annuncio.component';
 import { AggiungiAnnuncioComponent } from './componenti/aggiungi-annuncio/aggiungi-annuncio.component';
 import { AdminCplComponent } from './componenti/admin-cpl/admin-cpl.component';
+import { AnnuncioComponent } from './componenti/annuncio/annuncio.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,9 +40,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     ChiSiamoComponent,
     HomeComponent,
     ProfiloComponent,
-    PagAnnuncioComponent,
     AggiungiAnnuncioComponent,
     AdminCplComponent,
+    AnnuncioComponent,
   ],
   imports: [
     BrowserModule,
