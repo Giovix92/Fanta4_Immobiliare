@@ -85,6 +85,18 @@ export class HomeComponent implements OnInit {
     return this.mobileQuery.matches;
   }
 
+  sortImmobili(value: String) {
+    if (value === "piu_costosi") {
+      this.immobili.sort((a, b) => b.prezzo_attuale - a.prezzo_attuale);
+    } else if (value === "meno_costosi") {
+      this.immobili.sort((a, b) => a.prezzo_attuale - b.prezzo_attuale);
+    } else if (value === "piu_grandi") {
+      this.immobili.sort((a, b) => b.metri_quadri - a.metri_quadri);
+    } else if (value === "meno_grandi") {
+      this.immobili.sort((a, b) => a.metri_quadri - b.metri_quadri);
+    }
+  }
+
   tipoImmobileValueChange(event: any) {
     const selectedValuea = event.target.value;
     this.tipoImmobileValue = selectedValuea;
@@ -98,7 +110,7 @@ export class HomeComponent implements OnInit {
   tipoOrdinamentoValueChange(event: any) {
     const selectedValuec = event.target.value;
     this.tipoOrdinamentoValue = selectedValuec;
-    console.log(selectedValuec);
+    this.sortImmobili(this.tipoOrdinamentoValue);
   }
 
   //quando clicco su un immobile si apre la pagina di quell'immobile
@@ -112,17 +124,18 @@ export class HomeComponent implements OnInit {
     } else {
       this.immobili = this.immobili_backup;
     }
-
+  
     this.filtro.tipoImmobile = this.formFiltri.value.tipoImmobile;
     this.filtro.tipoAnnuncio = this.formFiltri.value.tipoAnnuncio;
     this.filtro.tipoOrdinamento = this.formFiltri.value.tipoOrdinamento;
     this.filtro.searchWord = this.formRicerca.value.searchWord;
-
+  
     if(this.formFiltri.value.tipoImmobile == "" &&
        this.formFiltri.value.tipoAnnuncio == "" &&
        this.formFiltri.value.tipoOrdinamento == "" &&
-       this.formRicerca.value.searchWord == null) return;
-    else {
+       this.formRicerca.value.searchWord == null) {
+      return;
+    } else {
       this.immobili = this.immobili.filter(imm => {
         if (this.filtro.tipoImmobile && !this.filtro.tipoAnnuncio && !this.filtro.searchWord) {
           return imm.tipo === this.filtro.tipoImmobile;
@@ -145,8 +158,11 @@ export class HomeComponent implements OnInit {
           return (isTipoAndAnnuncioMatch && (isWordInNome || isWordInDescrizione || isWordInIndirizzo));
         }
       });
+
+      this.sortImmobili(this.filtro.tipoOrdinamento);
     }
   }
+  
 
   pickImgGivenId(id: number): String {
     let imageURL: String = "";
