@@ -21,16 +21,18 @@ export class ProfiloComponent implements OnInit {
     emailValue: string = '';
     passwordValue: string = '';
     tipologiaValue: string = '';
+    id: string = '';
 
-    constructor(private auth: AuthService, private service: ServiceService, public dialog: MatDialog) { }
+    constructor(private service: ServiceService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
-        this.nomeValue = this.auth.utenteCorrente.nome;
-        this.cognomeValue = this.auth.utenteCorrente.cognome;
-        this.telefonoValue = this.auth.utenteCorrente.telefono;
-        this.emailValue = this.auth.utenteCorrente.email;
-        this.passwordValue = this.auth.utenteCorrente.password;
-        this.tipologiaValue = this.auth.utenteCorrente.tipologia;
+        this.nomeValue = localStorage.getItem("nome") || "";
+        this.cognomeValue = localStorage.getItem("cognome") || "";
+        this.telefonoValue = localStorage.getItem("telefono") || "";
+        this.emailValue = localStorage.getItem("email") || "";
+        this.passwordValue = localStorage.getItem("password") || "";
+        this.tipologiaValue = localStorage.getItem("tipologia") || "";
+        this.id = localStorage.getItem("id") || "";
     }
 
     toggleEditing(): void {
@@ -42,10 +44,10 @@ export class ProfiloComponent implements OnInit {
     }
 
     sendToServer(): void {
-        this.service.updateUtente(this.auth.utenteCorrente.id, {
+        this.service.updateUtente(this.id, {
             nome: this.nomeValue,
             cognome: this.cognomeValue,
-            id: this.auth.utenteCorrente.id,
+            id: this.id,
             telefono: this.telefonoValue,
             email: this.emailValue,
             password: this.passwordValue,
@@ -53,12 +55,12 @@ export class ProfiloComponent implements OnInit {
             bannato: false,
         }).subscribe({
             next: () => {
-                this.auth.utenteCorrente.nome = this.nomeValue;
-                this.auth.utenteCorrente.cognome = this.cognomeValue;
-                this.auth.utenteCorrente.telefono = this.telefonoValue;
-                this.auth.utenteCorrente.email = this.emailValue;
-                this.auth.utenteCorrente.password = this.passwordValue;
-                this.auth.utenteCorrente.tipologia = this.tipologiaValue;
+                localStorage.setItem("nome", this.nomeValue);
+                localStorage.setItem("cognome", this.cognomeValue);
+                localStorage.setItem("telefono", this.telefonoValue);
+                localStorage.setItem("email", this.emailValue);
+                localStorage.setItem("password", this.passwordValue);
+                localStorage.setItem("tipologia", this.tipologiaValue);
             },
             error: () => this.dialog.open(ErrordialogComponent),
             complete: () => {

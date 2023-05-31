@@ -1,39 +1,72 @@
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+</head>
 <body>
-    <div class="firstRow">
-        <div class="imageCarousel">
-            <img class="img" *ngFor="let image of images" [src]="image" alt="Image">
-        </div>
+    <div class="background">
+        <div class="blur-overlay"></div>
+        <div class="container">
+            <div class="firstRow">
+                <div class="imageCarousel">
+                    <img class="img" *ngFor="let image of images" [src]="image" alt="Image">
+                </div>
+                <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
+                <div class="sellerInfos">
+                    <mat-card class="sellerCard">
+                        <mat-card-footer>
+                            <mat-card-title>Contatta il venditore</mat-card-title>
+                            <button class="sendMailButton" (click)="sendEmail()">Invia una mail!</button>
+                            <button class="callButton" (click)="makeCall()">Chiama!</button>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="secondRow">
+                <div class="immobileInfos">
+                    <h2>{{immobile.tipo}} in {{immobile.indirizzo}}</h2>
+                    <h1>{{immobile.prezzo_attuale}}€</h1>
+                </div>
+                <mat-divider class="secondRowDivider"></mat-divider>
+                <div class="immobileDescription">
+                    <h2>Descrizione</h2>
+                    <mat-divider class="secondRowDivider"></mat-divider>
+                    <h3 class="immobileNome"><strong>{{immobile.nome}}</strong></h3>
+                    <h4 class="immobileDescription">{{immobile.descrizione}}</h4>
+                </div>
+            </div>
+            <div class="thirdRow">
+                <div class="immobileMap map-container" id="leafletMap"></div>
 
-        <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
-    
-        <div class="sellerInfos">
-            <mat-card class="sellerCard">
-                <mat-card-footer>
-                  <mat-card-title>Contatta il venditore</mat-card-title>
-                  <button class="sendMailButton" (click)="sendEmail()">Invia una mail!</button>
-                  Oppure
-                  <button class="callButton" (click)="makeCall()">Chiama!</button>
-                </mat-card-footer>
-              </mat-card>
+                <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
+
+                <div class="reviewsBox">
+                    <div class="reviews" *ngFor="let recensione of recensioni; index as i">
+                        <p>Scritta da: {{recensione.autore}}</p>
+                        <p class="reviewObject">Oggetto: {{recensione.titolo}}</p>
+                        <p>Rating: {{recensione.rating}}/5</p>
+                        <div *ngIf="this.auth.isLoggedIn && this.auth.isAdmin()"> <a (click)="deleteRecensione(recensione.id)" class="removeReview">Rimuovi recensione</a> </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <div class="secondRow">
-        <div class="immobileInfos">
-            <!-- Price, asta and other stuff -->
-        </div>
-
-        <div class="immobileDescription">
-            <!-- Description of the immobile -->
-        </div>
+    <button mat-fab class="fab-button" (click)="toggleMenu()" title="Condividi annuncio">
+        <mat-icon>share</mat-icon>
+    </button>
+    <div class="fab-menu" *ngIf="menuOpen">
+        <button class="facebookButton" mat-button (click)="shareTo('facebook')">
+            <fa-icon [icon]="faFacebook" style="font-size: 20px;"></fa-icon>
+        </button>
+        <button class="whatsappButton" mat-button (click)="shareTo('whatsapp')">
+            <fa-icon [icon]="faWhatsapp" style="font-size: 20px;"></fa-icon>
+        </button>
+        <button class="emailButton" mat-button (click)="shareTo('mail')">
+            <fa-icon [icon]="faEnvelope" style="font-size: 20px;"></fa-icon>
+        </button>
     </div>
 
-    <div class="thirdRow">
-        <div class="immobileMap">
-            <!-- Map of the immobile, OpenStreetMap -->
-        </div>
-        <div class="reviews">
-            <!-- Reviews of the immobile -->
-        </div>
-    </div>
+    <button mat-fab class="fab-button-2" (click)="addReview()" title="Aggiungi recensione" *ngIf="this.auth.isLoggedIn">
+        <mat-icon>add_circle</mat-icon>
+    </button>
 </body>

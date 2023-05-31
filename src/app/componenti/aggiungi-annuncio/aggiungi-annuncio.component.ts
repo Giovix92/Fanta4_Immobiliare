@@ -63,7 +63,6 @@ export class AggiungiAnnuncioComponent implements OnInit{
               this.images.push(compressedImage);
             })
             .catch(error => {
-              console.error('Error during image compression:', error);
               this.dialog.open(ErrordialogComponent);
             });
         };
@@ -90,11 +89,11 @@ export class AggiungiAnnuncioComponent implements OnInit{
       prezzo_attuale: this.formAggiungi.value.prezzo,
       metri_quadri: this.formAggiungi.value.superficie,
       tipo: this.formAggiungi.value.tipo,
-      proprietario: this.auth.utenteCorrente.id,
+      proprietario: localStorage.getItem("id"),
       tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
     }).subscribe({
       next: () => {
-        this.service.getLastAddedByOwner(this.auth.utenteCorrente.id).subscribe(imm_id => {
+        this.service.getLastAddedByOwner(localStorage.getItem("id") || "").subscribe(imm_id => {
           if(this.astaSelected) {
             this.service.setAsta({
               immobile: imm_id,
