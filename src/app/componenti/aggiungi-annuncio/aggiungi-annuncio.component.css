@@ -43,10 +43,10 @@ body {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 500px; /* Updated */
+  max-width: 500px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  padding: 30px; /* Updated */
+  padding: 30px;
   margin: 20px auto;
 }
 
@@ -78,7 +78,7 @@ body {
   max-height: 100px;
 }
 
-.AddImmobileForm button {
+.AddImmobileForm button, .openNewPageButton, .deleteImmobileButton {
   margin-top: 10px;
   display: block;
   width: 100%;
@@ -88,6 +88,10 @@ body {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.deleteImmobileButton {
+  background-color: #b30000
 }
 
 .AddImmobileForm select {
@@ -109,6 +113,21 @@ body {
 
 .loginTitle {
   text-align: center;
+}
+
+#myImmobili {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  max-width: 100%;
+  min-width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #757575;
 }
 
 @media (max-width: 480px) {

@@ -63,7 +63,7 @@ export class ServiceService {
    * Delete immobile dato l'id
    */
   deleteImmobile(id: Number) {
-    return this.http.delete('http//localhost:8080/api/immobili/' + id);
+    return this.http.delete('http://localhost:8080/api/immobili/' + id);
   }
 
   /**

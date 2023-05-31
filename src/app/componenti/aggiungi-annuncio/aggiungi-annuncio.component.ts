@@ -7,6 +7,7 @@ import { ErrordialogComponent } from 'src/app/componenti/errordialog/errordialog
 import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { DatePipe } from '@angular/common';
+import { Immobile } from 'src/app/Model/Immobile';
 
 @Component({
   selector: 'app-aggiungi-annuncio',
@@ -23,6 +24,9 @@ export class AggiungiAnnuncioComponent implements OnInit{
   selectedValueType: String = "";
   images: String[] = [];
   minDateTime: any;
+  myImmobiliArray: Immobile[] = [];
+  myImmobiliArrayIndex: number = -1;
+  myImmobiliSelection: String = "";
 
   constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog, private imageCompress: NgxImageCompressService, private datePipe: DatePipe) {}
 
@@ -39,12 +43,20 @@ export class AggiungiAnnuncioComponent implements OnInit{
       tipo: new FormControl(),
       foto: new FormControl(),
       asta_endtime: new FormControl(),
-      tipo_annuncio: new FormControl()
+      tipo_annuncio: new FormControl(),
+      prezzo_attuale: new FormControl(),
     });
 
     const currentDate = new Date();
     const nextDay = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
     this.minDateTime = this.datePipe.transform(nextDay, 'yyyy-MM-ddTHH:mm');
+
+    const prop_id = localStorage.getItem("id");
+    this.service.findAllByOwner(prop_id || "").subscribe({
+      next: (immobili) => {
+        this.myImmobiliArray = immobili.filter((immobile) => immobile.tipo_annuncio !== "In_Asta");
+      }
+    });
   }
 
   onFileChange(event: any) {
@@ -81,47 +93,83 @@ export class AggiungiAnnuncioComponent implements OnInit{
 
   onSubmit() {
     const addressStr: String = this.formAggiungi.value.street + ";" + this.formAggiungi.value.city + ";" + this.formAggiungi.value.country + ";" + this.formAggiungi.value.postalCode;
-    this.service.setImmobile({
-      nome: this.formAggiungi.value.titolo,
-      descrizione: this.formAggiungi.value.descrizione,
-      indirizzo: addressStr,
-      prezzo_orig: this.formAggiungi.value.prezzo,
-      prezzo_attuale: this.formAggiungi.value.prezzo,
-      metri_quadri: this.formAggiungi.value.superficie,
-      tipo: this.formAggiungi.value.tipo,
-      proprietario: localStorage.getItem("id"),
-      tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
-    }).subscribe({
-      next: () => {
-        this.service.getLastAddedByOwner(localStorage.getItem("id") || "").subscribe(imm_id => {
-          if(this.astaSelected) {
-            this.service.setAsta({
-              immobile: imm_id,
-              acquirente: null,
-              prezzo_partenza: this.formAggiungi.value.prezzo,
-              prezzo_corrente: this.formAggiungi.value.prezzo,
-              fine: this.convertToTimestamp(this.formAggiungi.value.asta_endtime),
-            }).subscribe({
-              error: () => this.dialog.open(ErrordialogComponent),
-            });
-          }
+    if(this.formAggiungi.value.prezzo_attuale > this.formAggiungi.value.prezzo) {
+      this.formAggiungi.patchValue({
+        prezzo: this.formAggiungi.value.prezzo_attuale
+      })
+    }
+    if(this.myImmobiliSelection == "") {
+      this.service.setImmobile({
+        nome: this.formAggiungi.value.titolo,
+        descrizione: this.formAggiungi.value.descrizione,
+        indirizzo: addressStr,
+        prezzo_orig: this.formAggiungi.value.prezzo,
+        prezzo_attuale: this.formAggiungi.value.prezzo_attuale,
+        metri_quadri: this.formAggiungi.value.superficie,
+        tipo: this.formAggiungi.value.tipo,
+        proprietario: localStorage.getItem("id"),
+        tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
+      }).subscribe({
+        next: () => {
+          this.service.getLastAddedByOwner(localStorage.getItem("id") || "").subscribe(imm_id => {
+            if(this.astaSelected) {
+              this.service.setAsta({
+                immobile: imm_id,
+                acquirente: null,
+                prezzo_partenza: this.formAggiungi.value.prezzo,
+                prezzo_corrente: this.formAggiungi.value.prezzo,
+                fine: this.convertToTimestamp(this.formAggiungi.value.asta_endtime),
+              }).subscribe({
+                error: () => this.dialog.open(ErrordialogComponent),
+              });
+            }
 
+            if(this.images.length > 0) {
+              this.images.forEach(image => {
+                this.service.createImage({
+                  id: null,
+                  immobile: imm_id,
+                  img: image,
+                }).subscribe({
+                  error: () => this.dialog.open(ErrordialogComponent),
+                });
+              });
+            }
+          });
+        },
+        error: () => this.dialog.open(ErrordialogComponent),
+        complete: () => this.dialog.open(SuccessdialogComponent),
+      });
+    } else {
+      const immobile_id = this.myImmobiliArray[this.myImmobiliArrayIndex].id;
+      this.service.updateImmobile(immobile_id, {
+        nome: this.formAggiungi.value.titolo,
+        descrizione: this.formAggiungi.value.descrizione,
+        indirizzo: addressStr,
+        prezzo_orig: this.formAggiungi.value.prezzo,
+        prezzo_attuale: this.formAggiungi.value.prezzo_attuale,
+        metri_quadri: this.formAggiungi.value.superficie,
+        tipo: this.formAggiungi.value.tipo,
+        proprietario: localStorage.getItem("id"),
+        tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
+      }).subscribe({
+        next: () => {
           if(this.images.length > 0) {
             this.images.forEach(image => {
               this.service.createImage({
                 id: null,
-                immobile: imm_id,
+                immobile: immobile_id,
                 img: image,
               }).subscribe({
                 error: () => this.dialog.open(ErrordialogComponent),
               });
             });
           }
-        });
-      },
-      error: () => this.dialog.open(ErrordialogComponent),
-      complete: () => this.dialog.open(SuccessdialogComponent),
-    });
+        },
+        error: () => this.dialog.open(ErrordialogComponent),
+        complete: () => this.dialog.open(SuccessdialogComponent),
+      });
+    }
   }
 
   onValueSelected(event: any) {
@@ -136,5 +184,41 @@ export class AggiungiAnnuncioComponent implements OnInit{
   onValueTypeSelected(event: any) {
     const selectedValue = event.target.value;
     this.selectedValueType = selectedValue;
+  }
+
+  onValueImmobiliSelected(event: any) {
+    const selectedValue = event.target.value;
+    this.myImmobiliArrayIndex = selectedValue;
+
+    const selectedImmobile = this.myImmobiliArray[this.myImmobiliArrayIndex];
+    const [street, city, country, postalCode] = selectedImmobile.indirizzo.split(";");
+    this.formAggiungi.patchValue({
+      titolo: selectedImmobile.nome,
+      descrizione: selectedImmobile.descrizione,
+      prezzo: selectedImmobile.prezzo_orig,
+      prezzo_attuale: selectedImmobile.prezzo_attuale,
+      superficie: selectedImmobile.metri_quadri,
+      tipo_annuncio: selectedImmobile.tipo_annuncio,
+      tipo: selectedImmobile.tipo,
+      street: street,
+      city: city,
+      country: country,
+      postalCode: postalCode,
+    });
+  }
+
+  openNewPage() {
+    window.open('http://localhost:4200/annuncio/'+this.myImmobiliArray[this.myImmobiliArrayIndex].id, '_blank');
+  }
+
+  deleteImmobile() {
+    this.service.deleteImmobile(this.myImmobiliArray[this.myImmobiliArrayIndex].id).subscribe({
+      next: () => {
+        this.dialog.open(SuccessdialogComponent).afterClosed().subscribe({
+          complete: () => window.location.reload(),
+        })
+      },
+      error: () => this.dialog.open(ErrordialogComponent),
+    });
   }
 }

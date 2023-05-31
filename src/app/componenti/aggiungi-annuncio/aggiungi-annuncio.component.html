@@ -3,8 +3,12 @@
     <div class="blur-overlay"></div>
     <div class="container">
       <div style="text-align:center;">
-        <h2>Inserisci annuncio</h2>
+        <h2>Inserisci/Modifica annuncio</h2>
       </div>
+      <select name="myImmobili" id="myImmobili" [(ngModel)]="myImmobiliSelection" (change)="onValueImmobiliSelected($event)">
+        <option value="" selected disabled>-- Seleziona un immobile da modificare --</option>
+        <option *ngFor="let immobili of myImmobiliArray; index as myImmobiliArrayIndex" [value]="myImmobiliArrayIndex">Nome: {{immobili.nome}}, Prezzo: {{immobili.prezzo_attuale}}€</option>
+      </select>
       <form class="AddImmobileForm" [formGroup]="formAggiungi" (ngSubmit)="onSubmit()">
         <input type="text" formControlName="titolo" id="title" placeholder="Titolo" required>
         <select id="type" formControlName="tipo" required [(ngModel)]="selectedValueType" (change)="onValueTypeSelected($event)">
@@ -34,12 +38,17 @@
         </div>
         <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
         <input type="number" id="sqm" formControlName="superficie" placeholder="Metri Quadri" required>
-        <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required>
+        <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo" required *ngIf="myImmobiliSelection == ''">
+        <input type="number" id="price_new" formControlName="prezzo_attuale" placeholder="Prezzo nuovo" required *ngIf="myImmobiliSelection != ''">
         <label class="astaLabel" *ngIf="astaSelected">Quando vuoi che l'asta finisca?</label>
         <input type="datetime-local" id="asta_endtime" formControlName="asta_endtime" *ngIf="astaSelected" [min]="minDateTime" required>
         <input type="file" id="image" formControlName="foto" accept="image/*" multiple (change)="onFileChange($event)" required>
-        <button type="submit">Aggiungi annuncio</button>
+        <label class="astaLabel" *ngIf="astaSelected">Ricorda: una volta pubblicata l'asta, non potrà essere modificata!</label>
+        <button type="submit" *ngIf="myImmobiliSelection == ''">Aggiungi annuncio</button>
+        <button type="submit" *ngIf="myImmobiliSelection != ''">Modifica annuncio</button>
       </form>
+      <button class="openNewPageButton" *ngIf="myImmobiliSelection != ''" (click)="openNewPage()">Apri pagina annuncio</button>
+      <button class="deleteImmobileButton" *ngIf="myImmobiliSelection != ''" (click)="deleteImmobile()">Rimuovi annuncio</button>
     </div>
   </div>
 </body>
