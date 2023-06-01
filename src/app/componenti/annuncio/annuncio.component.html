@@ -40,12 +40,12 @@
                 <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
 
                 <div class="reviewsBox">
+                    <p class="noReviewsFound" *ngIf="recensioni.length == 0">Non sono presenti recensioni per questo annuncio.</p>
                     <div class="reviews" *ngFor="let recensione of recensioni; index as i">
                         <p>Scritta da: {{recensione.autore}}</p>
                         <p class="reviewObject">Oggetto: {{recensione.titolo}}</p>
                         <p>Rating: {{recensione.rating}}/5</p>
                         <div *ngIf="this.auth.isLoggedIn && this.auth.isAdmin()"> <a (click)="deleteRecensione(recensione.id)" class="removeReview">Rimuovi recensione</a> </div>
-                        
                     </div>
                 </div>
             </div>

@@ -26,27 +26,27 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>login</mat-icon>
-        <a>Login</a>
+        <a style="font-size: 15px;">Login</a>
       </button>
       <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>app_registration</mat-icon>
-        <a>Registrati</a>
+        <a style="font-size: 15px;">Registrati</a>
       </button>
       <button mat-menu-item *ngIf="this.auth.isLoggedIn" routerLink="profilo">
         <mat-icon>account_circle</mat-icon>
-        <span>Profilo</span>
+        <span style="font-size: 15px;">Profilo</span>
       </button>
       <button mat-menu-item *ngIf="this.auth.isLoggedIn && !this.auth.isBuyer()" routerLink="aggiungi-annuncio">
         <mat-icon>plus_one</mat-icon>
-        <span>Aggiungi annuncio</span>
+        <span style="font-size: 15px;">Aggiungi/Modifica annuncio</span>
       </button>
       <button mat-menu-item *ngIf="this.auth.isLoggedIn && this.auth.isAdmin()" routerLink="admin-cpl">
         <mat-icon>star_half</mat-icon>
-        <span>Pannello di controllo</span>
+        <span style="font-size: 15px;">Pannello di controllo</span>
       </button>
       <button mat-menu-item *ngIf="this.auth.isLoggedIn" (click)="this.auth.logout()" routerLink="home">
         <mat-icon>logout</mat-icon>
-        <span>Esci</span>
+        <span style="font-size: 15px;">Esci</span>
       </button>
     </mat-menu>
   </mat-toolbar>

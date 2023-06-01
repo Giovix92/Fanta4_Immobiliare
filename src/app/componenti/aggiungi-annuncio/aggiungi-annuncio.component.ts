@@ -36,7 +36,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
       descrizione: new FormControl(),
       street: new FormControl(),
       city: new FormControl(),
-      country: new FormControl(),
+      county: new FormControl(),
       postalCode: new FormControl(),
       prezzo: new FormControl(),
       superficie: new FormControl(),
@@ -92,7 +92,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
   }
 
   onSubmit() {
-    const addressStr: String = this.formAggiungi.value.street + ";" + this.formAggiungi.value.city + ";" + this.formAggiungi.value.country + ";" + this.formAggiungi.value.postalCode;
+    const addressStr: String = this.formAggiungi.value.street + ";" + this.formAggiungi.value.city + ";" + this.formAggiungi.value.county + ";" + this.formAggiungi.value.postalCode;
     if(this.formAggiungi.value.prezzo_attuale > this.formAggiungi.value.prezzo) {
       this.formAggiungi.patchValue({
         prezzo: this.formAggiungi.value.prezzo_attuale
@@ -104,7 +104,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
         descrizione: this.formAggiungi.value.descrizione,
         indirizzo: addressStr,
         prezzo_orig: this.formAggiungi.value.prezzo,
-        prezzo_attuale: this.formAggiungi.value.prezzo_attuale,
+        prezzo_attuale: this.formAggiungi.value.prezzo,
         metri_quadri: this.formAggiungi.value.superficie,
         tipo: this.formAggiungi.value.tipo,
         proprietario: localStorage.getItem("id"),
@@ -191,7 +191,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
     this.myImmobiliArrayIndex = selectedValue;
 
     const selectedImmobile = this.myImmobiliArray[this.myImmobiliArrayIndex];
-    const [street, city, country, postalCode] = selectedImmobile.indirizzo.split(";");
+    const [street, city, county, postalCode] = selectedImmobile.indirizzo.split(";");
     this.formAggiungi.patchValue({
       titolo: selectedImmobile.nome,
       descrizione: selectedImmobile.descrizione,
@@ -202,7 +202,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
       tipo: selectedImmobile.tipo,
       street: street,
       city: city,
-      country: country,
+      county: county,
       postalCode: postalCode,
     });
   }

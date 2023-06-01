@@ -121,11 +121,11 @@ export class AnnuncioComponent implements OnInit {
         /**
          * Inizializza elementi per la mappa
          */
-        const [street, city, country, postalcode] = this.originalAddress.split(';').map(component => component.trim());
+        const [street, city, county, postalcode] = this.originalAddress.split(';').map(component => component.trim());
         this.addressComponents = {
           street: street || '',
           city: city || '',
-          country: country || '',
+          county: county || '',
           postalcode: postalcode || ''
         };
         this.addressComponents.street = this.addressComponents.street.split(" ").join("+");
@@ -143,7 +143,7 @@ export class AnnuncioComponent implements OnInit {
   }
 
   initMap() {
-    const apiUrl = `https://nominatim.openstreetmap.org/search?street=${this.addressComponents.street}&city=${this.addressComponents.city}&country=${this.addressComponents.country}&postalcode=${this.addressComponents.postalcode}&zoomOffset=1&format=json`;
+    const apiUrl = `https://nominatim.openstreetmap.org/search?street=${this.addressComponents.street}&city=${this.addressComponents.city}&county=${this.addressComponents.county}&postalcode=${this.addressComponents.postalcode}&zoomOffset=1&format=json`;
   
     this.mapOptions = {
       layers: [
