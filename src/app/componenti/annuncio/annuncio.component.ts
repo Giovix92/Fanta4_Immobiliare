@@ -33,6 +33,7 @@ export class AnnuncioComponent implements OnInit {
   asta: Asta = new Asta();
   images: String[] = [];
   existAsta: boolean = false;
+  prezzoOrigStyle: String = "";
 
   /* Map stuffs */
   originalAddress: String = "";
@@ -130,6 +131,13 @@ export class AnnuncioComponent implements OnInit {
         };
         this.addressComponents.street = this.addressComponents.street.split(" ").join("+");
         this.initMap();
+
+        /**
+         * Show the original price as crossed out if the condition is met
+         */
+        this.prezzoOrigStyle = (this.immobile.prezzo_orig > this.immobile.prezzo_attuale)
+          ? "text-decoration: line-through; text-decoration-color: red; font-size: 15px; margin-bottom: -10px;"
+          : "";
       }
     });
 

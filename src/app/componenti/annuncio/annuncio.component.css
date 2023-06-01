@@ -54,19 +54,9 @@ body {
   }
 
 /* Righe */
-.firstRow, .thirdRow {
+.firstRow, .thirdRow, .secondRow {
     padding: 10px;
     display: flex;
-    border: 2px solid #ccc;
-    margin: 10px;
-    overflow: hidden;
-    border-radius: 20px;
-    position: relative;
-}
-
-.secondRow {
-    padding: 20px;
-    display: block;
     border: 2px solid #ccc;
     margin: 10px;
     overflow: hidden;
@@ -94,7 +84,7 @@ body {
     border-radius: 3px;
 }
 
-.sellerInfos {
+.sellerInfos, .immobileCardInfos {
     padding: 20px;
     justify-self: center;
     align-self: center;
@@ -111,7 +101,7 @@ body {
     background-color: #ccc;
 }
 
-.sellerCard {
+.sellerCard, .immobileCard {
     justify-content: center;
     height: 280px;
     border: 2px #ccc solid;
@@ -146,6 +136,12 @@ body {
 /* Elementi seconda riga */
 .secondRowDivider {
     margin-bottom: 20px;
+}
+
+.immobileGeneric {
+    width: 100%;
+    margin: 10px auto;
+    margin-left: 10px;
 }
 
 /* Elementi terza riga */
@@ -242,13 +238,13 @@ body {
         max-width: 90%;
     }
 
-    .firstRow, .thirdRow {
+    .firstRow, .thirdRow, .secondRow {
         align-items: center;
         justify-content: center;
         display: block;
     }
 
-    .sellerInfos {
+    .sellerInfos, .immobileCardInfos {
         margin: 10px auto;
         width: 95%;
     }

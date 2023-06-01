@@ -22,23 +22,32 @@
                 </div>
             </div>
             <div class="secondRow">
-                <div class="immobileInfos">
-                    <h2>{{immobile.tipo}} in {{immobile.indirizzo}}</h2>
-                    <h1>{{immobile.prezzo_attuale}}€</h1>
-                </div>
-                <mat-divider class="secondRowDivider"></mat-divider>
-                <div class="immobileDescription">
-                    <h2>Descrizione</h2>
+                <div class="immobileGeneric">
+                    <div class="immobileInfos">
+                        <h2>{{immobile.tipo}} in {{immobile.indirizzo}}</h2>
+                    </div>
                     <mat-divider class="secondRowDivider"></mat-divider>
-                    <h3 class="immobileNome"><strong>{{immobile.nome}}</strong></h3>
-                    <h4 class="immobileDescription">{{immobile.descrizione}}</h4>
+                    <div class="immobileDescription">
+                        <h2>Descrizione</h2>
+                        <mat-divider class="secondRowDivider"></mat-divider>
+                        <h3 class="immobileNome"><strong>{{immobile.nome}}</strong></h3>
+                        <h4 class="immobileDescription">{{immobile.descrizione}}</h4>
+                    </div>
+                </div>
+                <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
+                <div class="immobileCardInfos">
+                    <mat-card class="immobileCard">
+                        <mat-card-footer>
+                            <mat-card-title>Tipo immobile: {{immobile.tipo_annuncio.replace("_", " ")}}</mat-card-title>
+                            <h1 *ngIf="immobile.tipo_annuncio != 'In_Asta'" [style]="prezzoOrigStyle">{{immobile.prezzo_orig}}€</h1>
+                            <h1 *ngIf="immobile.prezzo_orig > immobile.prezzo_attuale && immobile.tipo_annuncio != 'In_Asta'">{{immobile.prezzo_attuale}}€</h1>
+                        </mat-card-footer>
+                    </mat-card>
                 </div>
             </div>
             <div class="thirdRow">
                 <div class="immobileMap map-container" id="leafletMap"></div>
-
                 <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
-
                 <div class="reviewsBox">
                     <p class="noReviewsFound" *ngIf="recensioni.length == 0">Non sono presenti recensioni per questo annuncio.</p>
                     <div class="reviews" *ngFor="let recensione of recensioni; index as i">
