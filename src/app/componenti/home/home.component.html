@@ -53,7 +53,7 @@
       <mat-grid-tile *ngFor="let imm of immobili">
         <a href="http://localhost:4200/annuncio/{{imm.id}}" style="text-decoration: none; color: black;">
           <mat-card class="cards" (click)="OpenImmobile(imm.id)">
-            <img mat-card-image [src]="this.images[imm.id]" class="matCardImg">
+            <img mat-card-image [src]="this.images[imm.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
             <mat-card-footer>
               <mat-card-title>{{imm.nome}}</mat-card-title>
               <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>

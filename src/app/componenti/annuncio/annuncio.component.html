@@ -9,6 +9,7 @@
             <div class="firstRow">
                 <div class="imageCarousel">
                     <img class="img" *ngFor="let image of images" [src]="image" alt="Image">
+                    <img class="img" *ngIf="images.length === 0" src="assets/no_images_found.png">
                 </div>
                 <mat-divider class="mat-divider thick-divider" [vertical]="true"></mat-divider>
                 <div class="sellerInfos">
@@ -48,7 +49,7 @@
                                 <span id="hours" style="font-size: 25px"> {{hoursToDday}}</span>Ore
                                 <span id="minutes" style="font-size: 25px"> {{minutesToDday}}</span>Min
                                 <span id="seconds" style="font-size: 25px"> {{secondsToDday}}</span>Sec
-                                <div class="offerta" style="margin-top: 10px;">
+                                <div class="offerta" style="margin-top: 10px;" *ngIf="!checkIfSameOwner()">
                                     <h3 style="margin-top: 50px; margin-bottom: -3px;">Fai un'offerta!</h3>
                                     <div class="inputWithButton" style="display: flex; justify-content: center;">
                                         <input required type="number" [placeholder]="'Superiore a: '+prezzo_minimo_asta+'€'" [min]="prezzo_minimo_asta" [(ngModel)]="prezzo_asta_update">

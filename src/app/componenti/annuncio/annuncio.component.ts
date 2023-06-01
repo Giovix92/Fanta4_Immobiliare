@@ -302,4 +302,8 @@ export class AnnuncioComponent implements OnInit {
     })
   }
  }
+
+ checkIfSameOwner(): Boolean {
+  return this.immobile.proprietario == localStorage.getItem('id');
+ }
 }
