@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription, interval } from 'rxjs';
 import { latLng, tileLayer, Map } from 'leaflet';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -32,7 +33,6 @@ export class AnnuncioComponent implements OnInit {
   proprietario: Utente = new Utente();
   asta: Asta = new Asta();
   images: String[] = [];
-  existAsta: boolean = false;
   prezzoOrigStyle: String = "";
 
   /* Map stuffs */
@@ -50,6 +50,24 @@ export class AnnuncioComponent implements OnInit {
   faFacebook = faFacebook;
   faWhatsapp = faWhatsapp;
   faEnvelope = faEnvelope;
+
+  /* Asta stuff */
+  subscription: Subscription = new Subscription;
+  public dateNow = new Date();
+  public dDay = new Date();
+  milliSecondsInASecond = 1000;
+  hoursInADay = 24;
+  minutesInAnHour = 60;
+  SecondsInAMinute  = 60;
+  timeDifference?: number;
+  secondsToDday?: number;
+  minutesToDday?: number;
+  hoursToDday?: number;
+  daysToDday?: number;
+  prezzo_minimo_asta: number = 0;
+  ultimo_offerente: String = "nessuno";
+  prezzo_asta_update: number = this.asta.prezzo_partenza;
+  astaDisabled: boolean = false;
 
   ngOnInit() {
     /**
@@ -83,7 +101,20 @@ export class AnnuncioComponent implements OnInit {
           this.service.getAstaByImmobile(immobile.id).subscribe({
             next: (asta_info) => {
               this.asta = asta_info;
-              this.existAsta = true;
+
+              this.dateNow = new Date();
+              this.dDay = new Date(asta_info.fine);
+
+              this.subscription = interval(1000)
+                .subscribe(x => { this.getTimeDifference(); });
+
+              this.prezzo_minimo_asta = asta_info.prezzo_corrente + 1;
+
+              this.service.getUtente(asta_info.acquirente).subscribe({
+                next: (utente) => {
+                  this.ultimo_offerente = utente.email;
+                }
+              })
             }
           });
         }
@@ -175,10 +206,6 @@ export class AnnuncioComponent implements OnInit {
       });
   }
 
-  updateImmobile() {
-    // TODO: Fare form come profilo
-  }
-
   deleteImmobile() {
     this.service.deleteImmobile(this.id);
     this.dialog.open(SuccessdialogComponent);
@@ -236,4 +263,43 @@ export class AnnuncioComponent implements OnInit {
       next: () => window.location.reload()
     })
   }
+
+  getTimeDifference() {
+    this.timeDifference = this.dDay.getTime() - new Date().getTime();
+    this.allocateTimeUnits(this.timeDifference);
+  
+    if (this.timeDifference <= 0) {
+      this.astaDisabled = true;
+      this.ngOnDestroy();
+    }
+  }
+
+  allocateTimeUnits (timeDifference: number) {
+    this.secondsToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
+    this.minutesToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
+    this.hoursToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
+    this.daysToDday = Math.floor((timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+ }
+
+ sendUpdateAsta() {
+  if(this.prezzo_asta_update <= this.prezzo_minimo_asta-1) {
+    this.dialog.open(ErrordialogComponent);
+  } else {
+    this.service.updateAsta(this.asta.id, {
+      id: this.asta.id,
+      immobile: this.asta.immobile,
+      acquirente: localStorage.getItem("id"),
+      prezzo_partenza: this.asta.prezzo_partenza,
+      prezzo_corrente: this.prezzo_asta_update,
+      fine: this.asta.fine,
+    }).subscribe({
+      next: () => this.dialog.open(SuccessdialogComponent).afterClosed().subscribe(() => {window.location.reload()}),
+      error: () => this.dialog.open(ErrordialogComponent).afterClosed().subscribe(() => {window.location.reload()}),
+    })
+  }
+ }
 }

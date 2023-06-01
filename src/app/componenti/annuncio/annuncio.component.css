@@ -144,6 +144,16 @@ body {
     margin-left: 10px;
 }
 
+.sendUpdateAstaButton {
+    background-color: #259be2;   
+    color: #fff;   
+    border: none;   
+    border-radius: 3px;   
+    cursor: pointer;
+    height: 30px;
+    width: 50px;
+}
+
 /* Elementi terza riga */
 #leafletMap {
     margin-left: 5px;

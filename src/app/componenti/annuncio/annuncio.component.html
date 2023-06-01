@@ -41,7 +41,23 @@
                             <mat-card-title>Tipo immobile: {{immobile.tipo_annuncio.replace("_", " ")}}</mat-card-title>
                             <h1 *ngIf="immobile.tipo_annuncio != 'In_Asta'" [style]="prezzoOrigStyle">{{immobile.prezzo_orig}}€</h1>
                             <h1 *ngIf="immobile.prezzo_orig > immobile.prezzo_attuale && immobile.tipo_annuncio != 'In_Asta'">{{immobile.prezzo_attuale}}€</h1>
+                            <div class="astaInfos" *ngIf="immobile.tipo_annuncio == 'In_Asta' && !astaDisabled">
+                                <h4> Prezzo attuale: {{asta.prezzo_corrente}}€</h4>
+                                <h4 *ngIf="ultimo_offerente != 'nessuno'"> Ultima offerta da: {{ultimo_offerente}}</h4>
+                                <span id="days" style="font-size: 25px"> {{daysToDday}}</span>Giorno/i
+                                <span id="hours" style="font-size: 25px"> {{hoursToDday}}</span>Ore
+                                <span id="minutes" style="font-size: 25px"> {{minutesToDday}}</span>Min
+                                <span id="seconds" style="font-size: 25px"> {{secondsToDday}}</span>Sec
+                                <div class="offerta" style="margin-top: 10px;">
+                                    <h3 style="margin-top: 50px; margin-bottom: -3px;">Fai un'offerta!</h3>
+                                    <div class="inputWithButton" style="display: flex; justify-content: center;">
+                                        <input required type="number" [placeholder]="'Superiore a: '+prezzo_minimo_asta+'€'" [min]="prezzo_minimo_asta" [(ngModel)]="prezzo_asta_update">
+                                        <button class="sendUpdateAstaButton" (click)="sendUpdateAsta()">Invia</button>
+                                    </div>
+                                </div>
+                            </div>
                         </mat-card-footer>
+                        <label *ngIf="astaDisabled" style="font-size: 20px; margin-top: 10px;">Asta chiusa.</label>
                     </mat-card>
                 </div>
             </div>

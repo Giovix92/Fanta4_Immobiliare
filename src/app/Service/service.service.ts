@@ -139,6 +139,13 @@ export class ServiceService {
     return this.http.get<Asta>('http://localhost:8080/api/aste/findByImmobile/' + id);
   }
 
+  /**
+   * Update asta dato id
+   */
+  updateAsta(id: number, body: {}): Observable<Asta> {
+    return this.http.put<Asta>('http://localhost:8080/api/aste/' + id, body);
+  }
+
   // ### IMAGES ###
   /**
    * Creazione immagine dato body

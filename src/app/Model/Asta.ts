@@ -4,5 +4,5 @@ export class Asta{
   acquirente!: string;
   prezzo_partenza!: number;
   prezzo_corrente!: number;
-  fine!: Date;
+  fine!: number;
 }
