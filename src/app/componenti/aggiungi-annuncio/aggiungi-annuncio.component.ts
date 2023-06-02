@@ -54,7 +54,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
     const prop_id = localStorage.getItem("id");
     this.service.findAllByOwner(prop_id || "").subscribe({
       next: (immobili) => {
-        this.myImmobiliArray = immobili.filter((immobile) => immobile.tipo_annuncio !== "In_Asta");
+        this.myImmobiliArray = immobili;
       }
     });
   }
@@ -138,7 +138,9 @@ export class AggiungiAnnuncioComponent implements OnInit{
           });
         },
         error: () => this.dialog.open(ErrordialogComponent),
-        complete: () => this.dialog.open(SuccessdialogComponent),
+        complete: () => this.dialog.open(SuccessdialogComponent).afterClosed().subscribe({
+          next: () => window.open("http://localhost:4200/home", "_self"),
+        }),
       });
     } else {
       const immobile_id = this.myImmobiliArray[this.myImmobiliArrayIndex].id;
@@ -167,7 +169,9 @@ export class AggiungiAnnuncioComponent implements OnInit{
           }
         },
         error: () => this.dialog.open(ErrordialogComponent),
-        complete: () => this.dialog.open(SuccessdialogComponent),
+        complete: () => this.dialog.open(SuccessdialogComponent).afterClosed().subscribe({
+          next: () => window.open("http://localhost:4200/home", "_self"),
+        }),
       });
     }
   }
@@ -205,6 +209,12 @@ export class AggiungiAnnuncioComponent implements OnInit{
       county: county,
       postalCode: postalCode,
     });
+
+    if(selectedImmobile.tipo_annuncio === "In_Asta") {
+      this.astaSelected = true;
+    } else {
+      this.astaSelected = false;
+    }
   }
 
   openNewPage() {
