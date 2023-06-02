@@ -44,7 +44,7 @@ export class AdminCplComponent implements OnInit {
             cognome: this.utente.cognome,
             id: this.utente.id,
             telefono: this.utente.telefono,
-            email: this.utente.telefono,
+            email: this.utente.email,
             password: this.utente.password,
             tipologia: this.utente.tipologia,
             bannato: this.utente.bannato,
@@ -71,7 +71,7 @@ export class AdminCplComponent implements OnInit {
             cognome: this.utente.cognome,
             id: this.utente.id,
             telefono: this.utente.telefono,
-            email: this.utente.telefono,
+            email: this.utente.email,
             password: this.utente.password,
             tipologia: this.utente.tipologia,
             bannato: this.utente.bannato,
@@ -83,7 +83,7 @@ export class AdminCplComponent implements OnInit {
         complete: () => this.dialog.open(SuccessdialogComponent),
       });
   }
-    
+
 
   onValueUserTypeSelected(event: any) {
     const selectedValue = event.target.value;

@@ -49,11 +49,13 @@
   <ng-template *ngIf="!Mobile(); then desktopView else mobileView"></ng-template>
 
   <ng-template #desktopView>
-    <mat-grid-list [cols]="this.showOnly2Cols ? 2 : 3" gutterSize="20px" rowHeight="470px" class="gridList">
+    <mat-grid-list [cols]="this.showOnly2Cols ? 2 : 3" gutterSize="25px" rowHeight="470px" class="gridList">
       <mat-grid-tile *ngFor="let imm of immobili">
         <a href="http://localhost:4200/annuncio/{{imm.id}}" style="text-decoration: none; color: black;">
           <mat-card class="cards" (click)="OpenImmobile(imm.id)">
-            <img mat-card-image [src]="this.images[imm.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
+            <div class="imageContainer">
+              <img mat-card-image [src]="this.images[imm.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
+            </div>
             <mat-card-footer>
               <mat-card-title>{{imm.nome}}</mat-card-title>
               <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>
@@ -66,10 +68,12 @@
   </ng-template>
 
   <ng-template #mobileView>
-    <mat-grid-list cols="1" rowHeight="360px" style="margin-top: 15px;">
+    <mat-grid-list cols="1" rowHeight="500px" style="margin-top: 15px;">
       <mat-grid-tile *ngFor="let imm of immobili" >
         <mat-card class="cards" (click)="OpenImmobile(imm.id)">
-          <img mat-card-image [src]="this.images[imm.id]" class="matCardImg">
+          <div class="imageContainer">
+            <img mat-card-image [src]="this.images[imm.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
+          </div>
           <mat-card-footer>
             <mat-card-title>{{imm.nome}}</mat-card-title>
             <mat-card-subtitle>{{imm.indirizzo}}</mat-card-subtitle>

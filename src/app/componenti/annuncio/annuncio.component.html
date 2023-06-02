@@ -44,7 +44,7 @@
                             <h1 *ngIf="immobile.prezzo_orig > immobile.prezzo_attuale && immobile.tipo_annuncio != 'In_Asta'">{{immobile.prezzo_attuale}}€</h1>
                             <div class="astaInfos" *ngIf="immobile.tipo_annuncio == 'In_Asta' && !astaDisabled">
                                 <h4> Prezzo attuale: {{asta.prezzo_corrente}}€</h4>
-                                <h4 *ngIf="ultimo_offerente != 'nessuno'"> Ultima offerta da: {{ultimo_offerente}}</h4>
+                                <h4 *ngIf="ultimo_offerente != 'nessuno'" style="word-wrap: break-word; overflow-wrap: break-word;"> Ultima offerta da: {{ultimo_offerente}}</h4>
                                 <span id="days" style="font-size: 25px"> {{daysToDday}}</span>Giorno/i
                                 <span id="hours" style="font-size: 25px"> {{hoursToDday}}</span>Ore
                                 <span id="minutes" style="font-size: 25px"> {{minutesToDday}}</span>Min
@@ -92,7 +92,7 @@
         </button>
     </div>
 
-    <button mat-fab class="fab-button-2" (click)="addReview()" title="Aggiungi recensione" *ngIf="this.auth.isLoggedIn">
+    <button mat-fab class="fab-button-2" (click)="addReview()" title="Aggiungi recensione" *ngIf="this.auth.isLoggedIn && !checkIfSameOwner()">
         <mat-icon>add_circle</mat-icon>
     </button>
 </body>

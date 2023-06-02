@@ -112,12 +112,20 @@
 }
 
 .matCardImg {
-  width: 95%;
+  width: 100%;
   height: 100%;
+  padding: 20px;
+  object-fit: contain;
+}
+
+.imageContainer{
+  width: 500px;
+  height: 350px;
+  display: flex;
   border-radius: 20px;
-  align-self: center;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
 }
 
 mat-card-title,
@@ -127,4 +135,13 @@ mat-card-subtitle {
 
 mat-card-footer {
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .imageContainer {
+    width: 370px;
+    margin: 2px auto;
+    height: 380px;
+  }
 }
