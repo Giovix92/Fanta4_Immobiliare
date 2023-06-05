@@ -56,6 +56,30 @@ body {
     border-radius: 3px;
 }
 
+.error-message {
+    background-color:rgba(255, 255, 255, 0.681);
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.error-message p {
+    margin: 0;
+}
+
+.error-logo {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 48px;
+    height: 48px;
+    background-image: url("../img/error-logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 @media (max-width: 480px) {
     .container {
         padding: 15px;

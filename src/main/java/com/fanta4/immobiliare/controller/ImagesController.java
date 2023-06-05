@@ -1,4 +1,4 @@
-package com.fanta4.immobiliare.controller.api;
+package com.fanta4.immobiliare.controller;
 
 import com.fanta4.immobiliare.persistence.model.Images;
 import com.fanta4.immobiliare.service.ImagesService;
