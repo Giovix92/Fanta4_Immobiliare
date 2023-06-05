@@ -52,11 +52,19 @@ export class AggiungiAnnuncioComponent implements OnInit{
     this.minDateTime = this.datePipe.transform(nextDay, 'yyyy-MM-ddTHH:mm');
 
     const prop_id = localStorage.getItem("id");
-    this.service.findAllByOwner(prop_id || "").subscribe({
-      next: (immobili) => {
-        this.myImmobiliArray = immobili;
-      }
-    });
+    if(!this.auth.isAdmin()){
+      this.service.findAllByOwner(prop_id || "").subscribe({
+        next: (immobili) => {
+          this.myImmobiliArray = immobili;
+        }
+      });
+    } else {
+      this.service.getImmobili().subscribe({
+        next: (immobili) => {
+          this.myImmobiliArray = immobili;
+        }
+      });
+    }
   }
 
   onFileChange(event: any) {
@@ -144,6 +152,12 @@ export class AggiungiAnnuncioComponent implements OnInit{
       });
     } else {
       const immobile_id = this.myImmobiliArray[this.myImmobiliArrayIndex].id;
+      var proprietario = "";
+      if(this.myImmobiliArray[this.myImmobiliArrayIndex].proprietario != localStorage.getItem("id")){
+        proprietario = this.myImmobiliArray[this.myImmobiliArrayIndex].proprietario;
+      } else {
+        proprietario = localStorage.getItem("id") || "";
+      }
       this.service.updateImmobile(immobile_id, {
         nome: this.formAggiungi.value.titolo,
         descrizione: this.formAggiungi.value.descrizione,
@@ -152,7 +166,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
         prezzo_attuale: this.formAggiungi.value.prezzo_attuale,
         metri_quadri: this.formAggiungi.value.superficie,
         tipo: this.formAggiungi.value.tipo,
-        proprietario: localStorage.getItem("id"),
+        proprietario: proprietario,
         tipo_annuncio: this.formAggiungi.value.tipo_annuncio,
       }).subscribe({
         next: () => {

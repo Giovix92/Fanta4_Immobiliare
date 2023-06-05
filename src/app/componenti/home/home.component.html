@@ -10,12 +10,14 @@
       <div class="filtriContainer">
         <select class="tipoImmobileSelect" formControlName="tipoImmobile" [(ngModel)]="tipoImmobileValue" (change)="tipoImmobileValueChange($event)" required>
           <option value="" selected disabled>Seleziona tipo immobile</option>
-          <option class="optionEntry" value="Villa">Villa</option>
-          <option class="optionEntry" value="Appartamento">Appartamento</option>
+          <option class="optionEntry" value="Villa">Ville</option>
+          <option class="optionEntry" value="Appartamento">Appartamenti</option>
+          <option class="optionEntry" value="Attico">Attici</option>
+          <option class="optionEntry" value="Mansarda">Mansarde</option>
           <option class="optionEntry" value="Garage">Garage</option>
-          <option class="optionEntry" value="Terreno">Terreno</option>
-          <option class="optionEntry" value="Negozi">Negozi</option>
-          <option class="optionEntry" value="Uffici">Uffici</option>
+          <option class="optionEntry" value="Negozio">Negozi</option>
+          <option class="optionEntry" value="Ufficio">Uffici</option>
+          <option class="optionEntry" value="Terreno">Terreni</option>
         </select>
         <select class="tipoAnnuncioSelect" formControlName="tipoAnnuncio" [(ngModel)]="tipoAnnuncioValue" (change)="tipoAnnuncioValueChange($event)" required>
           <option value="" disabled selected>Seleziona tipo annuncio</option>
