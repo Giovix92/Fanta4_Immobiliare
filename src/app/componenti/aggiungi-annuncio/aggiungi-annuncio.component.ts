@@ -31,6 +31,7 @@ export class AggiungiAnnuncioComponent implements OnInit{
   constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog, private imageCompress: NgxImageCompressService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    if(!this.auth.isLoggedIn) window.open("http://localhost:4200/home", "_self")
     this.formAggiungi = new FormGroup({
       titolo: new FormControl(),
       descrizione: new FormControl(),

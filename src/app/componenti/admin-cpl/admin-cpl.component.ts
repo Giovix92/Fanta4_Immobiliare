@@ -21,6 +21,7 @@ export class AdminCplComponent implements OnInit {
   constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    if(!this.auth.isLoggedIn || !this.auth.isAdmin()) window.open("http://localhost:4200/home", "_self")
     this.changeUserTypeForm = new FormGroup({
       user_id_1: new FormControl(),
       user_type: new FormControl()

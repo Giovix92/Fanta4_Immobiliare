@@ -71,7 +71,7 @@
                         <p>Scritta da: {{recensione.autore}}</p>
                         <p class="reviewObject">Oggetto: {{recensione.titolo}}</p>
                         <p>Rating: {{recensione.rating}}/5</p>
-                        <div *ngIf="this.auth.isLoggedIn && this.auth.isAdmin()"> <a (click)="deleteRecensione(recensione.id)" class="removeReview">Rimuovi recensione</a> </div>
+                        <div *ngIf="this.auth.isLoggedIn && (this.auth.isAdmin() || checkIfSameReviewOwner(recensione))"> <a (click)="deleteRecensione(recensione.id)" class="removeReview">Rimuovi recensione</a> </div>
                     </div>
                 </div>
             </div>

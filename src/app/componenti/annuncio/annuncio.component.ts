@@ -283,27 +283,31 @@ export class AnnuncioComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
- }
-
- sendUpdateAsta() {
-  if(this.prezzo_asta_update <= this.prezzo_minimo_asta-1) {
-    this.dialog.open(ErrordialogComponent);
-  } else {
-    this.service.updateAsta(this.asta.id, {
-      id: this.asta.id,
-      immobile: this.asta.immobile,
-      acquirente: localStorage.getItem("id"),
-      prezzo_partenza: this.asta.prezzo_partenza,
-      prezzo_corrente: this.prezzo_asta_update,
-      fine: this.asta.fine,
-    }).subscribe({
-      next: () => this.dialog.open(SuccessdialogComponent).afterClosed().subscribe(() => {window.location.reload()}),
-      error: () => this.dialog.open(ErrordialogComponent).afterClosed().subscribe(() => {window.location.reload()}),
-    })
   }
- }
 
- checkIfSameOwner(): Boolean {
-  return this.immobile.proprietario == localStorage.getItem('id');
- }
+  sendUpdateAsta() {
+    if(this.prezzo_asta_update <= this.prezzo_minimo_asta-1) {
+      this.dialog.open(ErrordialogComponent);
+    } else {
+      this.service.updateAsta(this.asta.id, {
+        id: this.asta.id,
+        immobile: this.asta.immobile,
+        acquirente: localStorage.getItem("id"),
+        prezzo_partenza: this.asta.prezzo_partenza,
+        prezzo_corrente: this.prezzo_asta_update,
+        fine: this.asta.fine,
+      }).subscribe({
+        next: () => this.dialog.open(SuccessdialogComponent).afterClosed().subscribe(() => {window.location.reload()}),
+        error: () => this.dialog.open(ErrordialogComponent).afterClosed().subscribe(() => {window.location.reload()}),
+      })
+    }
+  }
+
+  checkIfSameOwner(): Boolean {
+    return this.immobile.proprietario == localStorage.getItem('id');
+  }
+
+  checkIfSameReviewOwner(recensione: Recensione): Boolean {
+    return recensione.autore == localStorage.getItem('email');
+  }
 }

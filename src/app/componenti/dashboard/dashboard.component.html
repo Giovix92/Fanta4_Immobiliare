@@ -24,11 +24,11 @@
     </div>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item onClick="window.open('http://localhost:8080/Login.html','_self')" *ngIf="!this.auth.isLoggedIn">
+      <button mat-menu-item onClick="window.open('http://localhost:8080/login','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>login</mat-icon>
         <a style="font-size: 15px;">Login</a>
       </button>
-      <button mat-menu-item onClick="window.open('http://localhost:8080/Registrazione.html','_self')" *ngIf="!this.auth.isLoggedIn">
+      <button mat-menu-item onClick="window.open('http://localhost:8080/registrazione','_self')" *ngIf="!this.auth.isLoggedIn">
         <mat-icon>app_registration</mat-icon>
         <a style="font-size: 15px;">Registrati</a>
       </button>

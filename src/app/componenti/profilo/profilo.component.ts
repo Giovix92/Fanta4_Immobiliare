@@ -23,9 +23,10 @@ export class ProfiloComponent implements OnInit {
     tipologiaValue: string = '';
     id: string = '';
 
-    constructor(private service: ServiceService, public dialog: MatDialog) { }
+    constructor(private service: ServiceService, public dialog: MatDialog, private auth: AuthService) {}
 
     ngOnInit(): void {
+        if(!this.auth.isLoggedIn) window.open("http://localhost:4200/home", "_self")
         this.nomeValue = localStorage.getItem("nome") || "";
         this.cognomeValue = localStorage.getItem("cognome") || "";
         this.telefonoValue = localStorage.getItem("telefono") || "";

@@ -52,7 +52,7 @@ body {
   border-radius: 5px;
   max-width: 80%;
   max-height: 70%;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .titolo {
@@ -77,6 +77,12 @@ body {
   }
 
   body {
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container {
     overflow-y: scroll;
   }
 }
