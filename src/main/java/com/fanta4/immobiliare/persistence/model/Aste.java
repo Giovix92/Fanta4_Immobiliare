@@ -1,7 +1,5 @@
 package com.fanta4.immobiliare.persistence.model;
 
-import java.sql.Timestamp;
-
 public class Aste {
 
     private Integer id;

@@ -25,8 +25,9 @@ public class RegistrationServlet extends HttpServlet {
 
         UtenteDao udao = DBManager.getInstance().getUtenteDAO();
         Utente utente = udao.findByPrimaryKey(cf);
+        Utente utente2 = udao.findByEmail(email);
 
-        if(utente == null){
+        if(utente == null && utente2 == null) {
             boolean reg = udao.saveOrUpdate(new Utente(cf,name,surname,email,phone,role,password,false));
             if(reg) {
                 // Registrazione andata a buon fine: popup

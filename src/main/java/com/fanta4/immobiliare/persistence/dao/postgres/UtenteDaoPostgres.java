@@ -39,7 +39,6 @@ public class UtenteDaoPostgres implements UtenteDao {
             while(rs.next()) { utenti.add(createNewEntity(rs)); }
             return utenti;
         } catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;
@@ -54,7 +53,6 @@ public class UtenteDaoPostgres implements UtenteDao {
             ResultSet rs = st.executeQuery();
             if (rs.next()) { return createNewEntity(rs); }
         } catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;
@@ -68,7 +66,6 @@ public class UtenteDaoPostgres implements UtenteDao {
             ResultSet rs = st.executeQuery();
             if (rs.next()) { return createNewEntity(rs); }
         } catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;
@@ -77,7 +74,6 @@ public class UtenteDaoPostgres implements UtenteDao {
     @Override
     public boolean saveOrUpdate(Utente utente) {
         PreparedStatement st = null;
-        String id = null;
         try {
             Utente u = findByPrimaryKey(utente.getId());
             if (u == null) {
@@ -102,7 +98,6 @@ public class UtenteDaoPostgres implements UtenteDao {
             st.executeUpdate();
             return true;
         } catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return false;
@@ -117,7 +112,6 @@ public class UtenteDaoPostgres implements UtenteDao {
             st.setString(1, utente.getId());
             st.executeUpdate();
         } catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
     }
